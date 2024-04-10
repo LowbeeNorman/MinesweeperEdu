@@ -25,7 +25,7 @@ HEADERS += \
     startwindow.h \
     boardview.h \
     mainwindow.h \
-    startscreen.h
+    startscreen.h \
     model.h \
     tipsview.h \
 
