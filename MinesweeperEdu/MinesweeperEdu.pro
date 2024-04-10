@@ -17,7 +17,7 @@ SOURCES += \
     mainwindow.cpp \
     startscreen.cpp \
     model.cpp \
-    tipsview.cpp
+    tipsview.cpp \
 
 HEADERS += \
     lesson.h \
@@ -27,7 +27,7 @@ HEADERS += \
     mainwindow.h \
     startscreen.h
     model.h \
-    tipsview.h
+    tipsview.h \
 
 FORMS += \
     lesson.ui \
