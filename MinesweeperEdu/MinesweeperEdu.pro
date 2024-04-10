@@ -9,11 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    boardview.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    model.cpp \
+    tipsview.cpp
 
 HEADERS += \
-    mainwindow.h
+    boardview.h \
+    mainwindow.h \
+    model.h \
+    tipsview.h
 
 FORMS += \
     mainwindow.ui
