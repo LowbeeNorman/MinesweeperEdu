@@ -9,14 +9,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    levelselect.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    startwindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    levelselect.h \
+    mainwindow.h \
+    startwindow.h
 
 FORMS += \
-    mainwindow.ui
+    levelselect.ui \
+    mainwindow.ui \
+    startwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
