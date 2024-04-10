@@ -13,6 +13,7 @@ CONFIG += c++17
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    minefield.cpp \
     model.cpp \
     tipsview.cpp
 
@@ -21,6 +22,7 @@ HEADERS += \
     startwindow.h \
     boardview.h \
     mainwindow.h \
+    minefield.h \
     model.h \
     tipsview.h
 
