@@ -15,6 +15,7 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
+    minefield.h
 
 FORMS += \
     mainwindow.ui
