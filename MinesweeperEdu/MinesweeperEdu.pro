@@ -11,15 +11,23 @@ CONFIG += c++17
 SOURCES += \
     lesson.cpp \
     levelselect.cpp \
+    startwindow.cpp \
+    boardview.cpp \
     main.cpp \
     mainwindow.cpp \
-    startscreen.cpp
+    startscreen.cpp \
+    model.cpp \
+    tipsview.cpp
 
 HEADERS += \
     lesson.h \
     levelselect.h \
+    startwindow.h \
+    boardview.h \
     mainwindow.h \
     startscreen.h
+    model.h \
+    tipsview.h
 
 FORMS += \
     lesson.ui \
