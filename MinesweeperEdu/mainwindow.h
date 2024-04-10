@@ -1,3 +1,7 @@
+/// Assignment 9: Educational App
+/// CS3505
+/// Written by: Caleb Norman
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -9,6 +13,10 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+///
+/// \brief The MainWindow class provides the view for the start of the program. Users
+/// will be prompted to either
+///
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
