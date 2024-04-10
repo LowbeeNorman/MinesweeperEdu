@@ -26,14 +26,40 @@ void Minefield::initializeField() {
 }
 
 void Minefield::guaranteeSafe(QPoint firstTile) {
-    int arraySlot = firstTile.y() * boardSize.width() + firstTile.x();
-    if (field[arraySlot] != 9) {
+    int index = pointToIndex(firstTile);
+    if (field[index] != 9) {
         return;
     }
     if (numMines >= arrayLength) {
         return;
     }
     int randomInt;
-    while ((randomInt = std::rand() % arrayLength) != arraySlot || field[randomInt] == 9);
-    std::swap(field[arraySlot], field[randomInt]);
+    while ((randomInt = std::rand() % arrayLength) != index || field[randomInt] == 9);
+    std::swap(field[index], field[randomInt]);
+}
+
+void Minefield::floodFill(QPoint selectedTile) {
+    int index = pointToIndex(selectedTile);
+    if (index < 0 || index >= arrayLength
+        || tiles[index] != Tile::covered) {
+        return;
+    }
+    tiles[index] = Tile::blank;
+    if (field[index] != 0) {
+        return;
+    }
+
+    // start left, counter clockwise wrap, order matters
+    floodFill(QPoint(selectedTile.x() - 1, selectedTile.y()));
+    floodFill(QPoint(selectedTile.x() - 1, selectedTile.y() - 1));
+    floodFill(QPoint(selectedTile.x(), selectedTile.y() - 1));
+    floodFill(QPoint(selectedTile.x() + 1, selectedTile.y() - 1));
+    floodFill(QPoint(selectedTile.x() + 1, selectedTile.y()));
+    floodFill(QPoint(selectedTile.x() + 1, selectedTile.y() + 1));
+    floodFill(QPoint(selectedTile.x(), selectedTile.y() + 1));
+    floodFill(QPoint(selectedTile.x() - 1, selectedTile.y() + 1));
+}
+
+int Minefield::pointToIndex (QPoint point) {
+    return point.y() * boardSize.width() + point.x();
 }
