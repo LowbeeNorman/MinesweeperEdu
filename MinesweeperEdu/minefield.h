@@ -10,7 +10,7 @@ enum class Tile {
     flagged
 };
 
-class Minefield
+class Minefield : public QObject
 {
     Q_OBJECT
 
