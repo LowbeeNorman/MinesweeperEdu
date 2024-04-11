@@ -25,20 +25,40 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QPushButton" name="newLessonButton">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>50</y>
-     <width>281</width>
-     <height>131</height>
+     <x>320</x>
+     <y>190</y>
+     <width>211</width>
+     <height>101</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Start Screen</string>
+   <property name="font">
+    <font>
+     <pointsize>21</pointsize>
+    </font>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+   <property name="text">
+    <string>New Lesson</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="continueButton">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>300</y>
+     <width>211</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>21</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Continue</string>
    </property>
   </widget>
  </widget>

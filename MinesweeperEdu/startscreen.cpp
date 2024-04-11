@@ -10,9 +10,15 @@ StartScreen::StartScreen(QWidget *parent)
     , ui(new Ui::StartScreen)
 {
     ui->setupUi(this);
+    connect(ui->newLessonButton, &QPushButton::clicked, this, &StartScreen::newLessonButtonClicked);
 }
 
 StartScreen::~StartScreen()
 {
     delete ui;
+}
+
+void StartScreen::newLessonButtonClicked() {
+    emit sendNewLessonClicked(1);
+    qDebug() << "HIIIII";
 }
