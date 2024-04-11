@@ -1,3 +1,3 @@
 #include "lessonlevel.h"
 
-lessonlevel::lessonlevel() {}
+LessonLevel::LessonLevel() {}

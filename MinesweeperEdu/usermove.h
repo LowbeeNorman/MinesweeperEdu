@@ -5,14 +5,15 @@
 class UserMove
 {
 public:
+    UserMove(QPoint cell); //ToDo add parameter for Right/Left Click
     UserMove();
-private:
-    QPoint cell;
     enum class MoveType
     {
         FLAG, CLEAR
     };
     MoveType type;
+private:
+    QPoint cell;
 };
 
 #endif // USERMOVE_H
