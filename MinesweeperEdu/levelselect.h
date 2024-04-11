@@ -12,7 +12,7 @@ class LevelSelect;
 }
 ///
 /// \brief The LevelSelect class deals with view concerns for the part of the program
-/// that allows users to select a level
+/// that allows users to select a level. This class is meant to be put into the mainwindow
 ///
 class LevelSelect : public QWidget
 {
