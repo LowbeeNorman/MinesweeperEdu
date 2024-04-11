@@ -14,8 +14,8 @@ class MainWindow;
 QT_END_NAMESPACE
 
 ///
-/// \brief The MainWindow class provides the view for the start of the program. Users
-/// will be prompted to either
+/// \brief The MainWindow class provides the view for the start of the program. From this window, other
+/// widgets can be traded out for the current one using a stackedwidget
 ///
 class MainWindow : public QMainWindow
 {
