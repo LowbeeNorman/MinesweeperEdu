@@ -10,7 +10,7 @@ public:
 
 private:
     //list of tips
-    QList<String> gameTips;
+    QList<QString> gameTips;
 };
 
 #endif // MODEL_H
