@@ -6,7 +6,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "startscreen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
