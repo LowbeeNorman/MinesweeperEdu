@@ -20,5 +20,4 @@ StartScreen::~StartScreen()
 
 void StartScreen::newLessonButtonClicked() {
     emit sendNewLessonClicked(1);
-    qDebug() << "HIIIII";
 }

@@ -6,12 +6,12 @@
 #include "ui_mainwindow.h"
 #include "startscreen.h"
 
-MainWindow::MainWindow(StartScreen &startScreen, QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(&startScreen, &StartScreen::sendNewLessonClicked, this, &MainWindow::updateScreenIndex);
+    connect(ui->startPage, &StartScreen::sendNewLessonClicked, this, &MainWindow::updateScreenIndex);
 }
 
 MainWindow::~MainWindow()
@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateScreenIndex(int index)
 {
-    qDebug() << "HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+    ui->stackedWidget->setCurrentIndex(index);
 }
 
 
