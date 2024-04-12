@@ -43,18 +43,18 @@
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="minimumSize">
        <size>
-        <width>900</width>
+        <width>1500</width>
         <height>700</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>900</width>
+        <width>1500</width>
         <height>700</height>
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="StartScreen" name="startPage"/>
       <widget class="LevelSelect" name="levelSelectPage"/>

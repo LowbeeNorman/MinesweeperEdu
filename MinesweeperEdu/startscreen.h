@@ -24,6 +24,12 @@ public:
     explicit StartScreen(QWidget *parent = nullptr);
     ~StartScreen();
 
+public slots:
+    void newLessonButtonClicked();
+
+signals:
+    void sendNewLessonClicked(int index);
+
 private:
     Ui::StartScreen *ui;
 };

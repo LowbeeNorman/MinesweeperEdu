@@ -27,5 +27,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+public slots:
+    void updateScreenIndex(int index);
 };
 #endif // MAINWINDOW_H
