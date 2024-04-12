@@ -1,3 +1,7 @@
+/// Assignment 9: Educational App
+/// CS3505
+/// 4/12/24
+/// Written by: Caleb Norman
 #include "mainwindow.h"
 
 #include <QApplication>

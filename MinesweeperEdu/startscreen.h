@@ -1,5 +1,6 @@
 /// Assignment 9: Educational App
 /// CS3505
+/// 4/12/24
 /// Written by: Caleb Norman
 
 #ifndef STARTSCREEN_H
@@ -25,9 +26,18 @@ public:
     ~StartScreen();
 
 public slots:
+    ///
+    /// \brief This slot will receive the signal from the new lesson button
+    /// that resides within the ui
+    ///
     void newLessonButtonClicked();
 
 signals:
+    ///
+    /// \brief This signal notifies any listeners that the newLessonButton has been clicked,
+    /// and the page should be updated
+    /// \param The index of the page to move to
+    ///
     void sendNewLessonClicked(int index);
 
 private:

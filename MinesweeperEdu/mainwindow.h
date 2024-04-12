@@ -1,5 +1,6 @@
 /// Assignment 9: Educational App
 /// CS3505
+/// 4/12/24
 /// Written by: Caleb Norman
 
 #ifndef MAINWINDOW_H
@@ -29,6 +30,10 @@ private:
     Ui::MainWindow *ui;
 
 public slots:
+    ///
+    /// \brief Updates the currently displayed page of our program
+    /// \param The page index we will go to
+    ///
     void updateScreenIndex(int index);
 };
 #endif // MAINWINDOW_H
