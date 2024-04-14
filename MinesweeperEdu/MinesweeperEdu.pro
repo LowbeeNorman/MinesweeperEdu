@@ -14,6 +14,7 @@ SOURCES += \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    minesweeperview.cpp \
     startscreen.cpp \
     minefield.cpp \
     model.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     levelselect.h \
     boardview.h \
     mainwindow.h \
+    minesweeperview.h \
     startscreen.h \
     minefield.h \
     model.h \
@@ -33,9 +35,13 @@ FORMS += \
     lesson.ui \
     levelselect.ui \
     mainwindow.ui \
+    minesweeperview.ui \
     startscreen.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Resources.qrc
