@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     minesweeperview.cpp \
+    minesweeperview.cpp \
     startscreen.cpp \
     minefield.cpp \
     model.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     levelselect.h \
     boardview.h \
     mainwindow.h \
+    minesweeperview.h \
     minesweeperview.h \
     startscreen.h \
     minefield.h \
