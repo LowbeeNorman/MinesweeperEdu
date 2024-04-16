@@ -1,4 +1,6 @@
-
+/// Assignment 9: Educational App
+/// CS3505
+/// Written by: Kyle Stewart and Noah Sikorski
 #ifndef LESSONLEVEL_H
 #define LESSONLEVEL_H
 #include <QString>
