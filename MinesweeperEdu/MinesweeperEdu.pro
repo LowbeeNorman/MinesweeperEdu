@@ -10,24 +10,30 @@ CONFIG += c++17
 
 SOURCES += \
     lesson.cpp \
+    lessonlevel.cpp \
     levelselect.cpp \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    quiz.cpp \
     startscreen.cpp \
     minefield.cpp \
     model.cpp \
     tipsview.cpp \
+    usermove.cpp
 
 HEADERS += \
     lesson.h \
+    lessonlevel.h \
     levelselect.h \
     boardview.h \
     mainwindow.h \
+    quiz.h \
     startscreen.h \
     minefield.h \
     model.h \
     tipsview.h \
+    usermove.h
 
 FORMS += \
     lesson.ui \
