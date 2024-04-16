@@ -22,7 +22,8 @@ class MinesweeperView : public QGraphicsView
     QPixmap *flag, *cover;
     QPixmap *numbers[10];
 public:
-    MinesweeperView(QWidget *parent = nullptr);
+    MinesweeperView (QWidget *parent = nullptr);
+    ~MinesweeperView ();
     void setSize(QSize size);
 
 public slots:

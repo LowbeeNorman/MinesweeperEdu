@@ -1,7 +1,8 @@
 #include "minesweeperview.h"
 
 MinesweeperView::MinesweeperView (QWidget *parent = nullptr)
-    : pixmap (nullptr)
+    : QWidget (parent)
+    , pixmap (nullptr)
 {
     mainScene = new QGraphicsScene (this);
     pixmapItem = new QGraphicsPixmapItem ();
@@ -21,6 +22,21 @@ MinesweeperView::MinesweeperView (QWidget *parent = nullptr)
     numbers[7] = new QPixmap (QString (":/images/seven.png"));
     numbers[8] = new QPixmap (QString (":/images/eight.png"));
     numbers[9] = new QPixmap (QString (":/images/mine.png"));
+}
+
+MinesweeperView::~MinesweeperView ()
+{
+    // if the pixmap display was initialized, delete it
+    if (nullptr != pixmap)
+        delete pixmap;
+    // delete all the preloaded images
+    for (int i = 0; i < 10; ++i)
+        delete numbers[i];
+    delete flag;
+    delete cover;
+    // delete the graphics stuff
+    delete mainScene;
+    delete pixmapItem;
 }
 
 int MinesweeperView::pointToIndex (int x, int y)
