@@ -47,9 +47,12 @@ int MinesweeperView::pointToIndex (int x, int y)
 void MinesweeperView::setSize (QSize size)
 {
     this->size = size;
+    // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE, size.height () * TILE_SIZE));
     pixmap->fill (Qt::transparent);
     pixmapItem->setPixmap (pixmap);
+    // zoom the view on the scene
+    this->fitInView (mainScene->sceneRect ());
 }
 
 void MinesweeperView::receiveBoard (int *board, Tile *covers)
