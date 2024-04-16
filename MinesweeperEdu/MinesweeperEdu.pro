@@ -15,6 +15,7 @@ SOURCES += \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    quiz.cpp \
     startscreen.cpp \
     minefield.cpp \
     model.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     levelselect.h \
     boardview.h \
     mainwindow.h \
+    quiz.h \
     startscreen.h \
     minefield.h \
     model.h \
