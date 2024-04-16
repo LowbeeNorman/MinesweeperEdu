@@ -1,7 +1,7 @@
 #include "minesweeperview.h"
 
-MinesweeperView::MinesweeperView (QWidget *parent = nullptr)
-    : QWidget (parent)
+MinesweeperView::MinesweeperView (QWidget *parent)
+    : QGraphicsView (parent)
     , pixmap (nullptr)
 {
     mainScene = new QGraphicsScene (this);
@@ -50,7 +50,7 @@ void MinesweeperView::setSize (QSize size)
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE, size.height () * TILE_SIZE));
     pixmap->fill (Qt::transparent);
-    pixmapItem->setPixmap (pixmap);
+    pixmapItem->setPixmap (*pixmap);
     // zoom the view on the scene
     this->fitInView (mainScene->sceneRect ());
 }

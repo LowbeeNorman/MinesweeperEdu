@@ -15,7 +15,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     minesweeperview.cpp \
-    minesweeperview.cpp \
     startscreen.cpp \
     minefield.cpp \
     model.cpp \
@@ -27,7 +26,6 @@ HEADERS += \
     boardview.h \
     mainwindow.h \
     minesweeperview.h \
-    minesweeperview.h \
     startscreen.h \
     minefield.h \
     model.h \
@@ -37,7 +35,6 @@ FORMS += \
     lesson.ui \
     levelselect.ui \
     mainwindow.ui \
-    minesweeperview.ui \
     startscreen.ui
 
 # Default rules for deployment.
