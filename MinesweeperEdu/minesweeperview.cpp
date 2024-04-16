@@ -7,6 +7,20 @@ MinesweeperView::MinesweeperView (QWidget *parent = nullptr)
     pixmapItem = new QGraphicsPixmapItem ();
     mainScene->addItem (pixmapItem);
     setScene (mainScene);
+
+    // load in all the images used to display the number grid
+    flag = new QPixmap (QString (":/images/flag.png"));
+    cover = new QPixmap (QString (":/images/cover.png"));
+    numbers[0] = new QPixmap (QString (":/images/clear.png"));
+    numbers[1] = new QPixmap (QString (":/images/one.png"));
+    numbers[2] = new QPixmap (QString (":/images/two.png"));
+    numbers[3] = new QPixmap (QString (":/images/three.png"));
+    numbers[4] = new QPixmap (QString (":/images/four.png"));
+    numbers[5] = new QPixmap (QString (":/images/five.png"));
+    numbers[6] = new QPixmap (QString (":/images/six.png"));
+    numbers[7] = new QPixmap (QString (":/images/seven.png"));
+    numbers[8] = new QPixmap (QString (":/images/eight.png"));
+    numbers[9] = new QPixmap (QString (":/images/mine.png"));
 }
 
 int MinesweeperView::pointToIndex (int x, int y)
@@ -38,53 +52,22 @@ void MinesweeperView::receiveBoard (int *board, Tile *covers)
         for (int x = 0; x < size.height (); ++x)
         {
             int index = pointToIndex (x, y);
-            QString imageAddress (":/images/");
+            QPixmap *display = cover;
             switch (covers[index])
             {
             case Tile::blank:
                 // draw the number/bomb
-                switch (board[index])
-                {
-                case 0:
-                    imageAddress.append ("clear.png");
-                    break;
-                case 1:
-                    imageAddress.append ("one.png");
-                    break;
-                case 2:
-                    imageAddress.append ("two.png");
-                    break;
-                case 3:
-                    imageAddress.append ("three.png");
-                    break;
-                case 4:
-                    imageAddress.append ("four.png");
-                    break;
-                case 5:
-                    imageAddress.append ("five.png");
-                    break;
-                case 6:
-                    imageAddress.append ("six.png");
-                    break;
-                case 7:
-                    imageAddress.append ("seven.png");
-                    break;
-                case 8:
-                    imageAddress.append ("eight.png");
-                    break;
-                default:
-                    imageAddress.append ("mine.png");
-                    break;
-                }
+                display = numbers[board[index]];
                 break;
             case Tile::covered:
-                imageAddress.append ("cover.png");
+                // the display variable is already set to cover so there's no
+                // need to update that again here
                 break;
             case Tile::flagged:
-                imageAddress.append ("flag.png");
+                display = flag;
                 break;
             }
-            painter.drawPixmap (x * TILE_SIZE, y * TILE_SIZE, QPixmap (imageAddress));
+            painter.drawPixmap (x * TILE_SIZE, y * TILE_SIZE, *display);
         }
     }
     // set the pixmap of the pixmap item to the newly drawn pixmap

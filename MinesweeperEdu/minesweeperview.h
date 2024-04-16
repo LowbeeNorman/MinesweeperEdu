@@ -18,6 +18,9 @@ class MinesweeperView : public QGraphicsView
     QGraphicsPixmapItem *pixmapItem;
 
     int pointToIndex (int x, int y);
+
+    QPixmap *flag, *cover;
+    QPixmap *numbers[10];
 public:
     MinesweeperView(QWidget *parent = nullptr);
     void setSize(QSize size);
