@@ -1,8 +1,10 @@
 #ifndef MINEFIELD_H
 #define MINEFIELD_H
+
 #include <QObject>
 #include <QSize>
 #include <QPoint>
+#include <QList>
 
 enum class Tile {
     blank,
@@ -70,7 +72,8 @@ private:
     /// \param relativeY y coordinate of the neighbor relative to the origin
     /// \return whether or not there is a mine there
     ///
-    bool checkNeighborAt(QPoint origin, int relativeX, int relativeY);
+    template<typename A>
+    bool checkNeighborAt(QPoint origin, int relativeX, int relativeY, A *array, A check);
 
 public slots:
     ///
@@ -79,12 +82,12 @@ public slots:
     /// \return true if able to be flagged, false if tile already uncovered.
     ///
     void flag (QPoint point);
-
     ///
     /// \brief clear calls floodFill to clear tiles which are safe.
     /// \param origin the starting point for floodFill.
     ///
     void clear (QPoint origin);
+    void chord (QPoint origin);
 
 signals:
     ///
@@ -104,6 +107,8 @@ signals:
     /// \brief updateBoard emitted when the board has changed
     ///
     void updateBoard();
+
+    void sendChord (QList<QPoint> coveredTiles, QList<QPoint> flaggedTiles);
 };
 
 #endif // MINEFIELD_H

@@ -49,7 +49,7 @@ void Minefield::populateFieldNums () {
             }
             for (int relY = -1; relY <= 1; relY++){
                 for (int relX = -1; relX <= 1; relX++) {
-                    if (checkNeighborAt(origin, relX, relY)) {
+                    if (checkNeighborAt(origin, relX, relY, field, 9)) {
                         field[index]++;
                     }
                 }
@@ -84,7 +84,8 @@ int Minefield::pointToIndex (QPoint point) {
     return point.y() * boardSize.width() + point.x();
 }
 
-bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY) {
+template<typename A>
+bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY, A *array, A check) {
     origin.setX(origin.x() + relativeX);
     origin.setY(origin.y() + relativeY);
     if (origin.x() < 0 || origin.y() < 0
@@ -93,7 +94,7 @@ bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY) {
     {
         return false;
     }
-    return field[pointToIndex(origin)] == 9;
+    return array[pointToIndex(origin)] == check;
 }
 
 void Minefield::flag (QPoint point) {
@@ -121,4 +122,20 @@ void Minefield::clear (QPoint origin) {
     if (field[index] == 9) {
         emit dead(origin);
     }
+}
+
+void Minefield::chord (QPoint origin)
+{
+    QList<QPoint> coveredTiles, flaggedTiles;
+    for (int relY = -1; relY <= 1; relY++){
+        for (int relX = -1; relX <= 1; relX++) {
+            if (checkNeighborAt(origin, relX, relY, tiles, Tile::covered)) {
+                coveredTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
+            }
+            if (checkNeighborAt(origin, relX, relY, tiles, Tile::flagged)) {
+                flaggedTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
+            }
+        }
+    }
+    emit sendChord (coveredTiles, flaggedTiles);
 }
