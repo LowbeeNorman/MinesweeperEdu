@@ -107,32 +107,87 @@ void Minefield::flag (QPoint point) {
     emit flagPlaced(point, numFlags);
 }
 
-void Minefield::clear (QPoint origin) {
-    int index = pointToIndex(origin);
+bool Minefield::internalClear (QPoint origin)
+{
+    int index = pointToIndex (origin);
+    if (index < 0 || index >= arrayLength)
+        return false;
     if (tiles[index] != Tile::covered) {
-        return;
-    }
-    if (firstMove) {
-        firstMove = false;
-        guaranteeSafe(origin);
-        populateFieldNums();
+        return false;
     }
     floodFill(origin);
-    emit updateBoard();
-    if (field[index] == 9) {
-        emit dead(origin);
-    }
+    return true;
 }
 
-void Minefield::chord (QPoint origin)
+void Minefield::clear (QPoint origin)
+{
+    if (firstMove) {
+        firstMove = false;
+        guaranteeSafe (origin);
+        populateFieldNums ();
+    }
+    // floodFill(origin);
+    if (internalClear (origin))
+        emit updateBoard ();
+    if (9 == field[pointToIndex (origin)])
+        emit dead (origin);
+}
+
+void Minefield::chord (QPoint origin) {
+    int index = pointToIndex (origin);
+    // don't allow chords on any tile that is not blank
+    if (Tile::blank != tiles[index])
+        return;
+    // count how many flags surround this point and see if it matches the
+    // number in the grid
+    int flagCount = 0;
+    for (int relY = -1; relY <= 1; ++relY)
+    {
+        for (int relX = -1; relX <= 1; ++relX)
+        {
+            // don't check the origin
+            if (0 == relY && 0 == relX)
+                continue;
+            if (checkNeighborAt (origin, relX, relY, tiles, Tile::flagged))
+                flagCount++;
+        }
+    }
+    // if the number of flagged tiles around the origin doesn't match the
+    // number of mines around it, do nothing
+    if (flagCount != field[index])
+        return;
+    // clear everything around the origin
+    for (int relY = -1; relY <= 1; ++relY)
+    {
+        for (int relX =  -1; relX <= 1; ++relX)
+        {
+            QPoint toClear (origin.x () + relX, origin.y () + relY);
+            if (internalClear (toClear))
+            {
+                // the only time we should check for bombs is if the clear was successful
+                if (9 == field[pointToIndex (toClear)])
+                    emit dead (toClear);
+            }
+        }
+    }
+    emit updateBoard ();
+}
+
+void Minefield::getSurroundings (QPoint origin)
 {
     QList<QPoint> coveredTiles, flaggedTiles;
-    for (int relY = -1; relY <= 1; relY++){
-        for (int relX = -1; relX <= 1; relX++) {
-            if (checkNeighborAt(origin, relX, relY, tiles, Tile::covered)) {
+    for (int relY = -1; relY <= 1; relY++)
+    {
+        for (int relX = -1; relX <= 1; relX++)
+        {
+            if (checkNeighborAt(origin, relX, relY, tiles, Tile::covered))
+            {
                 coveredTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
             }
-            if (checkNeighborAt(origin, relX, relY, tiles, Tile::flagged)) {
+            // TODO remove this part since the view doesn't really need to
+            // know how many flags there are around this point
+            if (checkNeighborAt(origin, relX, relY, tiles, Tile::flagged))
+            {
                 flaggedTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
             }
         }

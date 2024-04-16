@@ -75,6 +75,13 @@ private:
     template<typename A>
     bool checkNeighborAt(QPoint origin, int relativeX, int relativeY, A *array, A check);
 
+    ///
+    /// \brief internalClear
+    /// \param origin
+    /// \return if the clear accomplished anything
+    ///
+    bool internalClear (QPoint origin);
+
 public slots:
     ///
     /// \brief flag sets a tile to be flag if it is still covered.
@@ -87,6 +94,7 @@ public slots:
     /// \param origin the starting point for floodFill.
     ///
     void clear (QPoint origin);
+    void getSurroundings (QPoint origin);
     void chord (QPoint origin);
 
 signals:
