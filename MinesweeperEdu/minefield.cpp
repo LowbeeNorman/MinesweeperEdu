@@ -189,7 +189,7 @@ void Minefield::chord (QPoint origin) {
 
 void Minefield::getSurroundings (QPoint origin)
 {
-    QList<QPoint> coveredTiles, flaggedTiles;
+    QList<QPoint> coveredTiles;
     for (int relY = -1; relY <= 1; relY++)
     {
         for (int relX = -1; relX <= 1; relX++)
@@ -198,15 +198,9 @@ void Minefield::getSurroundings (QPoint origin)
             {
                 coveredTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
             }
-            // TODO remove this part since the view doesn't really need to
-            // know how many flags there are around this point
-            if (checkNeighborAt(origin, relX, relY, tiles, Tile::flagged))
-            {
-                flaggedTiles.append (QPoint (origin.x () + relX, origin.y () + relY));
-            }
         }
     }
-    emit sendChord (coveredTiles, flaggedTiles);
+    emit sendChord (coveredTiles);
 }
 
 void Minefield::requestBoard () {

@@ -119,7 +119,7 @@ signals:
     ///
     void updateBoard (const int *field, const Tile *tiles);
 
-    void sendChord (QList<QPoint> coveredTiles, QList<QPoint> flaggedTiles);
+    void sendChord (QList<QPoint> coveredTiles);
 };
 
 #endif // MINEFIELD_H

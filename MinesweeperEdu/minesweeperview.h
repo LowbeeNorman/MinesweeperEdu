@@ -24,6 +24,8 @@ class MinesweeperView : public QGraphicsView
     QPixmap *flagImage, *coverImage;
     QPixmap *numbers[10];
 
+    QList<QPoint> prevChord;
+
     Qt::MouseButton mouse;
 
     QPoint translateToMinesweeper (QPointF point);
@@ -42,10 +44,13 @@ signals:
     void clear (QPoint origin);
     void flag  (QPoint origin);
     void chord (QPoint origin);
+
+    void requestChord (QPoint origin);
 public slots:
     void receiveBoard (const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);
     void flagRemoved (QPoint point, int numFlags);
+    void displayHighlight (QList<QPoint> coveredTiles);
 };
 
 #endif // MINESWEEPERVIEW_H
