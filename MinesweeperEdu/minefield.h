@@ -40,7 +40,7 @@ private:
     /// \brief initializeField initializes a randomized minefield using the
     /// proper boardSize and mineFreq values.
     ///
-    void initializeField (int safeArea);
+    void initializeField (int numSafeSpaces);
 
     ///
     /// \brief guaranteeSafe guarantees the first move is a safe move
