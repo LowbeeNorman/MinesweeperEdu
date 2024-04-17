@@ -99,6 +99,18 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
     pixmapItem->setPixmap (*pixmap);
 }
 
+// endgame stuff
+void MinesweeperView::dead (QPoint where)
+{
+    qInfo () << "dead at" << where;
+}
+
+void MinesweeperView::won ()
+{
+    qInfo () << "won";
+}
+
+// translation methods (very helpful)
 QPoint MinesweeperView::translateToMinesweeper (QPointF point)
 {
     return QPoint((int) (point.x () / TILE_SIZE)
@@ -110,6 +122,7 @@ QPoint MinesweeperView::translateFromMinesweeper (QPoint point)
     return QPoint (point.x () * TILE_SIZE, point.y () * TILE_SIZE);
 }
 
+// stuff the mouse uses
 void MinesweeperView::flagPlaced (QPoint point, int numFlags)
 {
     this->numFlags = numFlags;
@@ -161,23 +174,22 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
 {
     // accept the event so it doesn't get passed to the parent
     event->accept ();
+
     mouse = event->button ();
     QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));
     switch (mouse)
     {
     case Qt::LeftButton:
-        // {
-        //     QList<QPoint> origin;
-        //     origin.append (minesweeperPos);
-        //     displayHighlight (origin);
-        // }
+        // highlight this tile if it's covered
         emit requestIfCovered (minesweeperPos);
         break;
     case Qt::RightButton:
-        // flag
+        // flag/unflag this tile
         emit flag (minesweeperPos);
         break;
     case Qt::MiddleButton:
+        // highlight the covered tiles around this tile, showing the user what
+        // will be cleared if there are enough flags around the point
         emit requestChord (minesweeperPos);
         break;
     default:
@@ -189,17 +201,13 @@ void MinesweeperView::mouseMoveEvent (QMouseEvent *event)
 {
     // accept the event so it doesn't get passed to the parent
     event->accept ();
+
     // the only purpose of this method is to highlight tiles that haven't been
     // cleared yet
     QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));
     switch (mouse)
     {
     case Qt::LeftButton:
-        // {
-        //     QList<QPoint> origin;
-        //     origin.append (minesweeperPos);
-        //     displayHighlight (origin);
-        // }
         emit requestIfCovered (minesweeperPos);
         break;
     case Qt::MiddleButton:
@@ -214,6 +222,7 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
 {
     // accept the event so it doesn't get passed to the parent
     event->accept ();
+
     // clear the highlight of the chord
     displayHighlight (QList<QPoint> ());
     QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));

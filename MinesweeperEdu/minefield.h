@@ -84,9 +84,11 @@ private:
     ///
     /// \brief internalClear
     /// \param origin
-    /// \return if the clear accomplished anything
+    /// \return if the clear changed anything
     ///
     bool internalClear (QPoint origin);
+
+    bool checkForWin ();
 
 public slots:
     ///
@@ -119,6 +121,7 @@ signals:
     /// \param origin point of death
     ///
     void dead(QPoint origin);
+    void won ();
 
     ///
     /// \brief updateBoard emitted when the board has changed

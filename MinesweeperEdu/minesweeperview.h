@@ -53,6 +53,9 @@ public slots:
     void flagRemoved (QPoint point, int numFlags);
     void displayHighlight (QList<QPoint> coveredTiles);
     void receiveIfCovered (QPoint origin, bool covered);
+
+    void dead (QPoint origin);
+    void won ();
 };
 
 #endif // MINESWEEPERVIEW_H

@@ -98,7 +98,8 @@ void Minefield::populateFieldNums () {
     }
 }
 
-void Minefield::floodFill(QPoint selectedTile) {
+void Minefield::floodFill(QPoint selectedTile)
+{
     if (selectedTile.x () < 0 || selectedTile.y () < 0
         || selectedTile.x () >= boardSize.width ()
         || selectedTile.y () >= boardSize.height ())
@@ -107,12 +108,13 @@ void Minefield::floodFill(QPoint selectedTile) {
     }
     int index = pointToIndex(selectedTile);
     if (index < 0 || index >= arrayLength
-        || tiles[index] != Tile::covered
-        || 9 == field[index]) {
+        || tiles[index] != Tile::covered)
+    {
         return;
     }
     tiles[index] = Tile::blank;
-    if (field[index] != 0) {
+    if (field[index] != 0)
+    {
         return;
     }
 
@@ -127,7 +129,8 @@ void Minefield::floodFill(QPoint selectedTile) {
     floodFill(QPoint(selectedTile.x() - 1, selectedTile.y() + 1));
 }
 
-int Minefield::pointToIndex (QPoint point) {
+int Minefield::pointToIndex (QPoint point)
+{
     return point.y() * boardSize.width() + point.x();
 }
 
@@ -180,6 +183,19 @@ bool Minefield::internalClear (QPoint origin)
     return true;
 }
 
+bool Minefield::checkForWin ()
+{
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        // only look at tiles that don't have a bomb under them
+        if (9 == field[i])
+            continue;
+        if (Tile::blank != tiles[i])
+            return false;
+    }
+    return true;
+}
+
 void Minefield::clear (QPoint origin)
 {
     if (firstMove) {
@@ -187,11 +203,12 @@ void Minefield::clear (QPoint origin)
         guaranteeSafe (origin);
         populateFieldNums ();
     }
-    // floodFill(origin);
     if (internalClear (origin))
         emit updateBoard (field, tiles);
     if (9 == field[pointToIndex (origin)])
         emit dead (origin);
+    else if (checkForWin ())
+        emit won ();
 }
 
 void Minefield::chord (QPoint origin) {
@@ -229,6 +246,8 @@ void Minefield::chord (QPoint origin) {
                 // was successful
                 if (9 == field[pointToIndex (toClear)])
                     emit dead (toClear);
+                else if (checkForWin ())
+                    emit won ();
             }
         }
     }
