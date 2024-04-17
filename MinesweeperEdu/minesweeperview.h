@@ -46,11 +46,13 @@ signals:
     void chord (QPoint origin);
 
     void requestChord (QPoint origin);
+    void requestIfCovered (QPoint origin);
 public slots:
     void receiveBoard (const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);
     void flagRemoved (QPoint point, int numFlags);
     void displayHighlight (QList<QPoint> coveredTiles);
+    void receiveIfCovered (QPoint origin, bool covered);
 };
 
 #endif // MINESWEEPERVIEW_H

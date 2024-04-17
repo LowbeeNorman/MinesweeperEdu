@@ -18,6 +18,7 @@ class Minefield : public QObject
 
 public:
     Minefield(QSize boardSize, float mineFreq);
+    ~Minefield ();
 
     QSize getSize ();
 private:
@@ -29,12 +30,6 @@ private:
     int* field;
     Tile* tiles;
     bool firstMove;
-
-    // ---- TESTING -----
-    QList<int *> fields;
-    QList<Tile *> tileses;
-    size_t pos;
-    // ---- TESTING -----
 
     ///
     /// \brief initializeField initializes a randomized minefield using the
@@ -106,6 +101,7 @@ public slots:
     ///
     void clear (QPoint origin);
     void getSurroundings (QPoint origin);
+    void getIfCovered (QPoint origin);
     void chord (QPoint origin);
     void requestBoard ();
 
@@ -130,6 +126,7 @@ signals:
     void updateBoard (const int *field, const Tile *tiles);
 
     void sendChord (QList<QPoint> coveredTiles);
+    void sendCovered (QPoint origin, bool covered);
 };
 
 #endif // MINEFIELD_H

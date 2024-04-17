@@ -14,7 +14,6 @@
 Minefield::Minefield(QSize boardSize, float mineFreq)
     : boardSize(boardSize)
     , mineFreq(mineFreq)
-    , pos (0)
 {
     arrayLength = boardSize.height() * boardSize.width();
     numMines = (int) (arrayLength * mineFreq);
@@ -24,6 +23,12 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
     for (int i = 0; i < arrayLength; ++i)
         tiles[i] = Tile::covered;
     firstMove = true;
+}
+
+Minefield::~Minefield ()
+{
+    delete[] field;
+    delete[] tiles;
 }
 
 QSize Minefield::getSize ()
@@ -245,6 +250,11 @@ void Minefield::getSurroundings (QPoint origin)
         }
     }
     emit sendChord (coveredTiles);
+}
+
+void Minefield::getIfCovered (QPoint origin)
+{
+    emit sendCovered (origin, Tile::covered == tiles[pointToIndex (origin)]);
 }
 
 void Minefield::requestBoard () {

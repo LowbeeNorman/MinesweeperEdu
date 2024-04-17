@@ -9,6 +9,9 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     mainScene->addItem (pixmapItem);
     setScene (mainScene);
 
+    this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     // load in all the images used to display the number grid
     flagImage = new QPixmap (QString (":/images/flag.png"));
     coverImage = new QPixmap (QString (":/images/cover.png"));
@@ -141,6 +144,18 @@ void MinesweeperView::displayHighlight (QList<QPoint> coveredTiles)
     pixmapItem->setPixmap (*pixmap);
 }
 
+void MinesweeperView::receiveIfCovered (QPoint origin, bool covered)
+{
+    if (!covered)
+    {
+        displayHighlight (QList<QPoint>());
+        return;
+    }
+    QList<QPoint> list;
+    list.append (origin);
+    displayHighlight (list);
+}
+
 // mouse stuff
 void MinesweeperView::mousePressEvent (QMouseEvent *event)
 {
@@ -151,11 +166,12 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
     switch (mouse)
     {
     case Qt::LeftButton:
-        {
-            QList<QPoint> origin;
-            origin.append (minesweeperPos);
-            displayHighlight (origin);
-        }
+        // {
+        //     QList<QPoint> origin;
+        //     origin.append (minesweeperPos);
+        //     displayHighlight (origin);
+        // }
+        emit requestIfCovered (minesweeperPos);
         break;
     case Qt::RightButton:
         // flag
@@ -179,11 +195,12 @@ void MinesweeperView::mouseMoveEvent (QMouseEvent *event)
     switch (mouse)
     {
     case Qt::LeftButton:
-        {
-            QList<QPoint> origin;
-            origin.append (minesweeperPos);
-            displayHighlight (origin);
-        }
+        // {
+        //     QList<QPoint> origin;
+        //     origin.append (minesweeperPos);
+        //     displayHighlight (origin);
+        // }
+        emit requestIfCovered (minesweeperPos);
         break;
     case Qt::MiddleButton:
         emit requestChord (minesweeperPos);
