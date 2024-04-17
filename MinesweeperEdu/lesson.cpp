@@ -10,9 +10,15 @@ Lesson::Lesson(QWidget *parent) :
     ui(new Ui::Lesson)
 {
     ui->setupUi(this);
+    connect(ui->backButton, &QPushButton::clicked, this, Lesson::backButtonClicked);
 }
 
 Lesson::~Lesson()
 {
     delete ui;
+}
+
+void Lesson::backButtonClicked()
+{
+    emit sendBackClicked(1);
 }

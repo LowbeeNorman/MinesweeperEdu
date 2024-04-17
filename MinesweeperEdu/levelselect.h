@@ -6,6 +6,7 @@
 #define LEVELSELECT_H
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace Ui {
 class LevelSelect;
@@ -21,9 +22,21 @@ class LevelSelect : public QWidget
 public:
     explicit LevelSelect(QWidget *parent = nullptr);
     ~LevelSelect();
+    QPushButton *previousButton = nullptr;
+    QPushButton *currentButton = nullptr;
 
 private:
     Ui::LevelSelect *ui;
+    int currentLevel = 0;
+
+public slots:
+    void getCurrentLevel(int levelIndex, QPushButton *button);
+    void playButtonClicked();
+    void menuButtonClicked();
+
+signals:
+    void sendCurrentLevel(int levelIndex);
+    void sendMenuClicked(int menuIndex);
 };
 
 #endif // LEVELSELECT_H

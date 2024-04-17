@@ -25,6 +25,12 @@ public:
 
 private:
     Ui::Lesson *ui;
+
+public slots:
+    void backButtonClicked();
+
+signals:
+    void sendBackClicked(int pageIndex);
 };
 
 #endif // LESSON_H

@@ -35,5 +35,6 @@ public slots:
     /// \param The page index we will go to
     ///
     void updateScreenIndex(int index);
+    void receiveLevelIndex(int levelIndex);
 };
 #endif // MAINWINDOW_H

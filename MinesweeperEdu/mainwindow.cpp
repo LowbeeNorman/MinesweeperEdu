@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     // This connection is sent from the startPage widget that resides within the mainwindow, and is received by
     // the main window. This will be a common pattern within our program with various widgets within the main window
     connect(ui->startPage, &StartScreen::sendNewLessonClicked, this, &MainWindow::updateScreenIndex);
+    connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked, this, &MainWindow::updateScreenIndex);
+    connect(ui->lessonPage, &Lesson::sendBackClicked, this, &MainWindow::updateScreenIndex);
+
+    connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
 }
 
 MainWindow::~MainWindow()
@@ -26,4 +30,6 @@ void MainWindow::updateScreenIndex(int index)
     ui->stackedWidget->setCurrentIndex(index);
 }
 
-
+void MainWindow::receiveLevelIndex(int levelIndex){
+    qDebug() << levelIndex;
+}
