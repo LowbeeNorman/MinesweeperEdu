@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/12/24
-/// Written by: Caleb Norman
+/// 4/16/24
+/// Written by: Caleb Norman, Abdul Asim
 
 #ifndef STARTSCREEN_H
 #define STARTSCREEN_H
@@ -32,6 +32,12 @@ public slots:
     ///
     void newLessonButtonClicked();
 
+    ///
+    /// \brief This slot will receive the signal from the continue button
+    /// that resides within the ui
+    ///
+    void continueButtonClicked();
+
 signals:
     ///
     /// \brief This signal notifies any listeners that the newLessonButton has been clicked,
@@ -39,6 +45,19 @@ signals:
     /// \param The index of the page to move to
     ///
     void sendNewLessonClicked(int index);
+
+    ///
+    /// \brief This signal notifies any listeners that the continueButton has been clicked,
+    /// and the page should be updated
+    ///
+    void sendContinueClicked();
+
+    ///
+    /// \brief This signal will let the levelselect know that it should reset it's view,
+    /// because a new game has been started
+    ///
+    void startingNewGame();
+
 
 private:
     Ui::StartScreen *ui;
