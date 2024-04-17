@@ -10,9 +10,23 @@ Lesson::Lesson(QWidget *parent) :
     ui(new Ui::Lesson)
 {
     ui->setupUi(this);
+
+    // testing stuff
 }
 
 Lesson::~Lesson()
 {
     delete ui;
+}
+
+void Lesson::makeConnections (Minefield &mines)
+{
+    ui->board->setSize (mines.getSize ());
+    connect (&mines, &Minefield::updateBoard, ui->board, &MinesweeperView::receiveBoard);
+    mines.requestBoard ();
+    connect (ui->board, &MinesweeperView::clear, &mines, &Minefield::clear);
+    connect (ui->board, &MinesweeperView::flag,  &mines, &Minefield::flag);
+    connect (ui->board, &MinesweeperView::chord, &mines, &Minefield::chord);
+    connect (&mines, &Minefield::flagPlaced, ui->board, &MinesweeperView::flagPlaced);
+    connect (&mines, &Minefield::flagRemoved, ui->board, &MinesweeperView::flagRemoved);
 }

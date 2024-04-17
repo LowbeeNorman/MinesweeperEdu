@@ -10,8 +10,8 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     setScene (mainScene);
 
     // load in all the images used to display the number grid
-    flag = new QPixmap (QString (":/images/flag.png"));
-    cover = new QPixmap (QString (":/images/cover.png"));
+    flagImage = new QPixmap (QString (":/images/flag.png"));
+    coverImage = new QPixmap (QString (":/images/cover.png"));
     numbers[0] = new QPixmap (QString (":/images/clear.png"));
     numbers[1] = new QPixmap (QString (":/images/one.png"));
     numbers[2] = new QPixmap (QString (":/images/two.png"));
@@ -32,8 +32,8 @@ MinesweeperView::~MinesweeperView ()
     // delete all the preloaded images
     for (int i = 0; i < 10; ++i)
         delete numbers[i];
-    delete flag;
-    delete cover;
+    delete flagImage;
+    delete coverImage;
     // delete the graphics stuff
     delete mainScene;
     delete pixmapItem;
@@ -49,13 +49,16 @@ void MinesweeperView::setSize (QSize size)
     this->size = size;
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE, size.height () * TILE_SIZE));
-    pixmap->fill (Qt::transparent);
+    pixmap->fill (Qt::red);
     pixmapItem->setPixmap (*pixmap);
     // zoom the view on the scene
-    this->fitInView (mainScene->sceneRect ());
+    // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
+    this->scale
+        (this->contentsRect ().width() / mainScene->sceneRect ().width()
+        , this->contentsRect ().width() / mainScene->sceneRect ().width());
 }
 
-void MinesweeperView::receiveBoard (int *board, Tile *covers)
+void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
 {
     // if the size hasn't been initialized, exit this method
     if (nullptr == pixmap)
@@ -71,7 +74,7 @@ void MinesweeperView::receiveBoard (int *board, Tile *covers)
         for (int x = 0; x < size.height (); ++x)
         {
             int index = pointToIndex (x, y);
-            QPixmap *display = cover;
+            QPixmap *display = coverImage;
             switch (covers[index])
             {
             case Tile::blank:
@@ -83,7 +86,7 @@ void MinesweeperView::receiveBoard (int *board, Tile *covers)
                 // need to update that again here
                 break;
             case Tile::flagged:
-                display = flag;
+                display = flagImage;
                 break;
             }
             painter.drawPixmap (x * TILE_SIZE, y * TILE_SIZE, *display);
@@ -91,6 +94,82 @@ void MinesweeperView::receiveBoard (int *board, Tile *covers)
     }
     // set the pixmap of the pixmap item to the newly drawn pixmap
     pixmapItem->setPixmap (*pixmap);
+}
+
+QPoint MinesweeperView::translateToMinesweeper (QPointF point)
+{
+    return QPoint((int) (point.x () / TILE_SIZE)
+                  , (int) (point.y () / TILE_SIZE));
+}
+
+QPoint MinesweeperView::translateFromMinesweeper (QPoint point)
+{
+    return QPoint (point.x () * TILE_SIZE, point.y () * TILE_SIZE);
+}
+
+void MinesweeperView::flagPlaced (QPoint point, int numFlags)
+{
+    qInfo () << "flag placed at " << point;
+    this->numFlags = numFlags;
+    QPainter painter (pixmap);
+    painter.setBackgroundMode (Qt::TransparentMode);
+    painter.drawPixmap (translateFromMinesweeper(point), *flagImage);
+    pixmapItem->setPixmap (*pixmap);
+}
+
+void MinesweeperView::flagRemoved (QPoint point, int numFlags)
+{
+    qInfo () << "flag removed at " << point;
+    this->numFlags = numFlags;
+    QPainter painter (pixmap);
+    painter.setBackgroundMode (Qt::TransparentMode);
+    painter.drawPixmap (translateFromMinesweeper(point), *coverImage);
+    pixmapItem->setPixmap (*pixmap);
+}
+
+// mouse stuff
+void MinesweeperView::mousePressEvent (QMouseEvent *event)
+{
+    // accept the event so it doesn't get passed to the parent
+    event->accept ();
+    mouse = event->button ();
+}
+
+void MinesweeperView::mouseMoveEvent (QMouseEvent *event)
+{
+    // accept the event so it doesn't get passed to the parent
+    event->accept ();
+    // if no mouse button has been pressed, do nothing
+    if (Qt::NoButton == mouse)
+        return;
+    // the only purpose of this method is to highlight tiles that haven't been
+    // cleared yet
+}
+
+void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
+{
+    // accept the event so it doesn't get passed to the parent
+    event->accept ();
+    QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));
+    switch (mouse)
+    {
+    case Qt::LeftButton:
+        // clear
+        emit clear (minesweeperPos);
+        break;
+    case Qt::RightButton:
+        // flag
+        emit flag (minesweeperPos);
+        break;
+    case Qt::MiddleButton:
+        // chord
+        emit chord (minesweeperPos);
+        break;
+    default:
+        break;
+    }
+    // reset the mouse button
+    mouse = Qt::NoButton;
 }
 
 

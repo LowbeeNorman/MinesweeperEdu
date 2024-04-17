@@ -10,12 +10,19 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
     , mineFreq(mineFreq)
 {
     arrayLength = boardSize.height() * boardSize.width();
-    numMines = (int)(arrayLength * mineFreq);
+    numMines = (int) (arrayLength * mineFreq);
     numFlags = numMines;
-    field = new int[arrayLength];
+    field = new int[arrayLength] {0};
     tiles = new Tile[arrayLength];
+    for (int i = 0; i < arrayLength; ++i)
+        tiles[i] = Tile::covered;
     firstMove = true;
     initializeField();
+}
+
+QSize Minefield::getSize ()
+{
+    return boardSize;
 }
 
 void Minefield::initializeField() {
@@ -99,7 +106,14 @@ bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY, A *
 
 void Minefield::flag (QPoint point) {
     int index = pointToIndex(point);
-    if (tiles[index] != Tile::covered) {
+    if (Tile::blank == tiles[index]) {
+        return;
+    }
+    if (Tile::flagged == tiles[index])
+    {
+        tiles[index] = Tile::covered;
+        numFlags++;
+        emit flagRemoved (point, numFlags);
         return;
     }
     tiles[index] = Tile::flagged;
@@ -128,7 +142,7 @@ void Minefield::clear (QPoint origin)
     }
     // floodFill(origin);
     if (internalClear (origin))
-        emit updateBoard ();
+        emit updateBoard (field, tiles);
     if (9 == field[pointToIndex (origin)])
         emit dead (origin);
 }
@@ -170,7 +184,7 @@ void Minefield::chord (QPoint origin) {
             }
         }
     }
-    emit updateBoard ();
+    emit updateBoard (field, tiles);
 }
 
 void Minefield::getSurroundings (QPoint origin)
@@ -188,9 +202,13 @@ void Minefield::getSurroundings (QPoint origin)
             // know how many flags there are around this point
             if (checkNeighborAt(origin, relX, relY, tiles, Tile::flagged))
             {
-                flaggedTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
+                flaggedTiles.append (QPoint (origin.x () + relX, origin.y () + relY));
             }
         }
     }
     emit sendChord (coveredTiles, flaggedTiles);
+}
+
+void Minefield::requestBoard () {
+    emit updateBoard (field, tiles);
 }

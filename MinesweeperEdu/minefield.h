@@ -19,6 +19,7 @@ class Minefield : public QObject
 public:
     Minefield(QSize boardSize, float mineFreq);
 
+    QSize getSize ();
 private:
     QSize boardSize;
     int arrayLength;
@@ -96,6 +97,7 @@ public slots:
     void clear (QPoint origin);
     void getSurroundings (QPoint origin);
     void chord (QPoint origin);
+    void requestBoard ();
 
 signals:
     ///
@@ -104,6 +106,7 @@ signals:
     /// \param numFlags the total number of flags left
     ///
     void flagPlaced(QPoint point, int numFlags);
+    void flagRemoved (QPoint point, int numFlags);
 
     ///
     /// \brief dead emitted when
@@ -114,7 +117,7 @@ signals:
     ///
     /// \brief updateBoard emitted when the board has changed
     ///
-    void updateBoard();
+    void updateBoard (const int *field, const Tile *tiles);
 
     void sendChord (QList<QPoint> coveredTiles, QList<QPoint> flaggedTiles);
 };
