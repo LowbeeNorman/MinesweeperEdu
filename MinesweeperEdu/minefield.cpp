@@ -4,6 +4,9 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
+// testing
+#include <QDebug>
+#include <QRect>
 
 Minefield::Minefield(QSize boardSize, float mineFreq)
     : boardSize(boardSize)
@@ -30,20 +33,60 @@ void Minefield::initializeField() {
         field[i] = (i < numMines) ? 9 : 0;
     }
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    shuffle(field, field + arrayLength, std::default_random_engine(seed));
+    shuffle(field, field + arrayLength - 9, std::default_random_engine(seed));
+}
+
+bool adjacent (QPoint p1, QPoint p2)
+{
+    QPoint difference = p1 - p2;
+    difference.setX (abs (difference.x ()));
+    difference.setY (abs (difference.y ()));
+    return difference.x () <= 1 && difference.y () <= 1;
 }
 
 void Minefield::guaranteeSafe (QPoint firstTile) {
-    int index = pointToIndex(firstTile);
-    if (field[index] != 9) {
-        return;
+    // TODO this strategy is causing infinite loops, fix
+    // int index = pointToIndex(firstTile);
+    for (int destPos = arrayLength - 1, srcPos = arrayLength - 1 - 9
+         ; destPos >= 0; --destPos, --srcPos)
+    {
+        // if there were supposed to be less safe positions than 9
+        // set all these to 0 (maybe fix this later, right now I
+        // can't be bothered)
+        if (srcPos < 0)
+        {
+            field[destPos] = 0;
+            continue;
+        }
+        // if this spot is too close to the firstTile, move the dest pos up
+        // one so it can stay the same for the next iteration
+        QPoint dest = indexToPoint (destPos);
+        if (adjacent (firstTile, dest))
+        {
+            qInfo () << "hi I'm working " << dest << " " << firstTile;
+            srcPos++;
+            continue;
+        }
+        field[destPos] = field[srcPos];
     }
-    if (numMines >= arrayLength) {
-        return;
-    }
-    int randomInt;
-    while ((randomInt = std::rand() % arrayLength) != index || field[randomInt] == 9);
-    std::swap(field[index], field[randomInt]);
+    // for (int y = 0; i < boardSize.height (); ++y)
+    // {
+    //     for (int x = 0; x < boardSize.width (); ++x)
+    //     {
+
+    //     }
+    // }
+    // if (field[index] != 9) {
+    //     return;
+    // }
+    // if (numMines >= arrayLength) {
+    //     return;
+    // }
+    // int randomInt;
+    // qInfo () << "starting loop";
+    // while ((randomInt = std::rand() % arrayLength) != index || field[randomInt] == 9);
+    // qInfo () << "Made it out";
+    // std::swap(field[index], field[randomInt]);
 }
 
 void Minefield::populateFieldNums () {
@@ -66,9 +109,16 @@ void Minefield::populateFieldNums () {
 }
 
 void Minefield::floodFill(QPoint selectedTile) {
+    if (selectedTile.x () < 0 || selectedTile.y () < 0
+        || selectedTile.x () >= boardSize.width ()
+        || selectedTile.y () >= boardSize.height ())
+    {
+        return;
+    }
     int index = pointToIndex(selectedTile);
     if (index < 0 || index >= arrayLength
-        || tiles[index] != Tile::covered) {
+        || tiles[index] != Tile::covered
+        || 9 == field[index]) {
         return;
     }
     tiles[index] = Tile::blank;
@@ -89,6 +139,11 @@ void Minefield::floodFill(QPoint selectedTile) {
 
 int Minefield::pointToIndex (QPoint point) {
     return point.y() * boardSize.width() + point.x();
+}
+
+QPoint Minefield::indexToPoint (int index)
+{
+    return QPoint (index % boardSize.width (), index / boardSize.width ());
 }
 
 template<typename A>
