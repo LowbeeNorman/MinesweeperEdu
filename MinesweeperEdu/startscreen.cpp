@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/12/24
-/// Written by: Caleb Norman
+/// 4/16/24
+/// Written by: Caleb Norman, Abdul Asim
 
 #include "startscreen.h"
 #include "ui_startscreen.h"
@@ -14,6 +14,7 @@ StartScreen::StartScreen(QWidget *parent)
 
     // Standard ui to cpp connection
     connect(ui->newLessonButton, &QPushButton::clicked, this, &StartScreen::newLessonButtonClicked);
+    connect(ui->continueButton, &QPushButton::clicked, this, &StartScreen::continueButtonClicked);
 }
 
 StartScreen::~StartScreen()
@@ -22,5 +23,10 @@ StartScreen::~StartScreen()
 }
 
 void StartScreen::newLessonButtonClicked() {
+    emit startingNewGame();
     emit sendNewLessonClicked(1);
+}
+
+void StartScreen::continueButtonClicked() {
+    emit sendContinueClicked();
 }
