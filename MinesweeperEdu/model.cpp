@@ -1,3 +1,3 @@
 #include "model.h"
 
-model::model() {}
+Model::Model() {}

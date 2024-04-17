@@ -3,10 +3,10 @@
 
 #include <QList>
 
-class model
+class Model
 {
 public:
-    model();
+    Model();
 
 private:
     //list of tips
