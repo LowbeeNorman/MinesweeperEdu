@@ -38,8 +38,8 @@ MinesweeperView::~MinesweeperView ()
     delete flagImage;
     delete coverImage;
     // delete the graphics stuff
-    delete mainScene;
     delete pixmapItem;
+    delete mainScene;
 }
 
 int MinesweeperView::pointToIndex (int x, int y)
