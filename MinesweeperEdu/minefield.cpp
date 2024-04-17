@@ -7,10 +7,14 @@
 // testing
 #include <QDebug>
 #include <QRect>
+#include <QTimer>
+#include <cstdio>
+#include <cstring>
 
 Minefield::Minefield(QSize boardSize, float mineFreq)
     : boardSize(boardSize)
     , mineFreq(mineFreq)
+    , pos (0)
 {
     arrayLength = boardSize.height() * boardSize.width();
     numMines = (int) (arrayLength * mineFreq);
@@ -20,7 +24,6 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
     for (int i = 0; i < arrayLength; ++i)
         tiles[i] = Tile::covered;
     firstMove = true;
-    initializeField();
 }
 
 QSize Minefield::getSize ()
@@ -28,12 +31,14 @@ QSize Minefield::getSize ()
     return boardSize;
 }
 
-void Minefield::initializeField() {
+void Minefield::initializeField (int safeArea) {
     for (int i = 0; i < arrayLength; i++) {
         field[i] = (i < numMines) ? 9 : 0;
     }
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    shuffle(field, field + arrayLength - 9, std::default_random_engine(seed));
+    unsigned seed = std::chrono::system_clock::now()
+                        .time_since_epoch().count();
+    shuffle(field, field + arrayLength - safeArea
+            , std::default_random_engine(seed));
 }
 
 bool adjacent (QPoint p1, QPoint p2)
@@ -44,31 +49,105 @@ bool adjacent (QPoint p1, QPoint p2)
     return difference.x () <= 1 && difference.y () <= 1;
 }
 
+
 void Minefield::guaranteeSafe (QPoint firstTile) {
+    // ------ TESTING -------
+    qInfo () << "made it to the method";
+    // ------ TESTING -------
+    // get a rectangle representing the area we want to keep safe
+    QRect safeArea = QRect(QPoint (0, 0), boardSize)
+                         .intersected(QRect(firstTile.x () - 1
+                                            , firstTile.y () - 1
+                                            , 3
+                                            , 3));
+    initializeField (safeArea.height () * safeArea.width ());
+    // ------ TESTING -------
+    qInfo () << "safe area: " << safeArea;
+    int topLeft = pointToIndex (safeArea.topLeft ());
+    qInfo () << "top left" << topLeft << "is at coords" << safeArea.topLeft ();
+    for (int y = 0; y < boardSize.height (); ++y)
+    {
+        printf ("[%d", field[pointToIndex (QPoint (0, y))]);
+        for (int x = 1; x < boardSize.width (); ++x)
+        {
+            printf (" %d", field[pointToIndex (QPoint (x, y))]);
+        }
+        printf ("]\n");
+    }
+    // ------ TESTING -------
+    for (int i = 0; i < safeArea.height (); ++i)
+    // for (int rowLeftIndex = pointToIndex (safeArea.topLeft ());
+    //      rowLeftIndex < pointToIndex (safeArea.bottomRight ());
+    //      rowLeftIndex += boardSize.width ())
+    {
+        // move everything from the left edge of this row of the rectangle to
+        // the right edge
+        int rowLeftIndex = topLeft + boardSize.width () * i;
+        int rowRightIndex = rowLeftIndex + safeArea.width ();
+
+        // ------ TESTING -------
+        qInfo () << "left:" << rowLeftIndex << "is at coords" << indexToPoint (rowLeftIndex);
+        qInfo () << "right:" << rowRightIndex << "is at coords" << indexToPoint (rowRightIndex);
+        // ------ TESTING -------
+
+        memmove (field + rowRightIndex
+                , field + rowLeftIndex
+                , (arrayLength - rowRightIndex) * sizeof *field);
+        // set everything within the row of the rectangle to zero
+        memset (field + rowLeftIndex, 0, safeArea.width () * sizeof *field);
+
+        // ------ TESTING -------
+        // printf ("setting %p and %d elements to 0\n", field + rowLeftIndex, safeArea.width ());
+        for (int y = 0; y < boardSize.height (); ++y)
+        {
+            printf ("[%d", field[pointToIndex (QPoint (0, y))]);
+            for (int x = 1; x < boardSize.width (); ++x)
+            {
+                printf (" %d", field[pointToIndex (QPoint (x, y))]);
+            }
+            printf ("]\n");
+        }
+        // ------ TESTING -------
+    }
+
     // TODO this strategy is causing infinite loops, fix
     // int index = pointToIndex(firstTile);
-    for (int destPos = arrayLength - 1, srcPos = arrayLength - 1 - 9
-         ; destPos >= 0; --destPos, --srcPos)
-    {
-        // if there were supposed to be less safe positions than 9
-        // set all these to 0 (maybe fix this later, right now I
-        // can't be bothered)
-        if (srcPos < 0)
-        {
-            field[destPos] = 0;
-            continue;
-        }
-        // if this spot is too close to the firstTile, move the dest pos up
-        // one so it can stay the same for the next iteration
-        QPoint dest = indexToPoint (destPos);
-        if (adjacent (firstTile, dest))
-        {
-            qInfo () << "hi I'm working " << dest << " " << firstTile;
-            srcPos++;
-            continue;
-        }
-        field[destPos] = field[srcPos];
-    }
+    // qInfo () << "first: " << firstTile;
+    // size_t millis = 50;
+    // for (int destPos = arrayLength - 1, srcPos = arrayLength - 1 - 9;
+    //      destPos >= 0;
+    //      --destPos, --srcPos)
+    // {
+    //     // if there were supposed to be less safe positions than 9
+    //     // set all these to 0 (maybe fix this later, right now I
+    //     // can't be bothered)
+    //     if (srcPos < 0)
+    //     {
+    //         field[destPos] = 0;
+    //         continue;
+    //     }
+    //     // if this spot is too close to the firstTile, move the dest pos up
+    //     // one so it can stay the same for the next iteration
+    //     QPoint dest = indexToPoint (destPos);
+    //     if (adjacent (firstTile, dest))
+    //     {
+    //         qInfo () << "dest: " << dest << "=" << destPos << " src: " << indexToPoint (srcPos) << "=" << srcPos;
+    //         srcPos++;
+    //         // move the bomb up one position
+    //         continue;
+    //     }
+    //     field[destPos] = field[srcPos];
+    //     qInfo () << "dest: " << destPos << " src: " << srcPos;
+        // int *field_copy = new int[arrayLength];
+        // Tile *tiles_copy = new Tile[arrayLength];
+        // memcpy (field_copy, field, arrayLength);
+        // memcpy (tiles_copy, tiles, arrayLength);
+        // fields.append (field_copy);
+        // tileses.append (tiles_copy);
+        // qInfo () << "pos: " << pos << " size: " << fields.size ();
+        // QTimer::singleShot (millis, this, [this] {emit updateBoard (fields.at (pos), tileses.at (pos++));});
+        // millis += 50;
+    // }
     // for (int y = 0; i < boardSize.height (); ++y)
     // {
     //     for (int x = 0; x < boardSize.width (); ++x)
@@ -147,7 +226,9 @@ QPoint Minefield::indexToPoint (int index)
 }
 
 template<typename A>
-bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY, A *array, A check) {
+bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY
+                                , A *array, A check)
+{
     origin.setX(origin.x() + relativeX);
     origin.setY(origin.y() + relativeY);
     if (origin.x() < 0 || origin.y() < 0
@@ -233,7 +314,8 @@ void Minefield::chord (QPoint origin) {
             QPoint toClear (origin.x () + relX, origin.y () + relY);
             if (internalClear (toClear))
             {
-                // the only time we should check for bombs is if the clear was successful
+                // the only time we should check for bombs is if the clear
+                // was successful
                 if (9 == field[pointToIndex (toClear)])
                     emit dead (toClear);
             }
@@ -251,7 +333,8 @@ void Minefield::getSurroundings (QPoint origin)
         {
             if (checkNeighborAt(origin, relX, relY, tiles, Tile::covered))
             {
-                coveredTiles.append(QPoint (origin.x () + relX, origin.y () + relY));
+                coveredTiles.append(QPoint (origin.x () + relX
+                                           , origin.y () + relY));
             }
         }
     }

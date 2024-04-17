@@ -30,11 +30,17 @@ private:
     Tile* tiles;
     bool firstMove;
 
+    // ---- TESTING -----
+    QList<int *> fields;
+    QList<Tile *> tileses;
+    size_t pos;
+    // ---- TESTING -----
+
     ///
-    /// \brief initializeField initializes a randomized minefield using the proper
-    /// boardSize and mineFreq values.
+    /// \brief initializeField initializes a randomized minefield using the
+    /// proper boardSize and mineFreq values.
     ///
-    void initializeField ();
+    void initializeField (int safeArea);
 
     ///
     /// \brief guaranteeSafe guarantees the first move is a safe move
@@ -44,22 +50,23 @@ private:
     void guaranteeSafe (QPoint firstTile);
 
     ///
-    /// \brief populateFieldNums populates each cell with the value corresponding to
-    /// how many of its neighbors contain mines.
+    /// \brief populateFieldNums populates each cell with the value
+    /// corresponding to how many of its neighbors contain mines.
     ///
     void populateFieldNums ();
 
     ///
-    /// \brief floodFill uses the recursive flood fill algorithm to automatically uncover
-    /// connected tile which are covered and not flagged if they have no mines underneath.
-    /// Border tiles are determined by tiles which are adjacent to mines.
+    /// \brief floodFill uses the recursive flood fill algorithm to
+    /// automatically uncover connected tile which are covered and not flagged
+    /// if they have no mines underneath. Border tiles are determined by tiles
+    /// which are adjacent to mines.
     /// \param selectedTile the origin from which to floodFill.
     ///
     void floodFill (QPoint selectedTile);
 
     ///
-    /// \brief pointToIndex converts a QPoint to an array index in the backing array
-    /// for the field.
+    /// \brief pointToIndex converts a QPoint to an array index in the backing
+    /// array for the field.
     /// \param point the point to convert.
     /// \return int index that represents the point.
     ///
@@ -68,15 +75,16 @@ private:
     QPoint indexToPoint (int index);
 
     ///
-    /// \brief checkNeighborAt checks whether the direct neighbor to the origin point at
-    /// the relative x and y coordinates contains a mine.
+    /// \brief checkNeighborAt checks whether the direct neighbor to the
+    /// origin point at the relative x and y coordinates contains a mine.
     /// \param origin the centeral point of reference
     /// \param relativeX x coordinate of the neighbor relative to the origin
     /// \param relativeY y coordinate of the neighbor relative to the origin
     /// \return whether or not there is a mine there
     ///
     template<typename A>
-    bool checkNeighborAt(QPoint origin, int relativeX, int relativeY, A *array, A check);
+    bool checkNeighborAt(QPoint origin, int relativeX, int relativeY
+                         , A *array, A check);
 
     ///
     /// \brief internalClear
