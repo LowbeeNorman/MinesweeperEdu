@@ -65,6 +65,8 @@ private:
     ///
     int pointToIndex (QPoint point);
 
+    QPoint indexToPoint (int index);
+
     ///
     /// \brief checkNeighborAt checks whether the direct neighbor to the origin point at
     /// the relative x and y coordinates contains a mine.

@@ -77,17 +77,18 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
             QPixmap *display = coverImage;
             switch (covers[index])
             {
-            case Tile::blank:
+            // case Tile::blank:
+            default:
                 // draw the number/bomb
                 display = numbers[board[index]];
                 break;
-            case Tile::covered:
-                // the display variable is already set to cover so there's no
-                // need to update that again here
-                break;
-            case Tile::flagged:
-                display = flagImage;
-                break;
+            // case Tile::covered:
+            //     // the display variable is already set to cover so there's no
+            //     // need to update that again here
+            //     break;
+            // case Tile::flagged:
+            //     display = flagImage;
+            //     break;
             }
             painter.drawPixmap (x * TILE_SIZE, y * TILE_SIZE, *display);
         }
