@@ -1,12 +1,14 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/16/24
+/// 4/17/24
 /// Written by: Caleb Norman, Abdul Asim
 
 #ifndef STARTSCREEN_H
 #define STARTSCREEN_H
 
 #include <QWidget>
+#include <Box2D/Box2D.h>
+#include <QTimer>
 
 namespace Ui {
 class StartScreen;
@@ -20,10 +22,14 @@ class StartScreen;
 class StartScreen : public QWidget
 {
     Q_OBJECT
+    b2World world;
+    b2Body* body;
+    QTimer* timer = new QTimer(this);
 
 public:
     explicit StartScreen(QWidget *parent = nullptr);
     ~StartScreen();
+    void setUpBox2D();
 
 public slots:
     ///
@@ -37,6 +43,13 @@ public slots:
     /// that resides within the ui
     ///
     void continueButtonClicked();
+
+    ///
+    /// \brief Updates the world based on a time increment
+    ///
+    void updateWorld();
+
+
 
 signals:
     ///
@@ -57,6 +70,11 @@ signals:
     /// because a new game has been started
     ///
     void startingNewGame();
+
+    ///
+    /// \brief Gets a new height for the start screen label that bounces in a loop
+    ///
+    void newStartScreenLabelHeight(int y);
 
 
 private:
