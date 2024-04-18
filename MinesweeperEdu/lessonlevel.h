@@ -6,6 +6,7 @@
 #include <QString>
 #include <QList>
 #include <QJsonDocument>
+#include "minefield.h"
 #include "quiz.h"
 
 class LessonLevel
@@ -22,6 +23,7 @@ private:
     QString topic;
     QList<QString> lessonGuidance;
     Quiz quiz;
+    Minefield* m;
 };
 
 #endif // LESSONLEVEL_H

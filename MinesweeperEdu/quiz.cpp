@@ -3,6 +3,18 @@
 
 Quiz::Quiz() {}
 
+Quiz& Quiz::operator=(Quiz rhs) {
+    std::swap(correctMoves, rhs.correctMoves);
+    std::swap(instructions, rhs.instructions);
+    // swap Minefield's
+    std::swap(m, rhs.m);
+    return *this;
+}
+
+Quiz::~Quiz() {
+    delete m;
+}
+
 Quiz::Quiz(QJsonObject &obj) {
     int width = obj.value("width").toInt();
     int height = obj.value("height").toInt();
@@ -14,4 +26,5 @@ Quiz::Quiz(QJsonObject &obj) {
         minefield[i] = minefieldArr[i].toBool();
     }
     // Call method in minefield that constructs the board using the values collected.
+    m = nullptr;
 }

@@ -6,6 +6,7 @@
 #include <QList>
 #include <QString>
 #include <QJsonObject>
+#include "minefield.h"
 #include "usermove.h"
 
 class Quiz
@@ -17,10 +18,18 @@ public:
     /// \param obj
     ///
     Quiz(QJsonObject &obj);
+    ///
+    /// \brief assignment operator
+    /// \param rhs
+    /// \return
+    ///
+    Quiz& operator=(Quiz rhs);
+    ~Quiz();
     UserMove verifyUserMove(QPoint coords, UserMove::MoveType type);
 private:
     QList<UserMove> correctMoves;
     QList<QString> instructions;
+    Minefield* m;
     static const QList<QString> errorMessages;
 };
 
