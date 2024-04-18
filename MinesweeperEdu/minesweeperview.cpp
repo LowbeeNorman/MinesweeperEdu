@@ -51,7 +51,8 @@ void MinesweeperView::setSize (QSize size)
 {
     this->size = size;
     // initialize the pixmap and add it to the scene
-    pixmap = new QPixmap (QSize (size.width () * TILE_SIZE, size.height () * TILE_SIZE));
+    pixmap = new QPixmap (QSize (size.width () * TILE_SIZE
+                               , size.height () * TILE_SIZE));
     pixmap->fill (Qt::red);
     pixmapItem->setPixmap (*pixmap);
     // zoom the view on the scene
@@ -110,7 +111,6 @@ void MinesweeperView::won (QList<QPoint> mines)
     qInfo () << "won";
     for (const auto &mine : mines)
     {
-        qInfo () << mine;
         flagPlaced (mine, numFlags);
     }
 }
