@@ -5,6 +5,7 @@
 #define LESSONLEVEL_H
 #include <QString>
 #include <QList>
+#include <QJsonDocument>
 #include "quiz.h"
 
 class LessonLevel
@@ -12,6 +13,7 @@ class LessonLevel
 public:
     LessonLevel(int level);
     LessonLevel();
+    LessonLevel(QJsonDocument &doc);
 private:
     QString topic;
     QList<QString> lessonGuidance;

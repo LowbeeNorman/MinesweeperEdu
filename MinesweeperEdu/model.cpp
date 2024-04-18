@@ -22,4 +22,5 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
     // array of bytes contained in file
     QByteArray array = file.readAll ();
     doc = QJsonDocument::fromJson (array);
+    return LessonLevel(doc);
 }
