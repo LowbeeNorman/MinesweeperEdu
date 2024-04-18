@@ -31,6 +31,10 @@ private:
 
 signals:
     void requestBoard ();
+    void sendBackClicked (int pageIndex);
+
+public slots:
+    void backButtonClicked ();
 };
 
 #endif // LESSON_H

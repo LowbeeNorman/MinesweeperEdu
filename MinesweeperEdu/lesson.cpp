@@ -11,7 +11,7 @@ Lesson::Lesson(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // testing stuff
+    connect(ui->backButton, &QPushButton::clicked, this, Lesson::backButtonClicked);
 }
 
 Lesson::~Lesson()
@@ -35,4 +35,9 @@ void Lesson::makeConnections (Minefield &mines)
     connect (&mines, &Minefield::sendCovered, ui->board, &MinesweeperView::receiveIfCovered);
     connect (&mines, &Minefield::dead, ui->board, &MinesweeperView::dead);
     connect (&mines, &Minefield::won, ui->board, &MinesweeperView::won);
+}
+
+void Lesson::backButtonClicked()
+{
+    emit sendBackClicked(1);
 }

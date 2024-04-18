@@ -1,12 +1,12 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/12/24
-/// Written by: Caleb Norman
+/// Written by: Caleb Norman, Abdul Asim
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(Model &model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -17,6 +17,13 @@ MainWindow::MainWindow(QWidget *parent)
     // main window
     connect(ui->startPage, &StartScreen::sendNewLessonClicked
             , this, &MainWindow::updateScreenIndex);
+
+    connect(ui->startPage, &StartScreen::sendContinueClicked, this, &MainWindow::loadPrevious);
+    connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked, this, &MainWindow::updateScreenIndex);
+    connect(ui->lessonPage, &Lesson::sendBackClicked, this, &MainWindow::updateScreenIndex);
+    connect(ui->startPage , &StartScreen::startingNewGame, ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
+
+    connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
 }
 
 MainWindow::~MainWindow()
@@ -32,6 +39,20 @@ void MainWindow::makeConnections (Minefield &mines)
 void MainWindow::updateScreenIndex(int index)
 {
     ui->stackedWidget->setCurrentIndex(index);
+}
+
+void MainWindow::receiveLevelIndex(int levelIndex){
+    qDebug() << "Need to load level " << levelIndex + 1 << "(or index" << levelIndex << ")";
+
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::loadPrevious()
+{
+    // Do something from view -> model for loading
+    qDebug() << "Need to load a game to continue";
+
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 

@@ -5,7 +5,7 @@
 #define LESSONLEVEL_H
 #include <QString>
 #include <QList>
-#include "usermove.h"
+#include <QJsonDocument>
 #include "quiz.h"
 
 class LessonLevel
@@ -13,7 +13,11 @@ class LessonLevel
 public:
     LessonLevel(int level);
     LessonLevel();
-    UserMove verifyUserMove(QPoint coords, UserMove::MoveType type);
+    ///
+    /// \brief constructs a LessonLevel from a given QJsonDocument
+    /// \param doc
+    ///
+    LessonLevel(QJsonDocument &doc);
 private:
     QString topic;
     QList<QString> lessonGuidance;
