@@ -57,9 +57,12 @@ void MinesweeperView::setSize (QSize size)
     pixmapItem->setPixmap (*pixmap);
     // zoom the view on the scene
     // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
+    int width = mainScene->sceneRect ().width ();
+    int height = mainScene->sceneRect ().height ();
+    int maxDim = (height > width) ? height : width;
     this->scale
-        (this->contentsRect ().width() / mainScene->sceneRect ().width()
-        , this->contentsRect ().width() / mainScene->sceneRect ().width());
+        (this->contentsRect ().width() / (double) maxDim
+        , this->contentsRect ().width() / (double) maxDim);
 }
 
 void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
@@ -73,9 +76,9 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
     painter.setCompositionMode (QPainter::CompositionMode_SourceOver);
     // go through all the tiles in the covers array and paint them to the
     // pixmap if they are not cleared.
-    for (int y = 0; y < size.width (); ++y)
+    for (int y = 0; y < size.height (); ++y)
     {
-        for (int x = 0; x < size.height (); ++x)
+        for (int x = 0; x < size.width (); ++x)
         {
             int index = pointToIndex (x, y);
             QPixmap *display = coverImage;
