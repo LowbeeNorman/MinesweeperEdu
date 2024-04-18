@@ -15,6 +15,7 @@ SOURCES += \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    minesweeperview.cpp \
     quiz.cpp \
     startscreen.cpp \
     minefield.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     levelselect.h \
     boardview.h \
     mainwindow.h \
+    minesweeperview.h \
     quiz.h \
     startscreen.h \
     minefield.h \
@@ -45,3 +47,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

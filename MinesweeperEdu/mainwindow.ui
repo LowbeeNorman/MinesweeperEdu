@@ -10,18 +10,6 @@
     <height>671</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>870</width>
-    <height>671</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>870</width>
-    <height>671</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -54,7 +42,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="StartScreen" name="startPage"/>
       <widget class="LevelSelect" name="levelSelectPage"/>

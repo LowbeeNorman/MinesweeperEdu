@@ -11,10 +11,12 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    // This connection is sent from the startPage widget that resides within the mainwindow, and is received by
-    // the main window. This will be a common pattern within our program with various widgets within the main window
-    connect(ui->startPage, &StartScreen::sendNewLessonClicked, this, &MainWindow::updateScreenIndex);
+    // This connection is sent from the startPage widget that resides within
+    // the mainwindow, and is received by the main window. This will be a
+    // common pattern within our program with various widgets within the
+    // main window
+    connect(ui->startPage, &StartScreen::sendNewLessonClicked
+            , this, &MainWindow::updateScreenIndex);
 
     connect(ui->startPage, &StartScreen::sendContinueClicked, this, &MainWindow::loadPrevious);
     connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked, this, &MainWindow::updateScreenIndex);
@@ -27,6 +29,11 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::makeConnections (Minefield &mines)
+{
+    ui->lessonPage->makeConnections (mines);
 }
 
 void MainWindow::updateScreenIndex(int index)
