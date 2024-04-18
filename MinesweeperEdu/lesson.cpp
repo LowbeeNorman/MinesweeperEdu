@@ -11,7 +11,7 @@ Lesson::Lesson(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->backButton, &QPushButton::clicked, this, Lesson::backButtonClicked);
+    connect(ui->backButton, &QPushButton::clicked, this, &Lesson::backButtonClicked);
 }
 
 Lesson::~Lesson()
