@@ -10,18 +10,6 @@
     <height>620</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>864</width>
-    <height>620</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>864</width>
-    <height>620</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -36,7 +24,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="1" column="0" colspan="2">
-       <widget class="QGraphicsView" name="board">
+       <widget class="MinesweeperView" name="board">
         <property name="minimumSize">
          <size>
           <width>500</width>
@@ -180,6 +168,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MinesweeperView</class>
+   <extends>QGraphicsView</extends>
+   <header>minesweeperview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

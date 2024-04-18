@@ -7,6 +7,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "minefield.h"
 #include "model.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(Model &model, QWidget *parent = nullptr);
     ~MainWindow();
+
+    void makeConnections (Minefield &mines);
 
 private:
     Ui::MainWindow *ui;

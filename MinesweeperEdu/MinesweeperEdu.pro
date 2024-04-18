@@ -61,6 +61,7 @@ SOURCES += \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    minesweeperview.cpp \
     quiz.cpp \
     startscreen.cpp \
     minefield.cpp \
@@ -121,6 +122,7 @@ HEADERS += \
     levelselect.h \
     boardview.h \
     mainwindow.h \
+    minesweeperview.h \
     quiz.h \
     startscreen.h \
     minefield.h \
@@ -142,3 +144,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     Box2D/Box2DConfig.cmake \
     Box2D/CMakeLists.txt
+
+RESOURCES += \
+    resources.qrc

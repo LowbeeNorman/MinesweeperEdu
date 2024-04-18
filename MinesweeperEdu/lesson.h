@@ -6,6 +6,7 @@
 #define LESSON_H
 
 #include <QWidget>
+#include "minefield.h"
 
 namespace Ui {
 class Lesson;
@@ -23,14 +24,17 @@ public:
     explicit Lesson(QWidget *parent = nullptr);
     ~Lesson();
 
+    void makeConnections (Minefield &mines);
+
 private:
     Ui::Lesson *ui;
 
-public slots:
-    void backButtonClicked();
-
 signals:
-    void sendBackClicked(int pageIndex);
+    void requestBoard ();
+    void sendBackClicked (int pageIndex);
+
+public slots:
+    void backButtonClicked ();
 };
 
 #endif // LESSON_H
