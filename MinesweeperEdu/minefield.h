@@ -89,6 +89,7 @@ private:
     bool internalClear (QPoint origin);
 
     bool checkForWin ();
+    QList<QPoint> getMines ();
 
 public slots:
     ///
@@ -120,8 +121,8 @@ signals:
     /// \brief dead emitted when
     /// \param origin point of death
     ///
-    void dead(QPoint origin);
-    void won ();
+    void dead (QPoint origin, QList<QPoint> mines);
+    void won (QList<QPoint> mines);
 
     ///
     /// \brief updateBoard emitted when the board has changed

@@ -11,7 +11,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Minefield mines (QSize (15, 15), 0.1f);
+    Minefield mines (QSize (15, 15), 0.15f);
     MainWindow w;
     w.makeConnections (mines);
     w.show();

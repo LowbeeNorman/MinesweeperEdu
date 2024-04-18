@@ -13,7 +13,7 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // load in all the images used to display the number grid
-    flagImage = new QPixmap (QString (":/images/flag.png"));
+    flagImage  = new QPixmap (QString (":/images/flag.png"));
     coverImage = new QPixmap (QString (":/images/cover.png"));
     numbers[0] = new QPixmap (QString (":/images/clear.png"));
     numbers[1] = new QPixmap (QString (":/images/one.png"));
@@ -100,14 +100,19 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
 }
 
 // endgame stuff
-void MinesweeperView::dead (QPoint where)
+void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
 {
     qInfo () << "dead at" << where;
 }
 
-void MinesweeperView::won ()
+void MinesweeperView::won (QList<QPoint> mines)
 {
     qInfo () << "won";
+    for (const auto &mine : mines)
+    {
+        qInfo () << mine;
+        flagPlaced (mine, numFlags);
+    }
 }
 
 // translation methods (very helpful)

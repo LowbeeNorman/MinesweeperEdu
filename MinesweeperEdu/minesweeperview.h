@@ -54,8 +54,8 @@ public slots:
     void displayHighlight (QList<QPoint> coveredTiles);
     void receiveIfCovered (QPoint origin, bool covered);
 
-    void dead (QPoint origin);
-    void won ();
+    void dead (QPoint origin, QList<QPoint> mines);
+    void won (QList<QPoint> mines);
 };
 
 #endif // MINESWEEPERVIEW_H

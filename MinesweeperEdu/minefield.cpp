@@ -183,6 +183,17 @@ bool Minefield::internalClear (QPoint origin)
     return true;
 }
 
+QList<QPoint> Minefield::getMines ()
+{
+    QList<QPoint> mines;
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        if (9 == field[i])
+            mines.append (indexToPoint (i));
+    }
+    return mines;
+}
+
 bool Minefield::checkForWin ()
 {
     for (int i = 0; i < arrayLength; ++i)
@@ -206,9 +217,9 @@ void Minefield::clear (QPoint origin)
     if (internalClear (origin))
         emit updateBoard (field, tiles);
     if (9 == field[pointToIndex (origin)])
-        emit dead (origin);
+        emit dead (origin, getMines ());
     else if (checkForWin ())
-        emit won ();
+        emit won (getMines ());
 }
 
 void Minefield::chord (QPoint origin) {
@@ -237,7 +248,7 @@ void Minefield::chord (QPoint origin) {
     // clear everything around the origin
     for (int relY = -1; relY <= 1; ++relY)
     {
-        for (int relX =  -1; relX <= 1; ++relX)
+        for (int relX = -1; relX <= 1; ++relX)
         {
             QPoint toClear (origin.x () + relX, origin.y () + relY);
             if (internalClear (toClear))
@@ -245,13 +256,15 @@ void Minefield::chord (QPoint origin) {
                 // the only time we should check for bombs is if the clear
                 // was successful
                 if (9 == field[pointToIndex (toClear)])
-                    emit dead (toClear);
-                else if (checkForWin ())
-                    emit won ();
+                {
+                    emit dead (toClear, getMines ());
+                }
             }
         }
     }
     emit updateBoard (field, tiles);
+    if (checkForWin ())
+        emit won (getMines ());
 }
 
 void Minefield::getSurroundings (QPoint origin)
