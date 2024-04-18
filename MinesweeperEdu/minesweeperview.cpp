@@ -63,6 +63,7 @@ void MinesweeperView::setSize (QSize size)
     this->scale
         (this->contentsRect ().width() / (double) maxDim
         , this->contentsRect ().width() / (double) maxDim);
+    emit requestBoard ();
 }
 
 void MinesweeperView::receiveBoard (const int *board, const Tile *covers)

@@ -45,6 +45,8 @@ signals:
     void flag  (QPoint origin);
     void chord (QPoint origin);
 
+    void requestBoard ();
+
     void requestChord (QPoint origin);
     void requestIfCovered (QPoint origin);
 public slots:
