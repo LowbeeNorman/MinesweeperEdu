@@ -1,13 +1,13 @@
 #include "quiz.h"
 #include <QJsonArray>
 
-Quiz::Quiz() : m(nullptr) {}
+Quiz::Quiz() : minefield(nullptr) {}
 
 Quiz& Quiz::operator=(Quiz rhs) {
     std::swap(correctMoves, rhs.correctMoves);
     std::swap(instructions, rhs.instructions);
     // swap minefields
-    std::swap(m, rhs.m);
+    std::swap(minefield, rhs.minefield);
     return *this;
 }
 
@@ -15,12 +15,12 @@ Quiz::Quiz (const Quiz &other)
     : correctMoves (other.correctMoves)
     , instructions (other.instructions)
 {
-    m = new Minefield (*other.m);
+    minefield = new Minefield (*other.minefield);
 }
 
 Quiz::~Quiz() {
-    if(m != nullptr)
-        delete m;
+    if(minefield != nullptr)
+        delete minefield;
 }
 
 Quiz::Quiz(QJsonObject &obj) {
@@ -28,11 +28,17 @@ Quiz::Quiz(QJsonObject &obj) {
     int height = obj.value("height").toInt();
 
     QJsonArray minefieldArr = obj.value("minefield").toArray();
-    bool minefield[minefieldArr.size ()] = {false};
+    bool field[minefieldArr.size ()] = {false};
     // Add all boolean values contained in the QJsonArray to the bool[]
-    for(int i = 0; i < minefieldArr.size (); ++i) {
-        minefield[i] = minefieldArr[i].toBool();
+    for(int i = 0; i < minefieldArr.size (); ++i)
+    {
+        field[i] = minefieldArr[i].toBool();
     }
     // Call method in minefield that constructs the board using the values collected.
-    m = new Minefield(QSize(width, height), 0.15f);
+    minefield = new Minefield (QSize (width, height), field);
+}
+
+Minefield *Quiz::getMinefield ()
+{
+    return minefield;
 }

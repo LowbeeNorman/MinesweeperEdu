@@ -26,11 +26,14 @@ public:
     ///
     Quiz& operator=(Quiz rhs);
     ~Quiz();
+
     UserMove verifyUserMove(QPoint coords, UserMove::MoveType type);
+
+    Minefield *getMinefield ();
 private:
     QList<UserMove> correctMoves;
     QList<QString> instructions;
-    Minefield *m;
+    Minefield *minefield;
     static const QList<QString> errorMessages;
 };
 

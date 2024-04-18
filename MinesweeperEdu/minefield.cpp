@@ -14,7 +14,8 @@
 Minefield::Minefield(QSize boardSize, float mineFreq)
     : QObject (nullptr)
     , boardSize(boardSize)
-    , numMines (boardSize.width () * boardSize.height () * mineFreq)
+    , arrayLength (boardSize.width() * boardSize.height ())
+    , numMines (arrayLength * mineFreq)
     , numFlags (numMines)
     , firstMove (true)
     , initialized (false)
@@ -28,8 +29,9 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
 Minefield::Minefield (QSize boardSize, bool mines[])
     : QObject (nullptr)
     , boardSize (boardSize)
-    , numMines (boardSize.width () * boardSize.height ())
-    , numFlags (numMines)
+    , arrayLength (boardSize.width () * boardSize.height ())
+    , numMines (0)
+    , numFlags (0)
     , firstMove (true)
     , initialized (true)
 {
@@ -39,13 +41,17 @@ Minefield::Minefield (QSize boardSize, bool mines[])
     {
         tiles[i] = Tile::covered;
         if (mines[i])
+        {
+            numMines++;
             field[i] = 9;
+        }
     }
 }
 
 Minefield::Minefield (const Minefield &other)
     : QObject (other.parent ())
     , boardSize (other.boardSize)
+    , arrayLength (other.arrayLength)
     , numMines (other.numMines)
     , numFlags (other.numFlags)
     , firstMove (other.firstMove)

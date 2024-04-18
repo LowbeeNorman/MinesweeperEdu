@@ -8,9 +8,6 @@ Model::Model() {
 }
 
 void Model::createLessonLevels() {
-    for(int i = 0; i < 1; ++i) {
-
-    }
     lessons.append
         (constructLessonLevelFromJSON (QString (":/json/test.json")));
 }
