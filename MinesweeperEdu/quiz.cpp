@@ -1,7 +1,7 @@
 #include "quiz.h"
 #include <QJsonArray>
 
-Quiz::Quiz() {}
+Quiz::Quiz() : m(nullptr) {}
 
 Quiz& Quiz::operator=(Quiz rhs) {
     std::swap(correctMoves, rhs.correctMoves);
@@ -12,7 +12,8 @@ Quiz& Quiz::operator=(Quiz rhs) {
 }
 
 Quiz::~Quiz() {
-    delete m;
+    if(m != nullptr)
+        delete m;
 }
 
 Quiz::Quiz(QJsonObject &obj) {
@@ -26,5 +27,5 @@ Quiz::Quiz(QJsonObject &obj) {
         minefield[i] = minefieldArr[i].toBool();
     }
     // Call method in minefield that constructs the board using the values collected.
-    m = nullptr;
+    m = new Minefield(QSize(3,3), 2.0);
 }

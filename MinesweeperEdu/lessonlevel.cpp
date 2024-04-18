@@ -2,7 +2,12 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-LessonLevel::LessonLevel() {}
+LessonLevel::LessonLevel() : m(nullptr) {}
+
+LessonLevel::~LessonLevel() {
+    if(m != nullptr)
+        delete m;
+}
 
 LessonLevel::LessonLevel(QJsonDocument &doc) {
     QJsonObject obj = doc.object();
@@ -24,9 +29,9 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
     bool minefield[] = {};
     QJsonArray minefieldArr = obj.value("minefield").toArray();
     // Add all boolean values contained in the QJsonArray to the bool[]
-    for(size_t i = 0; i < minefieldArr.size(); ++i) {
+    for(int i = 0; i < minefieldArr.size(); ++i) {
         minefield[i] = minefieldArr[i].toBool();
     }
 
-    m = nullptr;
+    m = new Minefield(QSize(3,3), 2.0);
 }

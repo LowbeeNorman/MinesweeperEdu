@@ -11,7 +11,7 @@ void Model::createLessonLevels() {
     for(int i = 0; i < 1; ++i) {
 
     }
-    // lessons.append(constructLessonLevelFromJSON("C:/Users/kylve/Downloads/test.json"));
+     lessons.append(constructLessonLevelFromJSON("C:/Users/User/Downloads/test.json"));
 }
 
 LessonLevel Model::constructLessonLevelFromJSON(QString filename) {

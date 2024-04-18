@@ -19,6 +19,7 @@ public:
     /// \param doc
     ///
     LessonLevel(QJsonDocument &doc);
+    ~LessonLevel();
 private:
     QString topic;
     QList<QString> lessonGuidance;
