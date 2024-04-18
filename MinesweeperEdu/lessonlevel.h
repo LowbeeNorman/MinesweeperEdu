@@ -13,6 +13,10 @@ class LessonLevel
 public:
     LessonLevel(int level);
     LessonLevel();
+    ///
+    /// \brief constructs a LessonLevel from a given QJsonDocument
+    /// \param doc
+    ///
     LessonLevel(QJsonDocument &doc);
 private:
     QString topic;

@@ -5,12 +5,18 @@
 #define QUIZ_H
 #include <QList>
 #include <QString>
+#include <QJsonObject>
 #include "usermove.h"
 
 class Quiz
 {
 public:
     Quiz();
+    ///
+    /// \brief constructs a Quiz from the given QJsonObject
+    /// \param obj
+    ///
+    Quiz(QJsonObject &obj);
     UserMove verifyUserMove(QPoint coords, UserMove::MoveType type);
 private:
     QList<UserMove> correctMoves;
