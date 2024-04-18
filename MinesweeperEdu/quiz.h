@@ -13,6 +13,7 @@ class Quiz
 {
 public:
     Quiz();
+    Quiz (const Quiz &other);
     ///
     /// \brief constructs a Quiz from the given QJsonObject
     /// \param obj
@@ -29,7 +30,7 @@ public:
 private:
     QList<UserMove> correctMoves;
     QList<QString> instructions;
-    Minefield* m;
+    Minefield *m;
     static const QList<QString> errorMessages;
 };
 

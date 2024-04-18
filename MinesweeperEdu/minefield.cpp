@@ -12,17 +12,52 @@
 #include <cstring>
 
 Minefield::Minefield(QSize boardSize, float mineFreq)
-    : boardSize(boardSize)
-    , mineFreq(mineFreq)
+    : QObject (nullptr)
+    , boardSize(boardSize)
+    , numMines (boardSize.width () * boardSize.height () * mineFreq)
+    , numFlags (numMines)
+    , firstMove (true)
+    , initialized (false)
 {
-    arrayLength = boardSize.height() * boardSize.width();
-    numMines = (int) (arrayLength * mineFreq);
-    numFlags = numMines;
     field = new int[arrayLength] {0};
     tiles = new Tile[arrayLength];
     for (int i = 0; i < arrayLength; ++i)
         tiles[i] = Tile::covered;
-    firstMove = true;
+}
+
+Minefield::Minefield (QSize boardSize, bool mines[])
+    : QObject (nullptr)
+    , boardSize (boardSize)
+    , numMines (boardSize.width () * boardSize.height ())
+    , numFlags (numMines)
+    , firstMove (true)
+    , initialized (true)
+{
+    field = new int[arrayLength] {0};
+    tiles = new Tile[arrayLength];
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        tiles[i] = Tile::covered;
+        if (mines[i])
+            field[i] = 9;
+    }
+}
+
+Minefield::Minefield (const Minefield &other)
+    : QObject (other.parent ())
+    , boardSize (other.boardSize)
+    , numMines (other.numMines)
+    , numFlags (other.numFlags)
+    , firstMove (other.firstMove)
+    , initialized (other.initialized)
+{
+    field = new int[arrayLength];
+    tiles = new Tile[arrayLength];
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        tiles[i] = other.tiles[i];
+        field[i] = other.field[i];
+    }
 }
 
 Minefield::~Minefield ()
@@ -31,12 +66,26 @@ Minefield::~Minefield ()
     delete[] tiles;
 }
 
+Minefield &Minefield::operator= (Minefield other)
+{
+    std::swap (boardSize, other.boardSize);
+    std::swap (numMines, other.numMines);
+    std::swap (numFlags, other.numFlags);
+    std::swap (firstMove, other.firstMove);
+    std::swap (initialized, other.initialized);
+    std::swap (field, other.field);
+    std::swap (tiles, other.tiles);
+    return *this;
+}
+
 QSize Minefield::getSize ()
 {
     return boardSize;
 }
 
 void Minefield::initializeField (int numSafeSpaces) {
+    if (initialized)
+        return;
     for (int i = 0; i < arrayLength; i++) {
         field[i] = (i < numMines) ? 9 : 0;
     }
@@ -44,6 +93,7 @@ void Minefield::initializeField (int numSafeSpaces) {
                         .time_since_epoch().count();
     shuffle(field, field + arrayLength - numSafeSpaces
             , std::default_random_engine(seed));
+    initialized = true;
 }
 
 bool adjacent (QPoint p1, QPoint p2)

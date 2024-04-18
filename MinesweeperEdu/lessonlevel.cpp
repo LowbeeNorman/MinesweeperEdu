@@ -26,12 +26,12 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
     quiz = Quiz(quizObj);
 
     // LessonLevel Minefield
-    bool minefield[] = {};
     QJsonArray minefieldArr = obj.value("minefield").toArray();
+    bool minefield[minefieldArr.size ()] = {false};
     // Add all boolean values contained in the QJsonArray to the bool[]
     for(int i = 0; i < minefieldArr.size(); ++i) {
         minefield[i] = minefieldArr[i].toBool();
     }
 
-    m = new Minefield(QSize(3,3), 2.0);
+    m = new Minefield(QSize(3, 3), 0.1);
 }

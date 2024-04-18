@@ -17,19 +17,23 @@ class Minefield : public QObject
     Q_OBJECT
 
 public:
-    Minefield(QSize boardSize, float mineFreq);
+    Minefield (QSize boardSize, float mineFreq);
+    Minefield (QSize boardSize, bool mines[]);
+    Minefield (const Minefield &other);
+
     ~Minefield ();
+    Minefield &operator= (Minefield other);
 
     QSize getSize ();
 private:
     QSize boardSize;
     int arrayLength;
-    float mineFreq;
     int numMines;
     int numFlags;
     int* field;
     Tile* tiles;
     bool firstMove;
+    bool initialized;
 
     ///
     /// \brief initializeField initializes a randomized minefield using the

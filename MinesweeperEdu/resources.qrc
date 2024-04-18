@@ -13,4 +13,7 @@
         <file>three.png</file>
         <file>two.png</file>
     </qresource>
+    <qresource prefix="/json">
+        <file>test.json</file>
+    </qresource>
 </RCC>
