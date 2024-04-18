@@ -181,7 +181,8 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
     event->accept ();
 
     mouse = event->button ();
-    QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
     switch (mouse)
     {
     case Qt::LeftButton:
@@ -209,7 +210,8 @@ void MinesweeperView::mouseMoveEvent (QMouseEvent *event)
 
     // the only purpose of this method is to highlight tiles that haven't been
     // cleared yet
-    QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
     switch (mouse)
     {
     case Qt::LeftButton:
@@ -230,7 +232,8 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
 
     // clear the highlight of the chord
     displayHighlight (QList<QPoint> ());
-    QPoint minesweeperPos = translateToMinesweeper (mapToScene (event->pos ()));
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
     switch (mouse)
     {
     case Qt::LeftButton:
