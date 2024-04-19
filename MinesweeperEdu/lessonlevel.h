@@ -23,7 +23,7 @@ private:
     QString topic;
     QList<QString> lessonGuidance;
     Quiz quiz;
-    Minefield* m;
+    Minefield* minefield;
 };
 
 #endif // LESSONLEVEL_H
