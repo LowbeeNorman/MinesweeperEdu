@@ -257,8 +257,20 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
 
 void MinesweeperView::resizeEvent (QResizeEvent* event)
 {
-    qInfo () << event->size() << " New size";
-
+    qInfo () << "New size" << event->size () << "old size" << event->oldSize () << "viewport size" << contentsRect () << "scene size" << mainScene->sceneRect ();
+    event->accept ();
+    // zoom the view on the scene
+    // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
+    int width = mainScene->sceneRect ().width ();
+    int height = mainScene->sceneRect ().height ();
+    int maxDim = (height > width) ? height : width;
+    int minViewDim = (event->size ().width() < event->size ().height ())
+                     ? event->size ().width ()
+                     : event->size ().height ();
+    this->resetTransform ();
+    this->scale
+        (minViewDim / (double) maxDim
+        , minViewDim / (double) maxDim);
 }
 
 
