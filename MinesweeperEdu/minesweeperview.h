@@ -33,12 +33,13 @@ class MinesweeperView : public QGraphicsView
 public:
     MinesweeperView (QWidget *parent = nullptr);
     ~MinesweeperView ();
-    void setSize(QSize size);
+    void setBoardSize(QSize size);
 
     // mouse stuff
     void mousePressEvent (QMouseEvent *event) override;
     void mouseMoveEvent (QMouseEvent *event) override;
     void mouseReleaseEvent (QMouseEvent *event) override;
+    void resizeEvent (QResizeEvent* event) override;
 
 signals:
     void clear (QPoint origin);

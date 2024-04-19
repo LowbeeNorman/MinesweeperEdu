@@ -47,7 +47,7 @@ int MinesweeperView::pointToIndex (int x, int y)
     return y * size.width() + x;
 }
 
-void MinesweeperView::setSize (QSize size)
+void MinesweeperView::setBoardSize (QSize size)
 {
     this->size = size;
     // initialize the pixmap and add it to the scene
@@ -71,7 +71,7 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
     // if the size hasn't been initialized, exit this method
     if (nullptr == pixmap)
         return;
-    pixmap->fill (Qt::transparent);
+    // pixmap->fill (Qt::transparent);
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
     painter.setCompositionMode (QPainter::CompositionMode_SourceOver);
@@ -253,6 +253,12 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     }
     // reset the mouse button
     mouse = Qt::NoButton;
+}
+
+void MinesweeperView::resizeEvent (QResizeEvent* event)
+{
+    qInfo () << event->size() << " New size";
+
 }
 
 
