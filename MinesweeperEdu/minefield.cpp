@@ -270,9 +270,10 @@ void Minefield::clear (QPoint origin)
         guaranteeSafe (origin);
         populateFieldNums ();
     }
-    if (internalClear (origin))
-        emit updateBoard (field, tiles);
-    if (9 == field[pointToIndex (origin)])
+    if (!internalClear (origin))
+        return;
+    emit updateBoard (field, tiles);
+    if (9 == field[pointToIndex (origin)] && Tile::blank == tiles[pointToIndex (origin)])
         emit dead (origin, getMines ());
     else if (checkForWin ())
         emit won (getMines ());
@@ -307,15 +308,12 @@ void Minefield::chord (QPoint origin) {
         for (int relX = -1; relX <= 1; ++relX)
         {
             QPoint toClear (origin.x () + relX, origin.y () + relY);
-            if (internalClear (toClear))
-            {
-                // the only time we should check for bombs is if the clear
-                // was successful
-                if (9 == field[pointToIndex (toClear)])
-                {
-                    emit dead (toClear, getMines ());
-                }
-            }
+            if (!internalClear (toClear))
+                continue;
+            // the only time we should check for bombs is if the clear
+            // was successful
+            if (9 == field[pointToIndex (toClear)] && Tile::blank == tiles[pointToIndex (toClear)])
+                emit dead (toClear, getMines ());
         }
     }
     emit updateBoard (field, tiles);
