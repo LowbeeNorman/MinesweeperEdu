@@ -100,7 +100,7 @@ void StartScreen::setUpBox2D()
     body->CreateFixture(&fixtureDef);
 
     // timer->start(1.0f / 60.0f);
-    timer->setInterval (15);
+    timer->setInterval (1.0f / 60.0f * 1000);
     timer->start ();
 }
 // 1.0f / 60.0f      100
