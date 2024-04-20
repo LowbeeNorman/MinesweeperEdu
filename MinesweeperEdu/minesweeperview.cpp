@@ -47,7 +47,7 @@ int MinesweeperView::pointToIndex (int x, int y)
     return y * size.width() + x;
 }
 
-void MinesweeperView::setSize (QSize size)
+void MinesweeperView::setBoardSize (QSize size)
 {
     this->size = size;
     // initialize the pixmap and add it to the scene
@@ -71,7 +71,7 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
     // if the size hasn't been initialized, exit this method
     if (nullptr == pixmap)
         return;
-    pixmap->fill (Qt::transparent);
+    // pixmap->fill (Qt::transparent);
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
     painter.setCompositionMode (QPainter::CompositionMode_SourceOver);
@@ -253,6 +253,24 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     }
     // reset the mouse button
     mouse = Qt::NoButton;
+}
+
+void MinesweeperView::resizeEvent (QResizeEvent* event)
+{
+    qInfo () << "New size" << event->size () << "old size" << event->oldSize () << "viewport size" << contentsRect () << "scene size" << mainScene->sceneRect ();
+    event->accept ();
+    // zoom the view on the scene
+    // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
+    int width = mainScene->sceneRect ().width ();
+    int height = mainScene->sceneRect ().height ();
+    int maxDim = (height > width) ? height : width;
+    int minViewDim = (event->size ().width() < event->size ().height ())
+                     ? event->size ().width ()
+                     : event->size ().height ();
+    this->resetTransform ();
+    this->scale
+        (minViewDim / (double) maxDim
+        , minViewDim / (double) maxDim);
 }
 
 

@@ -1,0 +1,58 @@
+{
+	"topic": "The Grid",
+	"lessonGuidance":
+	[
+		"A Grid is used to represent a MineSweeper Board.",
+		"A Grid is composed of tiles. There are 3 types of tiles: empty tiles, revealed tiles, and hidden tiles.",
+                "An empty tile has no bombs adjacent to it and does not contain a bomb itself. When a tile is said to not have tiles adjacent to it, this means that there are no bombs in any of the 8 tiles that are directly next to and surrounding the specific tile. An empty tile does not need to be interacted with in any way.",
+                "A revealed tile contains a number that represents the number of mines adjacent to the tile. This number ranges from 1 to 8 as there are up to 8 tiles adjacent to any given tile. For example, if a revealed tile has the number 1 on it, that means that 1 and only 1 of the 8 adjacent tiles contains a bomb. If a revealed tile has the number 8 on it, that means that all 8 of the adjacent tiles contain bombs.",
+                "A hidden tile either contains a number, a bomb, or is empty, but it is usually not empty. You will use strategies, patterns and your own deductions to determine whether this tile is safe (contains a number) or is unsafe (contains a bomb). Tiles that are safe are to be clicked while tiles that are unsafe are to be flagged."
+	],
+	"quiz":
+	{
+		"width": 6,
+		"height": 6,
+		"minefield":
+		[
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,	
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true
+                ],
+                "correctMoves":
+                [
+                ]
+	}
+}

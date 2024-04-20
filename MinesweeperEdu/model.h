@@ -14,6 +14,8 @@ private:
     QList<QString> gameTips;
     //list of all Lessons
     QList<LessonLevel> lessons;
+    //number of lessons
+    int numLessons;
 
     ///
     /// \brief Constructs all the LessonLevels for the application.

@@ -1,0 +1,57 @@
+{
+        "topic": "Safe Tiles",
+	"lessonGuidance":
+	[
+                "Safe tiles are tiles that do not contain mines.",
+                "When you are sure a hidden tile is safe, you can reveal the tile by simply left-clicking it.",
+                "This action will reveal the tile if it is a numbered tile. If it is an empty tile, all empty tiles will be revealed in its group.",
+                "You should only ever reveal a tile if you are 100% sure it is safe, or in a 50/50 case, which will be discussed in a later lesson"
+        ],
+	"quiz":
+	{
+		"width": 6,
+		"height": 6,
+		"minefield":
+		[
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,	
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true
+                ],
+                "correctMoves":
+                [
+                ]
+	}
+}

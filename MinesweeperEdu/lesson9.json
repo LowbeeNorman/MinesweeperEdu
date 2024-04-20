@@ -1,0 +1,53 @@
+{
+        "topic": "All Adjacent Tiles Are Mines",
+	"lessonGuidance":
+	[
+                "Now, we are finally onto learning patterns.",
+                "One of the most common patterns is when a numbered tile is adjacent to the same number of hidden tiles as the number contained on the tile itself. (The three in this example).",
+                "In this case, all hidden tiles are guaranteed to be mines and therefore, are all safe to be flagged."
+	],
+	"quiz":
+	{
+                "width": 3,
+                "height": 3,
+		"minefield":
+		[
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                ],
+                "correctMoves":
+                [
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 0
+                    }
+                ]
+	}
+}

@@ -4,12 +4,14 @@
 #include <QByteArray>
 
 Model::Model() {
+    numLessons = 10;
     createLessonLevels();
 }
 
 void Model::createLessonLevels() {
-    lessons.append
-        (constructLessonLevelFromJSON (QString (":/json/test.json")));
+    for(int i = 1; i <= numLessons; ++i)
+        lessons.append
+            (constructLessonLevelFromJSON (QString (":/json/lesson").append(QString::number(i)).append(".json")));
 }
 
 LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
