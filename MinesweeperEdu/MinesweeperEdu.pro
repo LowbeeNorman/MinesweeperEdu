@@ -67,7 +67,8 @@ SOURCES += \
     minefield.cpp \
     model.cpp \
     tipsview.cpp \
-    usermove.cpp
+    usermove.cpp \
+    winscreen.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -128,13 +129,15 @@ HEADERS += \
     minefield.h \
     model.h \
     tipsview.h \
-    usermove.h
+    usermove.h \
+    winscreen.h
 
 FORMS += \
     lesson.ui \
     levelselect.ui \
     mainwindow.ui \
-    startscreen.ui
+    startscreen.ui \
+    winscreen.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

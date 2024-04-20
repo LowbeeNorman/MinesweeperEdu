@@ -22,6 +22,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked, this, &MainWindow::updateScreenIndex);
     connect(ui->lessonPage, &Lesson::sendBackClicked, this, &MainWindow::updateScreenIndex);
     connect(ui->startPage , &StartScreen::startingNewGame, ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
+    connect(ui->winScreenPage, &WinScreen::backToLevelSelect, this, &MainWindow::updateScreenIndex);
+    connect(ui->winScreenPage, &WinScreen::goToNextLesson, this, &MainWindow::nextLessonShortcut);
 
     connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
 }
@@ -53,6 +55,15 @@ void MainWindow::loadPrevious()
     qDebug() << "Need to load a game to continue";
 
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::nextLessonShortcut()
+{
+    // We will need to load the next lesson info in here somehow
+
+    qDebug() << "Need to load the next level";
+
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 

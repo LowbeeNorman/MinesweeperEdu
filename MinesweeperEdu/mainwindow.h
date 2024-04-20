@@ -51,5 +51,10 @@ public slots:
     /// \brief Listens to know if a previous game needs to be loaded in
     ///
     void loadPrevious();
+
+    ///
+    /// \brief Listens to know if the user goes from one lesson straight to the next
+    ///
+    void nextLessonShortcut();
 };
 #endif // MAINWINDOW_H

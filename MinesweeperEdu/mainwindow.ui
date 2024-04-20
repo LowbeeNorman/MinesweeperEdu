@@ -29,24 +29,13 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
-      <property name="minimumSize">
-       <size>
-        <width>1500</width>
-        <height>700</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>1500</width>
-        <height>700</height>
-       </size>
-      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="StartScreen" name="startPage"/>
       <widget class="LevelSelect" name="levelSelectPage"/>
       <widget class="Lesson" name="lessonPage"/>
+      <widget class="WinScreen" name="winScreenPage"/>
      </widget>
     </item>
    </layout>
@@ -70,6 +59,12 @@
    <class>StartScreen</class>
    <extends>QWidget</extends>
    <header>startscreen.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WinScreen</class>
+   <extends>QWidget</extends>
+   <header>winscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
