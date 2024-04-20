@@ -10,22 +10,22 @@
     <height>620</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>864</width>
-    <height>620</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>864</width>
-    <height>620</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>64</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Choose Your Level</string>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QGraphicsView" name="graphicsView">
      <property name="verticalScrollBarPolicy">
