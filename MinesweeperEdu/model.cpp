@@ -4,7 +4,7 @@
 #include <QByteArray>
 
 Model::Model() {
-    numLessons = 1;
+    numLessons = 10;
     createLessonLevels();
 }
 

@@ -1,0 +1,36 @@
+{
+        "topic": "1 in the Corner",
+	"lessonGuidance":
+	[
+                "A common example of the previous pattern is the 1 in the corner. In this situation, the tile numbered 1 only borders one hidden tile and no flags. This guarantees the hidden tile is a mine and it can be flagged."
+	],
+	"quiz":
+	{
+                "width": 3,
+                "height": 3,
+		"minefield":
+		[
+			true,
+			false,
+			false,
+                        false,
+                        false,
+			false,
+			false,
+                        false,
+                        false
+		],
+		"correctMoves":
+		[
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 0
+                    }
+		]
+
+	}
+}
