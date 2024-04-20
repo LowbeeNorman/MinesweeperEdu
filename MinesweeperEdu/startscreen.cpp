@@ -8,7 +8,7 @@
 
 StartScreen::StartScreen(QWidget *parent)
     : QWidget(parent)
-    , world(b2Vec2(0.0f, -0.05f))
+    , world(b2Vec2(0.0f, -13.0f))
     , ui(new Ui::StartScreen)
 {
     ui->setupUi(this);
@@ -43,7 +43,7 @@ void StartScreen::setUpBox2D()
     b2BodyDef groundBodyDef;
 
     // Choose where the ground is
-    groundBodyDef.position.Set(0.0f, -10.0);
+    groundBodyDef.position.Set(0.0f, -15.0f);
 
     // Call the body factory which allocates memory for the ground body
     // from a pool and creates the ground box shape (also from a pool).
@@ -54,7 +54,7 @@ void StartScreen::setUpBox2D()
     b2PolygonShape groundBox;
 
     // Width of the ground, in half widths (similar to radius vs diameter)
-    groundBox.SetAsBox(1.0f, 3.0f);
+    groundBox.SetAsBox(50.0f, 10.0f);
 
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
@@ -66,7 +66,7 @@ void StartScreen::setUpBox2D()
     bodyDef.type = b2_dynamicBody;
 
     // Starting position of moving item
-    bodyDef.position.Set(0.0f, 5.0f);
+    bodyDef.position.Set(0.0f, 3.0f);
 
     // Angle of moving item (0 because I only care about 1D motion)
     bodyDef.angle = 0;
@@ -99,7 +99,9 @@ void StartScreen::setUpBox2D()
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
 
-    timer->start(1.0f / 60.0f);
+    // timer->start(1.0f / 60.0f);
+    timer->setInterval (15);
+    timer->start ();
 }
 // 1.0f / 60.0f      100
 
@@ -107,14 +109,14 @@ void StartScreen::updateWorld()
 {
     // Instruct the world to perform a single step of simulation.
     // It is generally best to keep the time step and iterations fixed.
-    world.Step(1.0f / 60.0f, 8, 3);
+    world.Step(1.0f / 60.0f, 6, 2);
 
     // Now print the position and angle of the body.
     b2Vec2 position = body->GetPosition();
-    float32 angle = body->GetAngle();
+    // float32 angle = body->GetAngle();
     ui->startScreenLabel->setGeometry(
         ui->startScreenLabel->x(),
-        -position.y * 15,
+        -position.y * 15.0f,
         ui->startScreenLabel->width(),
         ui->startScreenLabel->height()
         );
