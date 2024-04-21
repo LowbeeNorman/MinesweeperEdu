@@ -16,18 +16,23 @@ LevelSelect::LevelSelect(QWidget *parent)
     QGraphicsScene *scene = new QGraphicsScene();
     ui->graphicsView->setScene(scene);
 
-    int numButtons = 15;
+    int numButtons = 20;
     int buttonWidth = 100;
     int buttonHeight = 100;
-    int buffer = 20;
+    int buffer = 40;
 
-    for(int i = 0; i < numButtons; i++)
+    for(int i = 0; i <= numButtons; i++)
     {
-        QPushButton *button = new QPushButton(QString::number(i + 1));
+        QPushButton *button = new QPushButton(QString::number(i));
         scene->addWidget(button);
 
+        if (i == 0) {
+            button->hide();
+            button->setDisabled(true);
+        }
+
         double t = 4 * M_PI * i / (numButtons - 1);
-        int x = buttonWidth * std::sin(t) + buffer * i;
+        int x = buttonWidth * std::sin(t) * 2;
         int y = (buttonHeight + buffer) * i;
 
         button->setGeometry(x, y, buttonWidth, buttonHeight);
@@ -55,7 +60,7 @@ void LevelSelect::getCurrentLevel(int levelIndex, QPushButton *button)
     currentButton->setStyleSheet("background-color: rgb(0,255,255);");
 
     ui->playButton->setEnabled(true);
-    ui->levelLabel->setText("Level " + QString::number(levelIndex + 1));
+    ui->levelLabel->setText("Level " + QString::number(levelIndex));
     currentLevel = levelIndex;
 }
 

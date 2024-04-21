@@ -7,30 +7,18 @@
     <x>0</x>
     <y>0</y>
     <width>870</width>
-    <height>671</height>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="minimumSize">
-    <size>
-     <width>870</width>
-     <height>650</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>870</width>
-     <height>650</height>
-    </size>
-   </property>
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="StartScreen" name="startPage"/>
       <widget class="LevelSelect" name="levelSelectPage"/>

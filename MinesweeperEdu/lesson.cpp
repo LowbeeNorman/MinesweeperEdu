@@ -13,6 +13,8 @@ Lesson::Lesson(QWidget *parent) :
 
     connect(ui->backButton, &QPushButton::clicked
             , this, &Lesson::backButtonClicked);
+    connect(ui->nextButton, &QPushButton::clicked
+            , this, &Lesson::nextButtonClicked);
 }
 
 Lesson::~Lesson()
@@ -27,7 +29,7 @@ void Lesson::makeConnections (Minefield &mines)
     // mines.requestBoard ();
     connect (ui->board, &MinesweeperView::requestBoard
             , &mines, &Minefield::requestBoard);
-    ui->board->setSize (mines.getSize ());
+    ui->board->setBoardSize (mines.getSize ());
 
     connect (ui->board, &MinesweeperView::clear, &mines, &Minefield::clear);
     connect (ui->board, &MinesweeperView::flag,  &mines, &Minefield::flag);
@@ -53,4 +55,20 @@ void Lesson::makeConnections (Minefield &mines)
 void Lesson::backButtonClicked()
 {
     emit sendBackClicked(1);
+}
+
+void Lesson::nextButtonClicked()
+{
+    emit getNextMessage();
+}
+
+void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Minefield& minefield)
+{
+    ui->instructions->setText(message);
+    //makeConnections(minefield);
+}
+
+void Lesson::receiveNextMessage(const QString& message)
+{
+    ui->instructions->setText(message);
 }

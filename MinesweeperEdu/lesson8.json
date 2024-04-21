@@ -1,0 +1,57 @@
+{
+        "topic": "Do Walls Last",
+	"lessonGuidance":
+	[
+                "The outsides of the grid have fewer surrounding tiles, meaning you will have less information about where the mines are.",
+                "This means that 50/50s usually occur around the edges of the grid.",
+                "The best strategy is to start in the center of the grid and work your way outwards.",
+                "If an area is currently impossible to solve, work on other sections as it can sometimes reveal more information on the hard section by removing possible 50/50s."
+	],
+	"quiz":
+	{
+		"width": 6,
+		"height": 6,
+		"minefield":
+		[
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,	
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true
+                ],
+                "correctMoves":
+                [
+                ]
+	}
+}

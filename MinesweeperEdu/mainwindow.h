@@ -56,5 +56,12 @@ public slots:
     /// \brief Listens to know if the user goes from one lesson straight to the next
     ///
     void nextLessonShortcut();
+
+signals:
+    ///
+    /// \brief ask the Model for the Lesson of the given number
+    /// \param lessonNumber number of Lesson
+    ///
+    void getLesson(int lessonNumber);
 };
 #endif // MAINWINDOW_H

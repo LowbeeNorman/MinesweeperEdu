@@ -15,5 +15,17 @@
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
+        <file>lesson1.json</file>
+        <file>lesson2.json</file>
+        <file>lesson3.json</file>
+        <file>lesson4.json</file>
+        <file>lesson5.json</file>
+        <file>lesson6.json</file>
+        <file>lesson7.json</file>
+        <file>lesson8.json</file>
+        <file>lesson9.json</file>
+        <file>lesson10.json</file>
+        <file>lesson11.json</file>
+        <file>lesson12.json</file>
     </qresource>
 </RCC>

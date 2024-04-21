@@ -1,0 +1,58 @@
+{
+        "topic": "Flags and Bombs",
+	"lessonGuidance":
+	[
+                "The grid is composed of safe spaces and mines.",
+                "Mines are what lose you the game. If you attempt to reveal a tile that contains a mine, it is game over.",
+                "The point of the game is to identify all tiles that contain mines by flagging them and revealing all safe tiles.",
+                "A flag can be placed on a hidden tile by right-clicking on that tile. Flags should only be placed on tiles that you believe contain a mine.",
+                "There is no penalty for misplacing a flag. However, you should only place flags on tiles you are sure are mines."
+	],
+	"quiz":
+	{
+		"width": 6,
+		"height": 6,
+		"minefield":
+		[
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,	
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true
+		],
+		"correctMoves":
+		[
+		]
+	}
+}

@@ -3,13 +3,19 @@
 #include <QFile>
 #include <QByteArray>
 
-Model::Model() {
+Model::Model(QObject *parent) : QObject{parent}{
+    numLessons = 12;
     createLessonLevels();
+    currentLesson = lessons.at(0);
+    currentMessageIndex = 0;
 }
 
+Model::~Model(){}
+
 void Model::createLessonLevels() {
-    lessons.append
-        (constructLessonLevelFromJSON (QString (":/json/test.json")));
+    for(int i = 1; i <= numLessons; ++i)
+        lessons.append
+            (constructLessonLevelFromJSON (QString (":/json/lesson").append(QString::number(i)).append(".json")));
 }
 
 LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
@@ -24,4 +30,18 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
     QByteArray array = file.readAll ();
     doc = QJsonDocument::fromJson (array);
     return LessonLevel(doc);
+}
+
+void Model::setLesson(int lessonNumber) {
+    currentLesson = lessons.at(lessonNumber);
+    emit sendLessonInfo(currentLesson.getTopic(), currentLesson.getMessageFromIndex(0), currentLesson.getMinefield());
+}
+
+void Model::nextMessage()
+{
+    currentMessageIndex++;
+    if(currentMessageIndex < currentLesson.getNumMessages())
+    {
+        emit sendCurrentMessage(currentLesson.getMessageFromIndex(currentMessageIndex));
+    }
 }

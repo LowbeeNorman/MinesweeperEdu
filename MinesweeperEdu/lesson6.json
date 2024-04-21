@@ -1,0 +1,58 @@
+{
+        "topic": "50/50s",
+	"lessonGuidance":
+	[
+                "Sometimes there will be sections of the board that are impossible to solve with patterns.",
+                "The only way to clear that section is to guess. This can be very frustrating and these sections should be saved until all tiles around them have been cleared.",
+                "Once you have guaranteed that a section can only be solved by guessing, all you can do is try to choose the tile that is least likely to be a bomb.",
+                "To do this, look at the numbered tiles around the hidden tiles. The numbers can give a hint as to which is a mine.",
+                "If the numbers give you no clue, just guess a tile that is surrounding with the lowest valued numbers."
+	],
+	"quiz":
+	{
+		"width": 6,
+		"height": 6,
+		"minefield":
+		[
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,	
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false,
+			false,
+			true
+                ],
+                "correctMoves":
+                [
+                ]
+	}
+}

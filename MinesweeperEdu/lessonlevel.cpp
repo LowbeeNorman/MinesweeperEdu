@@ -16,10 +16,29 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
         lessonGuidance.append(lessonGuidanceObj.toString());
     }
 
+    numMessages = lessonGuidanceArr.size();
+
     // Quiz
     QJsonObject quizObj = obj["quiz"].toObject();
     quiz = Quiz(quizObj);
 
     // LessonLevel Minefield
     minefield = quiz.getMinefield ();
+}
+
+const QString& LessonLevel::getTopic() {
+    return topic;
+}
+
+const QString& LessonLevel::getMessageFromIndex(int indexOfLessonGuidance) {
+    return lessonGuidance.at(indexOfLessonGuidance);
+}
+
+Minefield& LessonLevel::getMinefield() {
+    return *minefield;
+}
+
+int LessonLevel::getNumMessages()
+{
+    return numMessages;
 }

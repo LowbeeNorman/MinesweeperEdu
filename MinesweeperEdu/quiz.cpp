@@ -36,6 +36,13 @@ Quiz::Quiz(QJsonObject &obj) {
     }
     // Call method in minefield that constructs the board using the values collected.
     minefield = new Minefield (QSize (width, height), field);
+    // Extract correct moves
+    QJsonArray correctMovesArr = obj.value("correctMoves").toArray();
+    for(int i = 0; i < correctMovesArr.size(); ++i)
+    {
+        QJsonObject userMoveObj = correctMovesArr.at(i).toObject();
+        correctMoves.append(UserMove(userMoveObj));
+    }
 }
 
 Minefield *Quiz::getMinefield ()
