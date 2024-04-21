@@ -52,6 +52,11 @@ public slots:
     ///
     void loadPrevious();
 
+    ///
+    /// \brief Listens to know if the user goes from one lesson straight to the next
+    ///
+    void nextLessonShortcut();
+
 signals:
     ///
     /// \brief ask the Model for the Lesson of the given number
