@@ -50,6 +50,7 @@ void Lesson::makeConnections (Minefield &mines)
             , ui->board, &MinesweeperView::dead);
     connect (&mines, &Minefield::won
             , ui->board, &MinesweeperView::won);
+    // for when user is in Quiz and left clicks
 }
 
 void Lesson::backButtonClicked()
@@ -71,4 +72,9 @@ void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Min
 void Lesson::receiveNextMessage(const QString& message)
 {
     ui->instructions->setText(message);
+}
+
+MinesweeperView* Lesson::getBoard ()
+{
+    return ui->board;
 }

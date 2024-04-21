@@ -17,6 +17,9 @@ public:
     {
         FLAG, CLEAR
     };
+
+    QPoint getCell ();
+    MoveType getType ();
 private:
     QPoint cell;
     MoveType type;

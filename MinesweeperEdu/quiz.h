@@ -27,7 +27,7 @@ public:
     Quiz& operator=(Quiz rhs);
     ~Quiz();
 
-    UserMove verifyUserMove(QPoint coords, UserMove::MoveType type);
+    bool verifyUserMove(QPoint coords, UserMove::MoveType type);
 
     Minefield *getMinefield ();
 

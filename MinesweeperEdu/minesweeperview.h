@@ -30,6 +30,8 @@ class MinesweeperView : public QGraphicsView
 
     QPoint translateToMinesweeper (QPointF point);
     QPoint translateFromMinesweeper (QPoint point);
+
+    bool enabled;
 public:
     MinesweeperView (QWidget *parent = nullptr);
     ~MinesweeperView ();
@@ -50,6 +52,12 @@ signals:
 
     void requestChord (QPoint origin);
     void requestIfCovered (QPoint origin);
+
+    ///
+    /// \brief tells the model that a clear was attempted at the given origin
+    /// \param origin cell that was clicked
+    ///
+    void clearAttempted (QPoint origin);
 public slots:
     void receiveBoard (const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);
@@ -59,6 +67,11 @@ public slots:
 
     void dead (QPoint origin, QList<QPoint> mines);
     void won (QList<QPoint> mines);
+    ///
+    /// \brief clears the cell at the given point
+    /// \param origin point
+    ///
+    void clearCell (QPoint origin);
 };
 
 #endif // MINESWEEPERVIEW_H

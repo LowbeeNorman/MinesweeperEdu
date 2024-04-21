@@ -34,6 +34,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     // get next Message
     connect(&model, &Model::sendCurrentMessage, ui->lessonPage, &Lesson::receiveNextMessage);
 
+    connect(ui->lessonPage->getBoard(), &MinesweeperView::clearAttempted, &model, &Model::receiveClearAttempted);
+    connect(&model, &Model::updateCellClear, ui->lessonPage->getBoard(), &MinesweeperView::clearCell)
 }
 
 MainWindow::~MainWindow()

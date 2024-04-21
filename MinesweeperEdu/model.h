@@ -50,6 +50,12 @@ public slots:
     /// \brief Returns the next message to the view
     ///
     void nextMessage ();
+
+    ///
+    /// \brief receives event of clear attempted at the origin
+    /// \param origin cell left-clicked
+    ///
+    void receiveClearAttempted (QPoint origin);
 signals:
     ///
     /// \brief Sends the information of the current LessonLevel back to the view
@@ -68,6 +74,11 @@ signals:
     /// \param message message
     ///
     void sendCurrentInstruction(const QString &instruction);
+    ///
+    /// \brief Tells the view to update the board by clearing the cell at the origin
+    /// \param origin cell
+    ///
+    void updateCellClear (QPoint origin);
 };
 
 #endif // MODEL_H

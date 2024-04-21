@@ -25,6 +25,8 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     numbers[7] = new QPixmap (QString (":/images/seven.png"));
     numbers[8] = new QPixmap (QString (":/images/eight.png"));
     numbers[9] = new QPixmap (QString (":/images/mine.png"));
+
+    enabled = true;
 }
 
 MinesweeperView::~MinesweeperView ()
@@ -241,6 +243,7 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     switch (mouse)
     {
     case Qt::LeftButton:
+        // DON'T DELETE: emit clearAttempted (minesweeperPos);
         // clear
         emit clear (minesweeperPos);
         break;
@@ -271,6 +274,11 @@ void MinesweeperView::resizeEvent (QResizeEvent* event)
     this->scale
         (minViewDim / (double) maxDim
         , minViewDim / (double) maxDim);
+}
+
+void MinesweeperView::clearCell (QPoint origin)
+{
+    emit clear (origin);
 }
 
 

@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include "minefield.h"
+#include "minesweeperview.h"
 
 namespace Ui {
 class Lesson;
@@ -49,6 +50,8 @@ public slots:
     /// \param message
     ///
     void receiveNextMessage(const QString& message);
+
+    MinesweeperView* getBoard ();
 };
 
 #endif // LESSON_H

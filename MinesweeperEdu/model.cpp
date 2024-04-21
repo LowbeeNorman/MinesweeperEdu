@@ -60,3 +60,11 @@ void Model::nextMessage()
 
     // }
 }
+
+void Model::receiveClearAttempted (QPoint origin)
+{
+    if(currentLesson.checkMove(origin, UserMove::MoveType::CLEAR))
+    {
+        emit updateCellClear (origin);
+    }
+}

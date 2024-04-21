@@ -61,6 +61,13 @@ public:
     /// \return true if the user still has moves to fulfill, false otherwise
     ///
     bool hasCorrectMovesLeft ();
+    ///
+    /// \brief checks if the given move at the given origin is the correct move
+    /// \param origin cell clicked
+    /// \param type FLAG or CLEAR
+    /// \return true if the correct move, false otherwise
+    ///
+    bool checkMove(QPoint origin, UserMove::MoveType type);
 private:
     QString topic;
     QList<QString> lessonGuidance;

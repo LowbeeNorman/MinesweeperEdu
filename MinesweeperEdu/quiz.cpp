@@ -77,3 +77,13 @@ bool Quiz::hasCorrectMovesLeft ()
 {
     return numCorrectMovesLeft == 0;
 }
+
+bool Quiz::verifyUserMove (QPoint coords, UserMove::MoveType type)
+{
+    UserMove currentMove = correctMoves.at(correctMoves.size() - numCorrectMovesLeft);
+    if (currentMove.getCell() == coords && currentMove.getType() == type)
+    {
+        numCorrectMovesLeft--;
+        return true;
+    }
+}
