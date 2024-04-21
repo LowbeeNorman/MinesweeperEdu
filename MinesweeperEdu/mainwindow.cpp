@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/12/24
-/// Written by: Caleb Norman, Abdul Asim
+/// Written by: Caleb Norman, Abdul Asim, and Kyle Stewart
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -21,11 +21,17 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->startPage, &StartScreen::sendContinueClicked, this, &MainWindow::loadPrevious);
     connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked, this, &MainWindow::updateScreenIndex);
     connect(ui->lessonPage, &Lesson::sendBackClicked, this, &MainWindow::updateScreenIndex);
+    connect(ui->lessonPage, &Lesson::getNextMessage, &model, &Model::nextMessage);
     connect(ui->startPage , &StartScreen::startingNewGame, ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
 
     connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
-
+    // retrieves Lesson number
     connect(this, &MainWindow::getLesson, &model, &Model::setLesson);
+    // sends Lesson info back
+    connect(&model, &Model::sendLessonInfo, ui->lessonPage, &Lesson::receiveLessonInfo);
+    // get next Message
+    connect(&model, &Model::sendCurrentMessage, ui->lessonPage, &Lesson::receiveNextMessage);
+
 }
 
 MainWindow::~MainWindow()

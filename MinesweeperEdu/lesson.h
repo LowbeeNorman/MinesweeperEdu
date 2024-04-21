@@ -32,22 +32,23 @@ private:
 signals:
     void requestBoard ();
     void sendBackClicked (int pageIndex);
+    void getNextMessage ();
 
 public slots:
     void backButtonClicked ();
+    void nextButtonClicked ();
     ///
     /// \brief Listens for the lesson info
     /// \param topic
     /// \param currentMessage
     /// \param minefield
     ///
-    void receiveLessonInfo(QString& topic, QString& currentMessage, Minefield& minefield);
-signals:
+    void receiveLessonInfo(const QString& topic, const QString& currentMessage, Minefield& minefield);
     ///
-    /// \brief ask the Model for the Lesson of the given number
-    /// \param lessonNumber number of Lesson
+    /// \brief Listens for the next message to display
+    /// \param message
     ///
-    void getLesson(int lessonNumber);
+    void receiveNextMessage(const QString& message);
 };
 
 #endif // LESSON_H

@@ -16,6 +16,8 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
         lessonGuidance.append(lessonGuidanceObj.toString());
     }
 
+    numMessages = lessonGuidanceArr.size();
+
     // Quiz
     QJsonObject quizObj = obj["quiz"].toObject();
     quiz = Quiz(quizObj);
@@ -24,7 +26,7 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
     minefield = quiz.getMinefield ();
 }
 
-QString& LessonLevel::getTopic() {
+const QString& LessonLevel::getTopic() {
     return topic;
 }
 
@@ -32,6 +34,11 @@ const QString& LessonLevel::getMessageFromIndex(int indexOfLessonGuidance) {
     return lessonGuidance.at(indexOfLessonGuidance);
 }
 
-const Minefield& LessonLevel::getMinefield() {
+Minefield& LessonLevel::getMinefield() {
     return *minefield;
+}
+
+int LessonLevel::getNumMessages()
+{
+    return numMessages;
 }

@@ -13,6 +13,8 @@ Lesson::Lesson(QWidget *parent) :
 
     connect(ui->backButton, &QPushButton::clicked
             , this, &Lesson::backButtonClicked);
+    connect(ui->nextButton, &QPushButton::clicked
+            , this, &Lesson::nextButtonClicked);
 }
 
 Lesson::~Lesson()
@@ -55,6 +57,18 @@ void Lesson::backButtonClicked()
     emit sendBackClicked(1);
 }
 
-void Lesson::receiveLessonInfo(QString& topic, QString& message, Minefield& minefield) {
+void Lesson::nextButtonClicked()
+{
+    emit getNextMessage();
+}
 
+void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Minefield& minefield)
+{
+    ui->instructions->setText(message);
+    //makeConnections(minefield);
+}
+
+void Lesson::receiveNextMessage(const QString& message)
+{
+    ui->instructions->setText(message);
 }
