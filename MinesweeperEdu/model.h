@@ -24,6 +24,8 @@ private:
     LessonLevel currentLesson;
     // current Message index of the current LessonLevel the user is on
     int currentMessageIndex;
+    // currrent instruction index of the currnet LessonLevel the user is on
+    int currentInstructionIndex;
     ///
     /// \brief Constructs all the LessonLevels for the application.
     ///
@@ -61,6 +63,11 @@ signals:
     /// \param message message
     ///
     void sendCurrentMessage(const QString &message);
+    ///
+    /// \brief Sends the current instruction the LessonLevel user is on
+    /// \param message message
+    ///
+    void sendCurrentInstruction(const QString &instruction);
 };
 
 #endif // MODEL_H

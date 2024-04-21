@@ -34,6 +34,11 @@ const QString& LessonLevel::getMessageFromIndex(int indexOfLessonGuidance) {
     return lessonGuidance.at(indexOfLessonGuidance);
 }
 
+const QString& LessonLevel::getInstructionFromIndex(int indexOfInstruction)
+{
+    return quiz.getInstructionFromIndex(indexOfInstruction);
+}
+
 Minefield& LessonLevel::getMinefield() {
     return *minefield;
 }
@@ -41,4 +46,19 @@ Minefield& LessonLevel::getMinefield() {
 int LessonLevel::getNumMessages()
 {
     return numMessages;
+}
+
+int LessonLevel::getNumInstructions ()
+{
+    return quiz.getNumInstructions();
+}
+
+int LessonLevel::getNumCorrectMovesLeft ()
+{
+    return quiz.getNumCorrectMovesLeft();
+}
+
+bool LessonLevel::hasCorrectMovesLeft ()
+{
+    return quiz.hasCorrectMovesLeft();
 }

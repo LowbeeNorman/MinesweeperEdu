@@ -35,7 +35,7 @@ Quiz::Quiz(QJsonObject &obj) {
         field[i] = minefieldArr[i].toBool();
     }
     // Call method in minefield that constructs the board using the values collected.
-    minefield = new Minefield (QSize (width, height), field);
+    this->minefield = new Minefield (QSize (width, height), field);
     // Extract correct moves
     QJsonArray correctMovesArr = obj.value("correctMoves").toArray();
     for(int i = 0; i < correctMovesArr.size(); ++i)
@@ -43,9 +43,37 @@ Quiz::Quiz(QJsonObject &obj) {
         QJsonObject userMoveObj = correctMovesArr.at(i).toObject();
         correctMoves.append(UserMove(userMoveObj));
     }
+    numCorrectMovesLeft = correctMovesArr.size();
+    // Extract instructions
+    QJsonArray instructionsArr = obj.value("instructions").toArray();
+    for(int i = 0; i < correctMovesArr.size(); ++i)
+    {
+        instructions.append(instructionsArr.at(i).toString());
+    }
+    numInstructions = instructionsArr.size();
 }
 
 Minefield *Quiz::getMinefield ()
 {
     return minefield;
+}
+
+const QString& Quiz::getInstructionFromIndex(int indexOfInstruction)
+{
+    return instructions.at(indexOfInstruction);
+}
+
+int Quiz::getNumInstructions ()
+{
+    return numInstructions;
+}
+
+int Quiz::getNumCorrectMovesLeft ()
+{
+    return numCorrectMovesLeft;
+}
+
+bool Quiz::hasCorrectMovesLeft ()
+{
+    return numCorrectMovesLeft == 0;
 }

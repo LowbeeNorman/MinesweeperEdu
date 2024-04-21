@@ -8,6 +8,7 @@ Model::Model(QObject *parent) : QObject{parent}{
     createLessonLevels();
     currentLesson = lessons.at(0);
     currentMessageIndex = 0;
+    currentInstructionIndex = 0;
 }
 
 Model::~Model(){}
@@ -39,9 +40,23 @@ void Model::setLesson(int lessonNumber) {
 
 void Model::nextMessage()
 {
-    currentMessageIndex++;
-    if(currentMessageIndex < currentLesson.getNumMessages())
+    if (currentMessageIndex < currentLesson.getNumMessages() - 1)
     {
+        currentMessageIndex++;
         emit sendCurrentMessage(currentLesson.getMessageFromIndex(currentMessageIndex));
     }
+    else if (currentInstructionIndex < currentLesson.getNumInstructions() && currentInstructionIndex != 0)
+    {
+        emit sendCurrentInstruction(currentLesson.getInstructionFromIndex(currentInstructionIndex));
+        currentInstructionIndex++;
+    }
+    else if (currentInstructionIndex == 0 && currentLesson.hasCorrectMovesLeft())
+    {
+        // emit enableBoard(); // this will be used to enable the board so that the user can conduct the quiz
+    }
+    // NOT SURE IF THIS IS NEEDED // User has completed the Quiz: moves on to next LessonLevel
+    // else if (!currentLesson.hasCorrectMovesLeft())
+    // {
+
+    // }
 }
