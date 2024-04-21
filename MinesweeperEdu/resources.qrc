@@ -12,7 +12,6 @@
         <file>six.png</file>
         <file>three.png</file>
         <file>two.png</file>
-        <file>blurryPath.png</file>
         <file>level1.png</file>
         <file>level2.png</file>
         <file>level3.png</file>
@@ -53,6 +52,7 @@
         <file>selectLevel18.png</file>
         <file>selectLevel19.png</file>
         <file>selectLevel20.png</file>
+        <file>blurryPath.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
