@@ -5,6 +5,7 @@
 
 #include "startscreen.h"
 #include "ui_startscreen.h"
+#include "QGraphicsScene"
 
 StartScreen::StartScreen(QWidget *parent)
     : QWidget(parent)
@@ -18,9 +19,14 @@ StartScreen::StartScreen(QWidget *parent)
     // Standard ui to cpp connection
     connect(ui->newLessonButton, &QPushButton::clicked, this, &StartScreen::newLessonButtonClicked);
     connect(ui->continueButton, &QPushButton::clicked, this, &StartScreen::continueButtonClicked);
+    connect(ui->freePlayButton, &QPushButton::clicked, this, &StartScreen::freePlayButtonClicked);
+
 
     // Call to set up box2d
     setUpBox2D();
+
+    //setStyleSheet("image: url(:/images/minesweeperIMAGE.png);");
+
 }
 
 StartScreen::~StartScreen()
@@ -35,6 +41,11 @@ void StartScreen::newLessonButtonClicked() {
 
 void StartScreen::continueButtonClicked() {
     emit sendContinueClicked();
+}
+
+void StartScreen::freePlayButtonClicked() {
+    emit freePlayClicked();
+    qDebug() << "Implement free play if time permits";
 }
 
 void StartScreen::setUpBox2D()

@@ -45,6 +45,12 @@ public slots:
     void continueButtonClicked();
 
     ///
+    /// \brief This slot will receuve the signal from the free play button
+    /// that resides within the ui
+    ///
+    void freePlayButtonClicked();
+
+    ///
     /// \brief Updates the world based on a time increment
     ///
     void updateWorld();
@@ -75,6 +81,11 @@ signals:
     /// \brief Gets a new height for the start screen label that bounces in a loop
     ///
     void newStartScreenLabelHeight(int y);
+
+    ///
+    /// \brief Sends a singal when the free play button is clicked to all connected slots
+    ///
+    void freePlayClicked();
 
 
 private:
