@@ -13,8 +13,8 @@ LevelSelect::LevelSelect(QWidget *parent)
 {
     ui->setupUi(this);
 
+
     QGraphicsScene *scene = new QGraphicsScene();
-    ui->graphicsView->setScene(scene);
 
     int numButtons = 20;
     int buttonWidth = 100;
@@ -35,11 +35,17 @@ LevelSelect::LevelSelect(QWidget *parent)
         int x = buttonWidth * std::sin(t) * 2;
         int y = (buttonHeight + buffer) * i;
 
-        button->setGeometry(x, y, buttonWidth, buttonHeight);
+        button->setGeometry(x + 350, y, buttonWidth, buttonHeight);
         button->setStyleSheet("background-color: rgb(0,0,255);");
         connect(button, &QPushButton::clicked, this, [this, i, button] {this->getCurrentLevel(i, button);});
     }
 
+    QPixmap backgroundImage(QString (":/images/blurryPath.png"));
+    pixmapItem = new QGraphicsPixmapItem(backgroundImage);
+    pixmapItem->setZValue(-1);
+    scene->addItem(pixmapItem);
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->setSceneRect(pixmapItem->boundingRect());
 
     connect(ui->playButton, &QPushButton::clicked, this, &LevelSelect::playButtonClicked);
     connect(ui->menuButton, &QPushButton::clicked, this, &LevelSelect::menuButtonClicked);

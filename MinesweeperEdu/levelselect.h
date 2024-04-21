@@ -8,6 +8,8 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
 
 namespace Ui {
 class LevelSelect;
@@ -19,6 +21,7 @@ class LevelSelect;
 class LevelSelect : public QWidget
 {
     Q_OBJECT
+    QGraphicsPixmapItem *pixmapItem;
 
 public:
     explicit LevelSelect(QWidget *parent = nullptr);
