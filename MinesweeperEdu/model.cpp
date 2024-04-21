@@ -4,8 +4,9 @@
 #include <QByteArray>
 
 Model::Model() {
-    numLessons = 10;
+    numLessons = 12;
     createLessonLevels();
+    currentLesson = lessons.at(0);
 }
 
 void Model::createLessonLevels() {
@@ -26,4 +27,9 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
     QByteArray array = file.readAll ();
     doc = QJsonDocument::fromJson (array);
     return LessonLevel(doc);
+}
+
+void Model::setLesson(int lessonNumber) {
+    currentLesson = lessons.at(lessonNumber);
+    //emit sendLessonInfo(currentLesson.getTopic(), currentLesson.getMessageFromIndex(0), currentLesson.getMinefield());
 }

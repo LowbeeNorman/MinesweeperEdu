@@ -23,3 +23,15 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
     // LessonLevel Minefield
     minefield = quiz.getMinefield ();
 }
+
+QString& LessonLevel::getTopic() {
+    return topic;
+}
+
+const QString& LessonLevel::getMessageFromIndex(int indexOfLessonGuidance) {
+    return lessonGuidance.at(indexOfLessonGuidance);
+}
+
+const Minefield& LessonLevel::getMinefield() {
+    return *minefield;
+}

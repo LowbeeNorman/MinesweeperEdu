@@ -19,6 +19,22 @@ public:
     /// \param doc
     ///
     LessonLevel(QJsonDocument &doc);
+    ///
+    /// \brief returns the topic of this LessonLevel
+    /// \return topic of this
+    ///
+    QString& getTopic();
+    ///
+    /// \brief returns the string message from the given index
+    /// \param indexOfLessonGuidance index of the message from the list of messages
+    /// \return message of index
+    ///
+    const QString& getMessageFromIndex(int indexOfLessonGuidance);
+    ///
+    /// \brief returns the Minefield contained in this LessonLevel
+    /// \return Minefield in this
+    ///
+    const Minefield& getMinefield();
 private:
     QString topic;
     QList<QString> lessonGuidance;

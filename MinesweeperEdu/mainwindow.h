@@ -51,5 +51,12 @@ public slots:
     /// \brief Listens to know if a previous game needs to be loaded in
     ///
     void loadPrevious();
+
+signals:
+    ///
+    /// \brief ask the Model for the Lesson of the given number
+    /// \param lessonNumber number of Lesson
+    ///
+    void getLesson(int lessonNumber);
 };
 #endif // MAINWINDOW_H

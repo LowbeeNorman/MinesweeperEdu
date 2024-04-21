@@ -35,6 +35,19 @@ signals:
 
 public slots:
     void backButtonClicked ();
+    ///
+    /// \brief Listens for the lesson info
+    /// \param topic
+    /// \param currentMessage
+    /// \param minefield
+    ///
+    void receiveLessonInfo(QString& topic, QString& currentMessage, Minefield& minefield);
+signals:
+    ///
+    /// \brief ask the Model for the Lesson of the given number
+    /// \param lessonNumber number of Lesson
+    ///
+    void getLesson(int lessonNumber);
 };
 
 #endif // LESSON_H

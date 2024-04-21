@@ -54,3 +54,7 @@ void Lesson::backButtonClicked()
 {
     emit sendBackClicked(1);
 }
+
+void Lesson::receiveLessonInfo(QString& topic, QString& message, Minefield& minefield) {
+
+}

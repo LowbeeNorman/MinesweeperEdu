@@ -24,6 +24,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->startPage , &StartScreen::startingNewGame, ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
 
     connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
+
+    connect(this, &MainWindow::getLesson, &model, &Model::setLesson);
 }
 
 MainWindow::~MainWindow()
@@ -44,6 +46,8 @@ void MainWindow::updateScreenIndex(int index)
 void MainWindow::receiveLevelIndex(int levelIndex){
     qDebug() << "Need to load level " << levelIndex + 1 << "(or index" << levelIndex << ")";
 
+    emit getLesson(levelIndex);
+
     ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -51,7 +55,6 @@ void MainWindow::loadPrevious()
 {
     // Do something from view -> model for loading
     qDebug() << "Need to load a game to continue";
-
     ui->stackedWidget->setCurrentIndex(1);
 }
 
