@@ -6,6 +6,8 @@
 #include "startscreen.h"
 #include "ui_startscreen.h"
 #include "QGraphicsScene"
+#include "QPainter"
+#include <QPaintEvent>
 
 StartScreen::StartScreen(QWidget *parent)
     : QWidget(parent)
@@ -25,7 +27,7 @@ StartScreen::StartScreen(QWidget *parent)
     // Call to set up box2d
     setUpBox2D();
 
-    //setStyleSheet("image: url(:/images/minesweeperIMAGE.png);");
+    background.load(":images/startScreenBackground.png"); //replace later
 
 }
 
@@ -134,4 +136,15 @@ void StartScreen::updateWorld()
 
 
     // printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+}
+
+void StartScreen::paintEvent(QPaintEvent *event)
+{
+    // Draws the background image to the start screen
+    painter.begin(this);
+    painter.drawPixmap(rect(), background);
+    painter.end();
+
+    event->accept();
+    qDebug() << "HI";
 }

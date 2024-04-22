@@ -9,6 +9,7 @@
 #include <QWidget>
 #include <Box2D/Box2D.h>
 #include <QTimer>
+#include <QPainter>
 
 namespace Ui {
 class StartScreen;
@@ -30,6 +31,11 @@ public:
     explicit StartScreen(QWidget *parent = nullptr);
     ~StartScreen();
     void setUpBox2D();
+    void paintEvent(QPaintEvent *event) override;
+
+private:
+    QPainter painter;
+    QPixmap background;
 
 public slots:
     ///

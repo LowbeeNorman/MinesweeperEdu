@@ -12,6 +12,7 @@
         <file>six.png</file>
         <file>three.png</file>
         <file>two.png</file>
+        <file>startScreenBackground.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
