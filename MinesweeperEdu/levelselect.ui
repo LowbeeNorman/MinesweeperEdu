@@ -57,7 +57,8 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/images/menu.png);</string>
+         <string notr="true">QPushButton:enabled{border-image: url(:/images/menu.png);}
+QPushButton:pressed{border-image: url(:/images/menuPressed.png);}</string>
         </property>
         <property name="text">
          <string/>
@@ -105,7 +106,7 @@
         <property name="styleSheet">
          <string notr="true">QPushButton:disabled{border-image: url(:/images/start.png);}
 QPushButton:enabled{border-image: url(:/images/startActive.png);}
-QPushButton:pressed{border-image: url(:/images/start.png);}</string>
+QPushButton:pressed{border-image: url(:/images/startPressed.png);}</string>
         </property>
         <property name="text">
          <string/>
