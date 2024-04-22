@@ -35,8 +35,6 @@ LevelSelect::LevelSelect(QWidget *parent)
             button->hide();
             button->setDisabled(true);
         } else {
-            QPixmap buttonImage (QString (":/images/level%1.png").arg(i));
-            QPixmap buttonSelectedImage (QString (":/images/selectLevel%1.png").arg(i));
             button->setStyleSheet (QString (
                 "QPushButton {" "background: transparent;" "border-image: url(:/images/level%1.png);""}"""
                 "QPushButton:clicked {" "border-image: url(:/images/selectLevel%1.png);" "}"
@@ -66,20 +64,14 @@ void LevelSelect::getCurrentLevel(int levelIndex, QPushButton *button)
     if(currentButton != nullptr && previousIndex != -1)
     {
         currentButton->setStyleSheet (QString (
-                "QPushButton {"
-                    "background: transparent;"
-                    "border-image: url(:/images/level%1.png);"
-                "}"
-            ).arg(previousIndex));
+            "QPushButton {" "background: transparent;" "border-image: url(:/images/level%1.png);" "}"
+        ).arg(previousIndex));
     }
-   currentButton = button;
-   previousIndex = levelIndex;
-   currentButton->setStyleSheet(QString (
-                                     "QPushButton {"
-                                    "background: transparent;"
-                                     "border-image: url(:/images/selectLevel%1.png);"
-                                     "}"
-                                     ).arg(levelIndex));
+    currentButton = button;
+    previousIndex = levelIndex;
+    currentButton->setStyleSheet(QString (
+        "QPushButton {" "background: transparent;" "border-image: url(:/images/selectLevel%1.png);""}"
+    ).arg(levelIndex));
 
     ui->playButton->setEnabled(true);
     currentLevel = levelIndex;
