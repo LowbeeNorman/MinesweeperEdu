@@ -62,6 +62,7 @@ void MinesweeperView::setBoardSize (QSize size)
     int width = mainScene->sceneRect ().width ();
     int height = mainScene->sceneRect ().height ();
     int maxDim = (height > width) ? height : width;
+    this->resetTransform ();
     this->scale
         (this->contentsRect ().width() / (double) maxDim
         , this->contentsRect ().width() / (double) maxDim);
@@ -203,8 +204,8 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
             // emit flag (minesweeperPos);
             break;
         case Qt::MiddleButton:
-            // highlight the covered tiles around this tile, showing the user what
-            // will be cleared if there are enough flags around the point
+            // highlight the covered tiles around this tile, showing the user
+            // what will be cleared if there are enough flags around the point
             emit requestChord (minesweeperPos);
             break;
         default:

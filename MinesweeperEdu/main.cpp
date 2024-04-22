@@ -11,10 +11,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Minefield mines (QSize (5, 5), 0.15f);
+    //Minefield mines (QSize (5, 5), 0.15f);
     Model m;
     MainWindow w (m);
-    w.makeConnections (mines);
+    //w.makeConnections (mines);
     w.show();
 
     return a.exec();

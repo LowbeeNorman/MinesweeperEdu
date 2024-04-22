@@ -4,7 +4,7 @@
 
 LessonLevel::LessonLevel()
     : quiz (nullptr)
-    , minefield (nullptr)
+    // , minefield (nullptr)
 {}
 
 LessonLevel::LessonLevel(QJsonDocument &doc) {
@@ -26,17 +26,17 @@ LessonLevel::LessonLevel(QJsonDocument &doc) {
     quiz = new Quiz(quizObj);
 
     // LessonLevel Minefield
-    minefield = quiz->getMinefield ();
+    // minefield = quiz->getMinefield ();
 }
 
 LessonLevel::LessonLevel (const LessonLevel &other)
     : topic (other.topic)
     , lessonGuidance (other.lessonGuidance)
-    , minefield (nullptr)
+    // , minefield (nullptr)
     , numMessages (other.numMessages)
 {
     quiz = new Quiz (*other.quiz);
-    minefield = quiz->getMinefield ();
+    // minefield = quiz->getMinefield ();
 }
 
 LessonLevel::~LessonLevel ()
@@ -50,7 +50,7 @@ LessonLevel &LessonLevel::operator= (LessonLevel other)
     std::swap (topic, other.topic);
     std::swap (lessonGuidance, other.lessonGuidance);
     std::swap (quiz, other.quiz);
-    std::swap (minefield, other.minefield);
+    // std::swap (minefield, other.minefield);
     std::swap (numMessages, other.numMessages);
     return *this;
 }
@@ -69,7 +69,7 @@ const QString& LessonLevel::getInstructionFromIndex(int indexOfInstruction)
 }
 
 Minefield& LessonLevel::getMinefield() {
-    return *minefield;
+    return *quiz->getMinefield ();
 }
 
 int LessonLevel::getNumMessages()

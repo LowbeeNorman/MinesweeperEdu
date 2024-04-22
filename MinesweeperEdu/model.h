@@ -10,18 +10,18 @@ class Model : public QObject
     Q_OBJECT
 
 public:
-    explicit Model(QObject *parent = nullptr);
-    ~Model();
+    explicit Model (QObject *parent = nullptr);
+    ~Model ();
 
 private:
     // list of tips
     QList<QString> gameTips;
-    // list of all Lessons
-    QList<LessonLevel> lessons;
     // number of lessons
     int numLessons;
+    // list of all Lessons
+    QList<LessonLevel> lessons;
     // current LessonLevel the user is on
-    LessonLevel currentLesson;
+    LessonLevel &currentLesson;
     int currentLessonIndex;
     // current Message index of the current LessonLevel the user is on
     int currentMessageIndex;
@@ -30,15 +30,15 @@ private:
     ///
     /// \brief Constructs all the LessonLevels for the application.
     ///
-    void createLessonLevels();
+    QList<LessonLevel> createLessonLevels ();
 
     ///
-    /// \brief Reads a JSON file from the given filename and returns the LessonLevel
-    /// constructed from the JSON.
+    /// \brief Reads a JSON file from the given filename and returns the
+    /// LessonLevel constructed from the JSON.
     /// \param filename name of the file to construct the LessonLevel from
     /// \return LessonLevel
     ///
-    LessonLevel constructLessonLevelFromJSON(QString filename);
+    LessonLevel constructLessonLevelFromJSON (QString filename);
 
 public slots:
     ///
@@ -70,12 +70,15 @@ public slots:
     void setLessonToNext ();
 signals:
     ///
-    /// \brief Sends the information of the current LessonLevel back to the view
+    /// \brief Sends the information of the current LessonLevel back to
+    /// the view
     /// \param topic topic of the LessonLevel
     /// \param firstMessage first message of the LessonLevel
-    /// \param minefield the minefield representing the minesweeper board for this LessonLevel
+    /// \param minefield the minefield representing the minesweeper board for
+    /// this LessonLevel
     ///
-    void sendLessonInfo(const QString &topic, const QString &firstMessage, Minefield &minefield);
+    void sendLessonInfo (const QString &topic, const QString &firstMessage
+                        , Minefield &minefield);
     ///
     /// \brief Sends the current message the LessonLevel user is on
     /// \param message message
@@ -87,12 +90,14 @@ signals:
     ///
     void sendCurrentInstruction(const QString &instruction);
     ///
-    /// \brief Tells the view to update the board by clearing the cell at the origin
+    /// \brief Tells the view to update the board by clearing the cell at
+    /// the origin
     /// \param origin cell
     ///
     void updateCellClear (QPoint origin);
     ///
-    /// \brief Tells the view to update the board by flagging the cell at the origin
+    /// \brief Tells the view to update the board by flagging the cell at
+    /// the origin
     /// \param origin cell
     ///
     void updateCellFlag (QPoint origin);
