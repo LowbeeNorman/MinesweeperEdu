@@ -55,6 +55,7 @@
         <file>blurryPath.png</file>
         <file>menu.png</file>
         <file>start.png</file>
+        <file>startActive.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
