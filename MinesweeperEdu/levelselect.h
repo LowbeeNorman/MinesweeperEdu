@@ -22,6 +22,7 @@ class LevelSelect : public QWidget
 {
     Q_OBJECT
     QGraphicsPixmapItem *pixmapItem;
+    QPixmap* levels[40];
 
 public:
     explicit LevelSelect(QWidget *parent = nullptr);
