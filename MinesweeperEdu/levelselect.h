@@ -32,6 +32,7 @@ public:
 private:
     Ui::LevelSelect *ui;
     int currentLevel = 0;
+    int previousIndex = -1;
 
 public slots:
     ///

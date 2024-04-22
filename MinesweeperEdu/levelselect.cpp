@@ -28,7 +28,7 @@ LevelSelect::LevelSelect(QWidget *parent)
 
     for(int i = 0; i <= numButtons; i++)
     {
-        QPushButton *button = new QPushButton(QString::number(i));
+        QPushButton *button = new QPushButton();
         scene->addWidget(button);
 
         if (i == 0) {
@@ -38,11 +38,9 @@ LevelSelect::LevelSelect(QWidget *parent)
             QPixmap buttonImage (QString (":/images/level%1.png").arg(i));
             QPixmap buttonSelectedImage (QString (":/images/selectLevel%1.png").arg(i));
             button->setStyleSheet (QString (
-                "QPushButton {border-image: url(\":/images/level%1.png"".png\");}\
-                QPushButton:clicked {border-image: url(\":/images/selectLevel%1.png\");}"
-            ).arg(1));
-            buttonImage.scaled(button->size());
-            button->setMask(buttonImage.mask());
+                "QPushButton {" "background: transparent;" "border-image: url(:/images/level%1.png);""}"""
+                "QPushButton:clicked {" "border-image: url(:/images/selectLevel%1.png);" "}"
+            ).arg(i));
         }
 
         double t = 4 * M_PI * i / (numButtons - 1);
@@ -50,6 +48,7 @@ LevelSelect::LevelSelect(QWidget *parent)
         int y = (buttonHeight + buffer) * i;
 
         button->setGeometry(x + 350, y, buttonWidth, buttonHeight);
+
         connect(button, &QPushButton::clicked, this, [this, i, button] {this->getCurrentLevel(i, button);});
     }
 
@@ -64,15 +63,25 @@ LevelSelect::~LevelSelect()
 
 void LevelSelect::getCurrentLevel(int levelIndex, QPushButton *button)
 {
-    if(currentButton != nullptr)
+    if(currentButton != nullptr && previousIndex != -1)
     {
-        currentButton->setStyleSheet("background-color: rgb(0,0,255);");
+        currentButton->setStyleSheet (QString (
+                "QPushButton {"
+                    "background: transparent;"
+                    "border-image: url(:/images/level%1.png);"
+                "}"
+            ).arg(previousIndex));
     }
-    currentButton = button;
-    currentButton->setStyleSheet("background-color: rgb(0,255,255);");
+   currentButton = button;
+   previousIndex = levelIndex;
+   currentButton->setStyleSheet(QString (
+                                     "QPushButton {"
+                                    "background: transparent;"
+                                     "border-image: url(:/images/selectLevel%1.png);"
+                                     "}"
+                                     ).arg(levelIndex));
 
     ui->playButton->setEnabled(true);
-    ui->levelLabel->setText("Level " + QString::number(levelIndex));
     currentLevel = levelIndex;
 }
 
