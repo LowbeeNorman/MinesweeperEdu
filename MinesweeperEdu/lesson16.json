@@ -1,0 +1,45 @@
+{
+        "topic": "1-3-1 Corner",
+	"lessonGuidance":
+	[
+            "The pattern pictured is known as the 1-3-1 corner",
+            "First looking at the one to the left of the three it borders the two pink cells meaning they can have a maximum of 1 mine",
+            "Next looking at the mine below the three it borders the two orange cells meaning these cells can also have a maximum of one mine",
+            "The three borders all of the pink and orange cells accounting for two of its three mines",
+            "The third mine only has one possible location",
+            "The pink and orange don’t have a guaranteed mine without the three but due to the three a mine must be present in the pink and in the orange",
+            "Meaning the other tiles bordering the ones can be revealed"
+        ],
+	"quiz":
+	{
+                "width": 4,
+                "height": 4,
+		"minefield":
+		[
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+			false,
+			false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+		],
+		"correctMoves":
+		[
+                ],
+                "instructions":
+                [
+                    "Using the information about the pattern you just learned, Clear each tile that you know 100% is not a mine going from top left to bottom right of the board."
+                ]
+
+	}
+}

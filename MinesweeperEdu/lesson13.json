@@ -1,0 +1,52 @@
+{
+        "topic": "1-2-1",
+	"lessonGuidance":
+	[
+                "The pattern pictured is known as the 1-2-1 pattern",
+                "It effectively implements two 1-2 patterns side by side",
+                "First by implementing the 1-2 pattern on the left 1 guarantees a maximum of 1 mine in the two pink tiles meaning third tile can be flagged",
+                "Now implementing this on the right 1 allows you to flag the tile above the left 1",
+                "Therefore whenever you see this 1-2-1 pattern the two tiles above the 1’s can be flagged and the tile above the 2 can be cleared"
+	],
+	"quiz":
+	{
+                "width": 5,
+                "height": 5,
+		"minefield":
+		[
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+			false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+		],
+		"correctMoves":
+		[
+                ],
+                "instructions":
+                [
+                    "Using the information about the pattern you just learned, FLAG each tile that you know 100% is a mine going from top left to bottom right of the board."
+                ]
+
+	}
+}

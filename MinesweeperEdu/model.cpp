@@ -4,7 +4,7 @@
 #include <QByteArray>
 
 Model::Model(QObject *parent) : QObject{parent}{
-    numLessons = 12;
+    numLessons = 20;
     createLessonLevels();
     currentLesson = lessons.at(0);
     currentMessageIndex = 0;
@@ -34,7 +34,7 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
 }
 
 void Model::setLesson(int lessonNumber) {
-    currentLesson = lessons.at(lessonNumber);
+    currentLesson = lessons.at(lessonNumber-1);
     emit sendLessonInfo(currentLesson.getTopic(), currentLesson.getMessageFromIndex(0), currentLesson.getMinefield());
 }
 
