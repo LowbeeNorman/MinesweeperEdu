@@ -16,7 +16,7 @@ Model::~Model(){}
 void Model::createLessonLevels() {
     for(int i = 1; i <= numLessons; ++i)
         lessons.append
-            (constructLessonLevelFromJSON (QString (":/json/lesson").append(QString::number(i)).append(".json")));
+            (constructLessonLevelFromJSON (QString (":/json/lesson%1.json").arg (i)));
 }
 
 LessonLevel Model::constructLessonLevelFromJSON(QString filename) {

@@ -14,6 +14,11 @@ class LessonLevel
 public:
     LessonLevel(int level);
     LessonLevel();
+    LessonLevel (const LessonLevel &other);
+    ~LessonLevel ();
+
+    LessonLevel &operator= (LessonLevel other);
+
     ///
     /// \brief constructs a LessonLevel from a given QJsonDocument
     /// \param doc
@@ -71,8 +76,8 @@ public:
 private:
     QString topic;
     QList<QString> lessonGuidance;
-    Quiz quiz;
-    Minefield* minefield;
+    Quiz *quiz;
+    Minefield *minefield;
     int numMessages;
 };
 

@@ -86,4 +86,5 @@ bool Quiz::verifyUserMove (QPoint coords, UserMove::MoveType type)
         numCorrectMovesLeft--;
         return true;
     }
+    return false;
 }
