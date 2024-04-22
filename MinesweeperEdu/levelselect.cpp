@@ -36,8 +36,7 @@ LevelSelect::LevelSelect(QWidget *parent)
             button->setDisabled(true);
         } else {
             button->setStyleSheet (QString (
-                "QPushButton {" "background: transparent;" "border-image: url(:/images/level%1.png);""}"""
-                "QPushButton:clicked {" "border-image: url(:/images/selectLevel%1.png);" "}"
+                "QPushButton {background: transparent; border-image: url(\":/images/level%1.png\");} QPushButton:clicked {border-image: url(\":/images/selectLevel%1.png\");}"
             ).arg(i));
         }
 
