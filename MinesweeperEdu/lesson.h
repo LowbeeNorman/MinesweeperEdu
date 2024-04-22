@@ -50,6 +50,11 @@ public slots:
     /// \param message
     ///
     void receiveNextMessage(const QString& message);
+    ///
+    /// \brief Listens for the next feedback message to display
+    /// \param message
+    ///
+    void receiveFeedback(QString message);
 
     MinesweeperView* getBoard ();
 };

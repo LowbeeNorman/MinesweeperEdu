@@ -186,26 +186,30 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
     // accept the event so it doesn't get passed to the parent
     event->accept ();
 
-    mouse = event->button ();
-    QPoint minesweeperPos = translateToMinesweeper
-        (mapToScene (event->pos ()));
-    switch (mouse)
+    if (enabled)
     {
-    case Qt::LeftButton:
-        // highlight this tile if it's covered
-        emit requestIfCovered (minesweeperPos);
-        break;
-    case Qt::RightButton:
-        // flag/unflag this tile
-        emit flag (minesweeperPos);
-        break;
-    case Qt::MiddleButton:
-        // highlight the covered tiles around this tile, showing the user what
-        // will be cleared if there are enough flags around the point
-        emit requestChord (minesweeperPos);
-        break;
-    default:
-        break;
+        mouse = event->button ();
+        QPoint minesweeperPos = translateToMinesweeper
+            (mapToScene (event->pos ()));
+        switch (mouse)
+        {
+        case Qt::LeftButton:
+            // highlight this tile if it's covered
+            emit requestIfCovered (minesweeperPos);
+            break;
+        case Qt::RightButton:
+            emit flagAttempted (minesweeperPos);
+            // flag/unflag this tile
+            // emit flag (minesweeperPos);
+            break;
+        case Qt::MiddleButton:
+            // highlight the covered tiles around this tile, showing the user what
+            // will be cleared if there are enough flags around the point
+            emit requestChord (minesweeperPos);
+            break;
+        default:
+            break;
+        }
     }
 }
 
@@ -236,23 +240,27 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     // accept the event so it doesn't get passed to the parent
     event->accept ();
 
-    // clear the highlight of the chord
-    displayHighlight (QList<QPoint> ());
-    QPoint minesweeperPos = translateToMinesweeper
-        (mapToScene (event->pos ()));
-    switch (mouse)
+    if (enabled)
     {
-    case Qt::LeftButton:
-        // DON'T DELETE: emit clearAttempted (minesweeperPos);
-        // clear
-        emit clear (minesweeperPos);
-        break;
-    case Qt::MiddleButton:
-        // chord
-        emit chord (minesweeperPos);
-        break;
-    default:
-        break;
+        // clear the highlight of the chord
+        displayHighlight (QList<QPoint> ());
+        QPoint minesweeperPos = translateToMinesweeper
+            (mapToScene (event->pos ()));
+        switch (mouse)
+        {
+        case Qt::LeftButton:
+            // DON'T DELETE:
+             emit clearAttempted (minesweeperPos);
+            // clear
+            // emit clear (minesweeperPos);
+            break;
+        case Qt::MiddleButton:
+            // chord
+             emit chord (minesweeperPos);
+            break;
+        default:
+            break;
+        }
     }
     // reset the mouse button
     mouse = Qt::NoButton;
@@ -279,6 +287,21 @@ void MinesweeperView::resizeEvent (QResizeEvent* event)
 void MinesweeperView::clearCell (QPoint origin)
 {
     emit clear (origin);
+}
+
+void MinesweeperView::flagCell (QPoint origin)
+{
+    emit flag (origin);
+}
+
+void MinesweeperView::enableBoard ()
+{
+    enabled = true;
+}
+
+void MinesweeperView::disableBoard ()
+{
+    enabled = false;
 }
 
 

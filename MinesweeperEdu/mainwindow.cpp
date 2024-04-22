@@ -33,9 +33,23 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(&model, &Model::sendLessonInfo, ui->lessonPage, &Lesson::receiveLessonInfo);
     // get next Message
     connect(&model, &Model::sendCurrentMessage, ui->lessonPage, &Lesson::receiveNextMessage);
+    // get next Instruction
+    connect(&model, &Model::sendCurrentInstruction, ui->lessonPage, &Lesson::receiveNextMessage);
+    // get error message
+    connect(&model, &Model::sendErrorMessage, ui->lessonPage, &Lesson::receiveFeedback);
 
     connect(ui->lessonPage->getBoard(), &MinesweeperView::clearAttempted, &model, &Model::receiveClearAttempted);
     connect(&model, &Model::updateCellClear, ui->lessonPage->getBoard(), &MinesweeperView::clearCell);
+
+    connect(ui->lessonPage->getBoard(), &MinesweeperView::flagAttempted, &model, &Model::receiveFlagAttempted);
+    connect(&model, &Model::updateCellFlag, ui->lessonPage->getBoard(), &MinesweeperView::flagCell);
+
+    connect(this, &MainWindow::getNextLesson, &model, &Model::setLessonToNext);
+
+    connect(&model, &Model::quizCompleted, this, &MainWindow::showWinScreen);
+
+    connect(&model, &Model::quizTime, ui->lessonPage->getBoard(), &MinesweeperView::enableBoard);
+    connect(&model, &Model::lessonTime, ui->lessonPage->getBoard(), &MinesweeperView::disableBoard);
 }
 
 MainWindow::~MainWindow()
@@ -75,6 +89,13 @@ void MainWindow::nextLessonShortcut()
     qDebug() << "Need to load the next level";
 
     ui->stackedWidget->setCurrentIndex(2);
+
+    emit getNextLesson();
+}
+
+void MainWindow::showWinScreen ()
+{
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 

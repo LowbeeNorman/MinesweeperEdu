@@ -3,7 +3,7 @@
 	"lessonGuidance":
 	[
                 "The displayed pattern is known as the 1-1 pattern.",
-                "This occurs whenever there are two adjacent 1’s with a safe tile in one of the corners of the 1’s.",
+                "This occurs whenever there are two adjacent 1’s with a safe tile in one of the corners of the 1’s or when 1 of the 1's is against a wall",
                 "The first 1 guarantees a mine in one of the two hidden tiles adjacent to it.",
                 "The second 1 touches both of these same tiles, meaning its 1 mine is accounted for so all remaining adjacent tiles are safe."
 	],
@@ -43,7 +43,7 @@
                 ],
                 "instructions":
                 [
-                    "Using the information about the pattern you just learned, CLEAR each tile that you know 100% is a mine going from top left to bottom right of the board."
+                    "Using the information about the pattern you just learned, CLEAR each tile that you know 100% is a mine going from top left to bottom right of the board. Click the \"Next\" button at the bottom right of your screen when you are done."
                 ]
 
 	}

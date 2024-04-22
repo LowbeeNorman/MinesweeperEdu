@@ -58,6 +58,11 @@ signals:
     /// \param origin cell that was clicked
     ///
     void clearAttempted (QPoint origin);
+    ///
+    /// \brief tells the model that a flag was attempted at the given origin
+    /// \param origin cell that was clicked
+    ///
+    void flagAttempted (QPoint origin);
 public slots:
     void receiveBoard (const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);
@@ -72,6 +77,19 @@ public slots:
     /// \param origin point
     ///
     void clearCell (QPoint origin);
+    ///
+    /// \brief flags the cell at the given point
+    /// \param origin point
+    ///
+    void flagCell (QPoint origin);
+    ///
+    /// \brief Enables the board so that the user can interact with it
+    ///
+    void enableBoard ();
+    ///
+    /// \brief Disables the board so that the user can interact with it
+    ///
+    void disableBoard ();
 };
 
 #endif // MINESWEEPERVIEW_H

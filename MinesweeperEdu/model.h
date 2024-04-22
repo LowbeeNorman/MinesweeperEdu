@@ -22,6 +22,7 @@ private:
     int numLessons;
     // current LessonLevel the user is on
     LessonLevel currentLesson;
+    int currentLessonIndex;
     // current Message index of the current LessonLevel the user is on
     int currentMessageIndex;
     // currrent instruction index of the currnet LessonLevel the user is on
@@ -56,6 +57,17 @@ public slots:
     /// \param origin cell left-clicked
     ///
     void receiveClearAttempted (QPoint origin);
+
+    ///
+    /// \brief receives event of flag attempted at the origin
+    /// \param origin cell right-clicked
+    ///
+    void receiveFlagAttempted (QPoint origin);
+
+    ///
+    /// \brief Sets the LessonLevel number to be the next one
+    ///
+    void setLessonToNext ();
 signals:
     ///
     /// \brief Sends the information of the current LessonLevel back to the view
@@ -79,6 +91,28 @@ signals:
     /// \param origin cell
     ///
     void updateCellClear (QPoint origin);
+    ///
+    /// \brief Tells the view to update the board by flagging the cell at the origin
+    /// \param origin cell
+    ///
+    void updateCellFlag (QPoint origin);
+    ///
+    /// \brief Informs the view that the Quiz has been completed successfully
+    ///
+    void quizCompleted ();
+    ///
+    /// \brief Sends an error message to be displayed
+    /// \param message
+    ///
+    void sendErrorMessage (QString message);
+    ///
+    /// \brief Informs the view it is time for the user to complete the quiz
+    ///
+    void quizTime ();
+    ///
+    /// \brief Informs the view it is time for the user to start a lesson
+    ///
+    void lessonTime ();
 };
 
 #endif // MODEL_H

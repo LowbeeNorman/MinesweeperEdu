@@ -6,6 +6,8 @@ Quiz::Quiz() : minefield(nullptr) {}
 Quiz& Quiz::operator=(Quiz rhs) {
     std::swap(correctMoves, rhs.correctMoves);
     std::swap(instructions, rhs.instructions);
+    std::swap(numInstructions, rhs.numInstructions);
+    std::swap(numCorrectMovesLeft, rhs.numCorrectMovesLeft);
     // swap minefields
     std::swap(minefield, rhs.minefield);
     return *this;
@@ -14,6 +16,8 @@ Quiz& Quiz::operator=(Quiz rhs) {
 Quiz::Quiz (const Quiz &other)
     : correctMoves (other.correctMoves)
     , instructions (other.instructions)
+    , numInstructions (other.numInstructions)
+    , numCorrectMovesLeft (other.numCorrectMovesLeft)
 {
     minefield = new Minefield (*other.minefield);
 }
@@ -46,11 +50,12 @@ Quiz::Quiz(QJsonObject &obj) {
     numCorrectMovesLeft = correctMovesArr.size();
     // Extract instructions
     QJsonArray instructionsArr = obj.value("instructions").toArray();
+    numInstructions = 0;
     for(int i = 0; i < correctMovesArr.size(); ++i)
     {
         instructions.append(instructionsArr.at(i).toString());
+        numInstructions++;
     }
-    numInstructions = instructionsArr.size();
 }
 
 Minefield *Quiz::getMinefield ()
@@ -75,7 +80,7 @@ int Quiz::getNumCorrectMovesLeft ()
 
 bool Quiz::hasCorrectMovesLeft ()
 {
-    return numCorrectMovesLeft == 0;
+    return !(numCorrectMovesLeft == 0);
 }
 
 bool Quiz::verifyUserMove (QPoint coords, UserMove::MoveType type)
