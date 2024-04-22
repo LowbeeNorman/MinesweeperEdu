@@ -53,6 +53,8 @@
         <file>selectLevel19.png</file>
         <file>selectLevel20.png</file>
         <file>blurryPath.png</file>
+        <file>menu.png</file>
+        <file>start.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
