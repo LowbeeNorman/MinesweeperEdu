@@ -51,6 +51,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
 
     connect(&model, &Model::quizTime, ui->lessonPage->getBoard(), &MinesweeperView::enableBoard);
     connect(&model, &Model::lessonTime, ui->lessonPage->getBoard(), &MinesweeperView::disableBoard);
+
+    connect(&model, &Model::sendCurrentLevel, ui->levelSelectPage, &LevelSelect::updateCurrentLevel);
 }
 
 MainWindow::~MainWindow()

@@ -49,6 +49,7 @@ void Model::setLesson(int lessonNumber)
     emit sendLessonInfo (currentLesson.getTopic()
                         , currentLesson.getMessageFromIndex(0)
                         , currentLesson.getMinefield());
+    emit sendCurrentLevel(lessonNumber);
 }
 
 void Model::nextMessage()
