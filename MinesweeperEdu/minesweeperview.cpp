@@ -50,24 +50,43 @@ int MinesweeperView::pointToIndex (int x, int y)
     return y * size.width() + x;
 }
 
+void MinesweeperView::internalResize ()
+{
+    // set the scene rect to the pixmap rect since that is all that is
+    // rendered in the view
+    setSceneRect (pixmap->rect ());
+    qInfo () << "pixmap rect" << pixmap->rect ();
+    this->resetTransform ();
+    // this->centerOn (pixmapItem);
+    // find out the maximum dimension of the pixmap
+    int width = pixmap->size ().width ();
+    int height = pixmap->size ().height ();
+    int maxDim = (height > width) ? height : width;
+    // find the minimum dimension of the view
+    int minViewDim = (this->contentsRect ().size ().width ()
+                      < this->contentsRect ().size ().height ())
+                         ? this->contentsRect ().size ().width ()
+                         : this->contentsRect ().size ().height ();
+    // scale the view so the minimum dimension of the view is the same as the
+    // maximum dimension of the pixmap
+    this->scale
+        (minViewDim / (double) maxDim
+         , minViewDim / (double) maxDim);
+}
+
 void MinesweeperView::setBoardSize (QSize size)
 {
     qInfo () << "changing size to" << size;
     this->size = size;
+    if (pixmap != nullptr)
+        delete pixmap;
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE
                                , size.height () * TILE_SIZE));
     pixmap->fill (Qt::red);
     pixmapItem->setPixmap (*pixmap);
     // zoom the view on the scene
-    // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
-    int width = mainScene->sceneRect ().width ();
-    int height = mainScene->sceneRect ().height ();
-    int maxDim = (height > width) ? height : width;
-    this->resetTransform ();
-    this->scale
-        (this->contentsRect ().width() / (double) maxDim
-        , this->contentsRect ().width() / (double) maxDim);
+    internalResize ();
     // emit requestBoard ();
 }
 
@@ -276,16 +295,17 @@ void MinesweeperView::resizeEvent (QResizeEvent* event)
     event->accept ();
     // zoom the view on the scene
     // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
-    int width = mainScene->sceneRect ().width ();
-    int height = mainScene->sceneRect ().height ();
-    int maxDim = (height > width) ? height : width;
-    int minViewDim = (event->size ().width() < event->size ().height ())
-                     ? event->size ().width ()
-                     : event->size ().height ();
-    this->resetTransform ();
-    this->scale
-        (minViewDim / (double) maxDim
-        , minViewDim / (double) maxDim);
+    // int width = mainScene->sceneRect ().width ();
+    // int height = mainScene->sceneRect ().height ();
+    // int maxDim = (height > width) ? height : width;
+    // int minViewDim = (event->size ().width() < event->size ().height ())
+    //                  ? event->size ().width ()
+    //                  : event->size ().height ();
+    // this->resetTransform ();
+    // this->scale
+    //     (minViewDim / (double) maxDim
+    //     , minViewDim / (double) maxDim);
+    internalResize ();
 }
 
 void MinesweeperView::clearCell (QPoint origin)

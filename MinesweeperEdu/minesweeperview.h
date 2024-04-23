@@ -32,6 +32,8 @@ class MinesweeperView : public QGraphicsView
     QPoint translateFromMinesweeper (QPoint point);
 
     bool enabled;
+
+    void internalResize ();
 public:
     MinesweeperView (QWidget *parent = nullptr);
     ~MinesweeperView ();
