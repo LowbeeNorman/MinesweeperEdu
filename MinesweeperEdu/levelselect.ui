@@ -16,13 +16,28 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>800</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>100</height>
+      </size>
+     </property>
      <property name="font">
       <font>
        <pointsize>64</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/images/selectLevelLabel.png);</string>
+     </property>
      <property name="text">
-      <string>Choose Your Level</string>
+      <string/>
      </property>
     </widget>
    </item>
