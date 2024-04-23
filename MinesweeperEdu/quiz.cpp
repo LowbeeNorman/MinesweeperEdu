@@ -60,8 +60,10 @@ Quiz::Quiz(QJsonObject &obj) {
     //Carry out moves
     for(int i = 0; i < completedMoves.size(); ++i)
     {
-        switch(completedMoves[i].getType())
+        if(completedMoves[i].getInstructionIndex()==1)
         {
+            switch(completedMoves[i].getType())
+            {
             case UserMove::MoveType::FLAG:
             {
                 this->minefield->flag(completedMoves[i].getCell());
@@ -69,6 +71,9 @@ Quiz::Quiz(QJsonObject &obj) {
             case UserMove::MoveType::CLEAR:
             {
                 this->minefield->clear(completedMoves[i].getCell());
+            }
+            default:
+            {}
             }
         }
     }
