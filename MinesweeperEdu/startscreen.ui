@@ -24,11 +24,11 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:enbaled{border-image: url(:/images/newLesson.png);}
+        <string notr="true">QPushButton:enabled{border-image: url(:/images/newLesson.png);}
 QPushButton:pressed{border-image: url(:/images/newLessonSelected.png);}</string>
        </property>
        <property name="text">
-        <string>New Lesson</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -39,8 +39,13 @@ QPushButton:pressed{border-image: url(:/images/newLessonSelected.png);}</string>
          <pointsize>21</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled{border-image: url(:/images/continue.png);}
+QPushButton:pressed{border-image: url(:/images/continueSelected.png);}
+</string>
+       </property>
        <property name="text">
-        <string>Continue</string>
+        <string/>
        </property>
       </widget>
      </item>
