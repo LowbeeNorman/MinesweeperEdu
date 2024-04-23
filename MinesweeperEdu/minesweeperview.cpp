@@ -4,6 +4,7 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     : QGraphicsView (parent)
     , size (0, 0)
     , pixmap (nullptr)
+    , enabled (true)
 {
     mainScene = new QGraphicsScene (this);
     pixmapItem = new QGraphicsPixmapItem ();
@@ -26,8 +27,6 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     numbers[7] = new QPixmap (QString (":/images/seven.png"));
     numbers[8] = new QPixmap (QString (":/images/eight.png"));
     numbers[9] = new QPixmap (QString (":/images/mine.png"));
-
-    enabled = true;
 }
 
 MinesweeperView::~MinesweeperView ()
@@ -133,6 +132,7 @@ void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
 {
     Q_UNUSED (mines);
     qInfo () << "dead at" << where;
+    enabled = false;
 }
 
 void MinesweeperView::won (QList<QPoint> mines)
@@ -142,6 +142,7 @@ void MinesweeperView::won (QList<QPoint> mines)
     {
         flagPlaced (mine, numFlags);
     }
+    enabled = false;
 }
 
 // translation methods (very helpful)
@@ -209,30 +210,29 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
     // accept the event so it doesn't get passed to the parent
     event->accept ();
 
-    if (enabled)
+    if (!enabled)
+        return;
+    mouse = event->button ();
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
+    switch (mouse)
     {
-        mouse = event->button ();
-        QPoint minesweeperPos = translateToMinesweeper
-            (mapToScene (event->pos ()));
-        switch (mouse)
-        {
-        case Qt::LeftButton:
-            // highlight this tile if it's covered
-            emit requestIfCovered (minesweeperPos);
-            break;
-        case Qt::RightButton:
-            emit flagAttempted (minesweeperPos);
-            // flag/unflag this tile
-            // emit flag (minesweeperPos);
-            break;
-        case Qt::MiddleButton:
-            // highlight the covered tiles around this tile, showing the user
-            // what will be cleared if there are enough flags around the point
-            emit requestChord (minesweeperPos);
-            break;
-        default:
-            break;
-        }
+    case Qt::LeftButton:
+        // highlight this tile if it's covered
+        emit requestIfCovered (minesweeperPos);
+        break;
+    case Qt::RightButton:
+        emit flagAttempted (minesweeperPos);
+        // flag/unflag this tile
+        // emit flag (minesweeperPos);
+        break;
+    case Qt::MiddleButton:
+        // highlight the covered tiles around this tile, showing the user
+        // what will be cleared if there are enough flags around the point
+        emit requestChord (minesweeperPos);
+        break;
+    default:
+        break;
     }
 }
 
@@ -263,27 +263,26 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     // accept the event so it doesn't get passed to the parent
     event->accept ();
 
-    if (enabled)
+    if (!enabled)
+        return;
+    // clear the highlight of the chord
+    displayHighlight (QList<QPoint> ());
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
+    switch (mouse)
     {
-        // clear the highlight of the chord
-        displayHighlight (QList<QPoint> ());
-        QPoint minesweeperPos = translateToMinesweeper
-            (mapToScene (event->pos ()));
-        switch (mouse)
-        {
-        case Qt::LeftButton:
-            // DON'T DELETE:
-             emit clearAttempted (minesweeperPos);
-            // clear
-            // emit clear (minesweeperPos);
-            break;
-        case Qt::MiddleButton:
-            // chord
-             emit chord (minesweeperPos);
-            break;
-        default:
-            break;
-        }
+    case Qt::LeftButton:
+        // DON'T DELETE:
+         emit clearAttempted (minesweeperPos);
+        // clear
+        // emit clear (minesweeperPos);
+        break;
+    case Qt::MiddleButton:
+        // chord
+         emit chord (minesweeperPos);
+        break;
+    default:
+        break;
     }
     // reset the mouse button
     mouse = Qt::NoButton;

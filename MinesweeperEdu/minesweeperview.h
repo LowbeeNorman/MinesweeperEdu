@@ -13,6 +13,8 @@
 class MinesweeperView : public QGraphicsView
 {
     Q_OBJECT
+
+private:
     QSize size;
     QPixmap *pixmap;
     QGraphicsScene *mainScene;
@@ -28,13 +30,34 @@ class MinesweeperView : public QGraphicsView
 
     Qt::MouseButton mouse;
 
-    QPoint translateToMinesweeper (QPointF point);
-    QPoint translateFromMinesweeper (QPoint point);
-
+    // used to stop the user from interacting with the board
     bool enabled;
 
+    ///
+    /// \brief translateToMinesweeper translates a point in view space to
+    /// be able to be used by the minesweeper game
+    /// \param point the point in view space
+    /// \return the point translated to minesweeper space
+    ///
+    QPoint translateToMinesweeper (QPointF point);
+    ///
+    /// \brief translateFromMinesweeper translates a point from minesweeper
+    /// to view space
+    /// \param point the coordinates in the minesweeper grid
+    /// \return the point in view space
+    ///
+    QPoint translateFromMinesweeper (QPoint point);
+
+    ///
+    /// \brief internalResize performs the actual transformations on the
+    /// view to make the board the right size
+    ///
     void internalResize ();
 public:
+    ///
+    /// \brief MinesweeperView default constructor
+    /// \param parent parent widget to pass to the base class
+    ///
     MinesweeperView (QWidget *parent = nullptr);
     ~MinesweeperView ();
     void setBoardSize(QSize size);
