@@ -7,13 +7,16 @@
 #include "ui_levelselect.h"
 #include <cmath>
 
+#include <QImageWriter>
+#include <QAbstractButton>
+
 LevelSelect::LevelSelect(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::LevelSelect)
 {
     ui->setupUi(this);
 
-    QGraphicsScene *scene = new QGraphicsScene();
+    scene = new QGraphicsScene(ui->graphicsView);
     QPixmap backgroundImage(QString (":/images/blurryPath.png"));
     pixmapItem = new QGraphicsPixmapItem(backgroundImage);
     pixmapItem->setZValue(-1);
@@ -21,23 +24,34 @@ LevelSelect::LevelSelect(QWidget *parent)
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setSceneRect(pixmapItem->boundingRect());
 
+    // create the group to add buttons to
+    group = new QButtonGroup (ui->verticalLayout);
+    group->setExclusive (true);
+
     int numButtons = 20;
     int buttonWidth = 100;
     int buttonHeight = 100;
     int buffer = 40;
+
+    QString imagePath ("image.jpg");
+    QImage image = QPixmap (QString (":/images/level1.png"))
+                       .mask ()
+                       .toImage ();
+    {
+        QImageWriter writer (imagePath);
+        writer.write (image);
+    }
 
     for(int i = 0; i <= numButtons; i++)
     {
         QPushButton *button = new QPushButton();
         scene->addWidget(button);
 
-        if (i == 0) {
-            button->hide();
-            button->setDisabled(true);
-        } else {
-            button->setStyleSheet (QString (
-                "QPushButton {background: transparent; border-image: url(\":/images/level%1.png\");} QPushButton:clicked {border-image: url(\":/images/selectLevel%1.png\");}"
-            ).arg(i));
+        if (i == 0)
+        {
+            button->hide ();
+            button->setDisabled (true);
+            continue;
         }
 
         double t = 4 * M_PI * i / (numButtons - 1);
@@ -46,34 +60,58 @@ LevelSelect::LevelSelect(QWidget *parent)
 
         button->setGeometry(x + 350, y, buttonWidth, buttonHeight);
 
-        connect(button, &QPushButton::clicked, this, [this, i, button] {this->getCurrentLevel(i, button);});
+        // make it pretty
+        button->setStyleSheet (QString (
+            "QPushButton {"
+                "background: transparent;"
+                "border: none;"
+                "border-image: url(\":/images/level%1.png\");"
+            "}"
+            "QPushButton:hover {"
+                "background: gray;"
+                "border: 2px solid gray;"
+                "border-radius: 2px;"
+            "}"
+            "QPushButton:checked {"
+                "background: orange;"
+                "border: 2px solid orange;"
+                "border-radius: 2px;"
+            "}"
+        ).arg(i));
+        // set the mask so it looks right and stuff
+        button->setMask (QPixmap (QString (":/images/level1.png"))
+                            .scaled (button->size ())
+                            .mask ());
+        // Set the button to checkable so it shows which button is currently
+        // selected
+        button->setCheckable (true);
+        // Add the button to the group with id i
+        group->addButton (button, i);
     }
 
-    connect(ui->playButton, &QPushButton::clicked, this, &LevelSelect::playButtonClicked);
-    connect(ui->menuButton, &QPushButton::clicked, this, &LevelSelect::menuButtonClicked);
+    connect (group, &QButtonGroup::buttonToggled
+            , this, &LevelSelect::getCurrentLevel);
+    connect(ui->playButton, &QPushButton::clicked
+            , this, &LevelSelect::playButtonClicked);
+    connect(ui->menuButton, &QPushButton::clicked
+            , this, &LevelSelect::menuButtonClicked);
 }
 
 LevelSelect::~LevelSelect()
 {
     delete ui;
+    delete pixmapItem;
 }
 
-void LevelSelect::getCurrentLevel(int levelIndex, QPushButton *button)
+void LevelSelect::getCurrentLevel (QAbstractButton *button, bool checked)
 {
-    if(currentButton != nullptr && previousIndex != -1)
-    {
-        currentButton->setStyleSheet (QString (
-            "QPushButton {" "background: transparent;" "border-image: url(:/images/level%1.png);" "}"
-        ).arg(previousIndex));
-    }
-    currentButton = button;
-    previousIndex = levelIndex;
-    currentButton->setStyleSheet(QString (
-        "QPushButton {" "background: transparent;" "border-image: url(:/images/selectLevel%1.png);""}"
-    ).arg(levelIndex));
+    if (!checked)
+        return;
+    currentButton = static_cast<QPushButton *> (button);
 
     ui->playButton->setEnabled(true);
-    currentLevel = levelIndex;
+    currentLevel = group->checkedId ();
+    qInfo () << "currentLevel:" << currentLevel;
 }
 
 void LevelSelect::playButtonClicked()
@@ -94,7 +132,7 @@ void LevelSelect::receiveStartingNewGame()
     ui->playButton->setEnabled(false);
     if(currentButton != nullptr)
     {
-        currentButton->setStyleSheet("background-color: rgb(0,0,255);");
+        // currentButton->setStyleSheet("background-color: rgb(0,0,255);");
     }
     currentButton = nullptr;
     ui->levelLabel->clear();
