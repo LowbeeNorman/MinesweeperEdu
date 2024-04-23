@@ -54,8 +54,8 @@ Quiz::Quiz(QJsonObject &obj) {
     QJsonArray completedMovesArr = obj.value("completedMoves").toArray();
     for(int i = 0; i < completedMovesArr.size(); ++i)
     {
-        QJsonObject userMoveObj = completedMovesArr.at(i).toObject();
-        completedMoves.append(UserMove(userMoveObj));
+        QJsonObject completedMovesObj = completedMovesArr.at(i).toObject();
+        completedMoves.append(UserMove(completedMovesObj));
     }
     //Carry out moves
     for(int i = 0; i < completedMoves.size(); ++i)
