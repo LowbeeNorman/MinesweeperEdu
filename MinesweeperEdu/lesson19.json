@@ -90,6 +90,22 @@
 		],
 		"correctMoves":
 		[
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 1
+                    }
                 ],
                 "completedMoves":
                 [

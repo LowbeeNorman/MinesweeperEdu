@@ -35,6 +35,30 @@
 		],
 		"correctMoves":
 		[
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 0
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 1
+                    }
                 ],
                 "completedMoves":
                 [
