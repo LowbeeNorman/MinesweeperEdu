@@ -1,0 +1,344 @@
+{
+        "topic": "Dependency Chain",
+	"lessonGuidance":
+	[
+            "This is a more applicable pattern than the T pattern to apply but it requires a lot of remembering stuff/writing it down",
+            "Your situation will not look like this exactly it could be any combination of numbers in basically any shape but preferably a wall of numbers of some sort",
+            "We are going to examine this situation first by starting from the top",
+            "Looking at the top right 2 it borders the two yellow cells guaranteeing one mine",
+            "The three below it has one mine from the flag and now one mine from the yellow cells so its third mine must be in of the pink cells",
+            "We don’t have a great way of continuing to examine from the top so we will jump to the bottom",
+            "First looking at the 2 at the middle of the bottom row it has one mine accounted for with the flag so the second mine must be one of the three orange cells",
+            "The two two spaces above the last two has one mine accounted for in the oranges cells so its second mine must be in one of the red cells",
+            "The two above that’s first mine is in the red cells ands its second mine must be in the white cells",
+            "The two two spaces above that’s first mine is in the white cells so it’s second must be in the brown cells",
+            "The two above that’s first mine is in the brown cells so it’s second must be in cyan cells",
+            "Now looking at the top two in the middle column Its first mine must be in the pink cells The second mine has to be in the cyan cells",
+            "So the tiles marked can be cleared"
+        ],
+	"quiz":
+	{
+                "width": 5,
+                "height": 11,
+		"minefield":
+		[
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+
+                        true,
+			false,
+                        false,
+                        false,
+                        false,
+
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+
+                        true,
+                        false,
+                        true,
+                        false,
+                        true,
+
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+		],
+		"correctMoves":
+		[
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 1
+                    }
+                ],
+                "completedMoves":
+                [
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 1
+                        },
+                        "type": 0,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 6
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 6
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 9
+                        },
+                        "type": 0,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 10
+                        },
+                        "type": 0,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 10
+                        },
+                        "type": 0,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 4,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "index": 0
+                    }
+                ],
+                "instructions":
+                [
+                    "Using the information about the pattern you just learned, Clear each tile that you know 100% is not a mine going from top left to bottom right of the board. Click the \"Next\" button at the bottom right of your screen when you are done."
+                ]
+
+	}
+}

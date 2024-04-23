@@ -15,11 +15,16 @@ public:
     UserMove(QJsonObject &obj);
     enum class MoveType
     {
-        FLAG, CLEAR
+        FLAG, CLEAR, RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN
     };
+
+    QPoint getCell ();
+    MoveType getType ();
+    int getInstructionIndex();
 private:
     QPoint cell;
     MoveType type;
+    int instructionIndex;
 };
 
 #endif // USERMOVE_H

@@ -14,45 +14,124 @@
 		"height": 6,
 		"minefield":
 		[
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true,	
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true,
-			true,
-			false,
-			false,
-			true
+                    true,
+                    false,
+                    false,
+                    true,
+                    true,
+                    false,
+                    false,
+                    true,
+                    true,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    true,
+                    false,
+                    false,
+                    true,
+                    true,
+                    false,
+                    false,
+                    true
 		],
 		"correctMoves":
 		[
-		]
+                ],
+                "completedMoves":
+                [
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 4,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 4,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 0,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 5,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "index": 0
+                    }
+
+                ],
+                "instructions":
+                [
+                ]
 	}
 }

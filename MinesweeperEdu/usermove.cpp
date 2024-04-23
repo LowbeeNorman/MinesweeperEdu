@@ -10,4 +10,21 @@ UserMove::UserMove(QJsonObject &obj) {
 
     int typeVal = obj.value("type").toInt();
     type = static_cast<MoveType>(typeVal);
+
+    instructionIndex = obj.value("index").toInt();
+}
+
+QPoint UserMove::getCell ()
+{
+    return cell;
+}
+
+UserMove::MoveType UserMove::getType ()
+{
+    return type;
+}
+
+int UserMove::getInstructionIndex ()
+{
+    return instructionIndex;
 }

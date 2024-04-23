@@ -13,6 +13,57 @@
         <file>three.png</file>
         <file>two.png</file>
         <file>startScreenBackground.png</file>
+        <file>level1.png</file>
+        <file>level2.png</file>
+        <file>level3.png</file>
+        <file>level4.png</file>
+        <file>level5.png</file>
+        <file>level6.png</file>
+        <file>level7.png</file>
+        <file>level8.png</file>
+        <file>level9.png</file>
+        <file>level10.png</file>
+        <file>level11.png</file>
+        <file>level12.png</file>
+        <file>level13.png</file>
+        <file>level14.png</file>
+        <file>level15.png</file>
+        <file>level16.png</file>
+        <file>level17.png</file>
+        <file>level18.png</file>
+        <file>level19.png</file>
+        <file>level20.png</file>
+        <file>selectLevel1.png</file>
+        <file>selectLevel2.png</file>
+        <file>selectLevel3.png</file>
+        <file>selectLevel4.png</file>
+        <file>selectLevel5.png</file>
+        <file>selectLevel6.png</file>
+        <file>selectLevel7.png</file>
+        <file>selectLevel8.png</file>
+        <file>selectLevel9.png</file>
+        <file>selectLevel10.png</file>
+        <file>selectLevel11.png</file>
+        <file>selectLevel12.png</file>
+        <file>selectLevel13.png</file>
+        <file>selectLevel14.png</file>
+        <file>selectLevel15.png</file>
+        <file>selectLevel16.png</file>
+        <file>selectLevel17.png</file>
+        <file>selectLevel18.png</file>
+        <file>selectLevel19.png</file>
+        <file>selectLevel20.png</file>
+        <file>blurryPath.png</file>
+        <file>menu.png</file>
+        <file>start.png</file>
+        <file>startActive.png</file>
+        <file>continue.png</file>
+        <file>newLesson.png</file>
+        <file>levelSelect.png</file>
+        <file>next.png</file>
+        <file>previous.png</file>
+        <file>minesweeperEduLogo.png</file>
+        <file>selectLevelLabel.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
@@ -28,5 +79,14 @@
         <file>lesson10.json</file>
         <file>lesson11.json</file>
         <file>lesson12.json</file>
+        <file>lesson13.json</file>
+        <file>lesson14.json</file>
+        <file>lesson15.json</file>
+        <file>lesson16.json</file>
+        <file>lesson17.json</file>
+        <file>lesson18.json</file>
+        <file>lesson19.json</file>
+        <file>lesson20.json</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

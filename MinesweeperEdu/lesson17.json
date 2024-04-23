@@ -1,0 +1,193 @@
+{
+        "topic": "1>2<1",
+	"lessonGuidance":
+	[
+            "The pattern pictured is a little harder to spot and is known as the 1>2<1",
+            "First looking at the pink cells they border a one guaranteeing a maximum of one mine",
+            "Next looking at the orange cells they also border a one guaranteeing a maximum of one mine",
+            "Now looking at the two guarantees that there must be mines present in both the pink and orange",
+            "This allows you to clear all other cells bordering the two ones mentioned before"
+        ],
+	"quiz":
+	{
+                "width": 5,
+                "height": 8,
+		"minefield":
+		[
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+			false,
+			false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false
+		],
+		"correctMoves":
+		[
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 1
+                    }
+                ],
+                "completedMoves":
+                [
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 6
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "index": 0
+                    }
+                ],
+                "instructions":
+                [
+                    "Using the information about the pattern you just learned, CLEAR each tile that you know 100% is not a mine going from top left to bottom right of the board. Click the \"Next\" button at the bottom right of your screen when you are done."
+                ]
+
+	}
+}

@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include "minefield.h"
+#include "minesweeperview.h"
 
 namespace Ui {
 class Lesson;
@@ -33,10 +34,12 @@ signals:
     void requestBoard ();
     void sendBackClicked (int pageIndex);
     void getNextMessage ();
+    void getPreviousMessage ();
 
 public slots:
     void backButtonClicked ();
     void nextButtonClicked ();
+    void previousButtonClicked ();
     ///
     /// \brief Listens for the lesson info
     /// \param topic
@@ -49,6 +52,13 @@ public slots:
     /// \param message
     ///
     void receiveNextMessage(const QString& message);
+    ///
+    /// \brief Listens for the next feedback message to display
+    /// \param message
+    ///
+    void receiveFeedback(QString message);
+
+    MinesweeperView* getBoard ();
 };
 
 #endif // LESSON_H

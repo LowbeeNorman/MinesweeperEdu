@@ -24,17 +24,35 @@
        <property name="minimumSize">
         <size>
          <width>150</width>
-         <height>50</height>
+         <height>35</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>150</width>
-         <height>50</height>
+         <height>35</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/levelSelect.png);
+	background: black;
+	border: 8px solid black;
+	border-radius: 8px;
+}
+QPushButton:hover {
+	background: orange;
+	border: 4px solid orange;
+	border-radius: 4px;
+}
+QPushButton:pressed {
+	background: red;
+	border: 4px solid red;
+	border-radius: 4px;
+}</string>
+       </property>
        <property name="text">
-        <string>Level Select</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -69,18 +87,36 @@
       <widget class="QPushButton" name="nextButton">
        <property name="minimumSize">
         <size>
-         <width>150</width>
-         <height>50</height>
+         <width>90</width>
+         <height>35</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>150</width>
-         <height>50</height>
+         <width>90</width>
+         <height>35</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/next.png);
+	background: black;
+	border: 8px solid black;
+	border-radius: 8px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 4px solid purple;
+	border-radius: 4px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 4px solid green;
+	border-radius: 4px;
+}</string>
+       </property>
        <property name="text">
-        <string>Next</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -88,18 +124,36 @@
       <widget class="QPushButton" name="previousButton">
        <property name="minimumSize">
         <size>
-         <width>150</width>
-         <height>50</height>
+         <width>140</width>
+         <height>35</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>150</width>
-         <height>50</height>
+         <width>140</width>
+         <height>35</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/previous.png);
+	background: black;
+	border: 8px solid black;
+	border-radius: 8px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 4px solid purple;
+	border-radius: 4px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 4px solid green;
+	border-radius: 4px;
+}</string>
+       </property>
        <property name="text">
-        <string>Previous</string>
+        <string/>
        </property>
       </widget>
      </item>

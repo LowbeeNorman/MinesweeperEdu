@@ -52,11 +52,26 @@ public slots:
     ///
     void loadPrevious();
 
+    ///
+    /// \brief Listens to know if the user goes from one lesson straight to the next
+    ///
+    void nextLessonShortcut();
+
+    ///
+    /// \brief Changes the screen to display the win screen
+    ///
+    void showWinScreen ();
+
 signals:
     ///
     /// \brief ask the Model for the Lesson of the given number
     /// \param lessonNumber number of Lesson
     ///
     void getLesson(int lessonNumber);
+
+    ///
+    /// \brief retrieves the next lesson
+    ///
+    void getNextLesson ();
 };
 #endif // MAINWINDOW_H

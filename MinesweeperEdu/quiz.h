@@ -27,14 +27,40 @@ public:
     Quiz& operator=(Quiz rhs);
     ~Quiz();
 
-    UserMove verifyUserMove(QPoint coords, UserMove::MoveType type);
+    bool verifyUserMove(QPoint coords, UserMove::MoveType type);
 
     Minefield *getMinefield ();
+
+    ///
+    /// \brief returns the string instruction from the given index
+    /// \param indexOfInstruction index of the message from the list of instructions
+    /// \return instruction of index
+    ///
+    const QString& getInstructionFromIndex(int indexOfInstruction);
+
+    ///
+    /// \brief returns the number of instructions contained in this Quiz
+    /// \return num of instructions
+    ///
+    int getNumInstructions();
+    ///
+    /// \brief returns the number of correct moves the user has left to fulfill
+    /// \return number of correct moves left
+    ///
+    int getNumCorrectMovesLeft();
+    ///
+    /// \brief determines if the user still has correct moves to fulfill or not
+    /// \return true if the user still has moves to fulfill, false otherwise
+    ///
+    bool hasCorrectMovesLeft ();
 private:
     QList<UserMove> correctMoves;
+    QList<UserMove> completedMoves;
     QList<QString> instructions;
     Minefield *minefield;
     static const QList<QString> errorMessages;
+    int numInstructions;
+    int numCorrectMovesLeft;
 };
 
 #endif // QUIZ_H

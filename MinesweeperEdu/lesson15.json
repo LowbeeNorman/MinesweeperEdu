@@ -1,0 +1,141 @@
+{
+        "topic": "Hole 1",
+	"lessonGuidance":
+	[
+            "The pattern pictured is known as the Hole 1",
+            "First by looking at the bottom 1 we can guarantee a mine in one of the yellow tiles",
+            "Looking at the top one it borders both yellow tiles meaning that its mine is already accounted for and the three tiles above it can all be cleared."
+
+        ],
+	"quiz":
+	{
+                "width": 5,
+                "height": 5,
+		"minefield":
+		[
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    false,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false
+		],
+		"correctMoves":
+		[
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 1
+                    }
+                ],
+                "completedMoves":
+                [
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 4,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "index": 0
+                    }
+                ],
+                "instructions":
+                [
+                    "Using the information about the pattern you just learned, Clear each tile that you know 100% is not a mine going from top left to bottom right of the board. Click the \"Next\" button at the bottom right of your screen when you are done."
+                ]
+
+	}
+}

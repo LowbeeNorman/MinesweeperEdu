@@ -14,6 +14,11 @@ class LessonLevel
 public:
     LessonLevel(int level);
     LessonLevel();
+    LessonLevel (const LessonLevel &other);
+    ~LessonLevel ();
+
+    LessonLevel &operator= (LessonLevel other);
+
     ///
     /// \brief constructs a LessonLevel from a given QJsonDocument
     /// \param doc
@@ -31,6 +36,12 @@ public:
     ///
     const QString& getMessageFromIndex(int indexOfLessonGuidance);
     ///
+    /// \brief returns the string instruction from the given index
+    /// \param indexOfInstruction index of the message from the list of instructions
+    /// \return instruction of index
+    ///
+    const QString& getInstructionFromIndex(int indexOfInstruction);
+    ///
     /// \brief returns the Minefield contained in this LessonLevel
     /// \return Minefield in this
     ///
@@ -40,11 +51,33 @@ public:
     /// \return number of messages
     ///
     int getNumMessages();
+    ///
+    /// \brief returns the number of instructions the Quiz within this LessonLevel contains
+    /// \return number of instructions
+    ///
+    int getNumInstructions ();
+    ///
+    /// \brief returns the number of correct moves the user has left to fulfill
+    /// \return number of correct moves left
+    ///
+    int getNumCorrectMovesLeft ();
+    ///
+    /// \brief determines if the user still has correct moves to fulfill or not
+    /// \return true if the user still has moves to fulfill, false otherwise
+    ///
+    bool hasCorrectMovesLeft ();
+    ///
+    /// \brief checks if the given move at the given origin is the correct move
+    /// \param origin cell clicked
+    /// \param type FLAG or CLEAR
+    /// \return true if the correct move, false otherwise
+    ///
+    bool checkMove(QPoint origin, UserMove::MoveType type);
 private:
     QString topic;
     QList<QString> lessonGuidance;
-    Quiz quiz;
-    Minefield* minefield;
+    Quiz *quiz;
+    // Minefield *minefield;
     int numMessages;
 };
 

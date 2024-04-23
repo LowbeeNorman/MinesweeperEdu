@@ -32,7 +32,7 @@ Minefield::Minefield (QSize boardSize, bool mines[])
     , arrayLength (boardSize.width () * boardSize.height ())
     , numMines (0)
     , numFlags (0)
-    , firstMove (true)
+    , firstMove (false)
     , initialized (true)
 {
     field = new int[arrayLength] {0};
@@ -46,6 +46,7 @@ Minefield::Minefield (QSize boardSize, bool mines[])
             field[i] = 9;
         }
     }
+    populateFieldNums();
 }
 
 Minefield::Minefield (const Minefield &other)

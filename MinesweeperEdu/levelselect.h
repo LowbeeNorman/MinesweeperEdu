@@ -8,6 +8,9 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
+#include <QButtonGroup>
 
 namespace Ui {
 class LevelSelect;
@@ -29,13 +32,19 @@ private:
     Ui::LevelSelect *ui;
     int currentLevel = 0;
 
+    QGraphicsPixmapItem *pixmapItem;
+    QPixmap *levels[40];
+    QGraphicsScene *scene;
+
+    QButtonGroup *group;
+
 public slots:
     ///
     /// \brief Receives the current level and button from the view
     /// \param Index of the currently selected level
     /// \param Last clicked button
     ///
-    void getCurrentLevel(int levelIndex, QPushButton *button);
+    void getCurrentLevel(QAbstractButton *button, bool checked);
 
     ///
     /// \brief Listens to the play button being clicked
@@ -52,6 +61,11 @@ public slots:
     /// it listens to the startscreen class
     ///
     void receiveStartingNewGame();
+
+    ///
+    /// \brief Highlights the level button that is sent to the method
+    ///
+    void updateCurrentLevel(int levelIndex);
 
 signals:
     ///
