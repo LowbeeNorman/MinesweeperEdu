@@ -12,40 +12,40 @@
 class LessonLevel
 {
 public:
-    LessonLevel(int level);
-    LessonLevel();
-    LessonLevel (const LessonLevel &other);
-    ~LessonLevel ();
-
-    LessonLevel &operator= (LessonLevel other);
+    LessonLevel ();
 
     ///
     /// \brief constructs a LessonLevel from a given QJsonDocument
     /// \param doc
     ///
-    LessonLevel(QJsonDocument &doc);
+    LessonLevel (QJsonDocument &doc, Minefield *minefield);
+
+    LessonLevel (const LessonLevel &other);
+    ~LessonLevel ();
+    LessonLevel &operator= (LessonLevel other);
+
     ///
     /// \brief returns the topic of this LessonLevel
     /// \return topic of this
     ///
-    const QString& getTopic();
+    const QString &getTopic();
     ///
     /// \brief returns the string message from the given index
     /// \param indexOfLessonGuidance index of the message from the list of messages
     /// \return message of index
     ///
-    const QString& getMessageFromIndex(int indexOfLessonGuidance);
+    const QString &getMessageFromIndex(int indexOfLessonGuidance);
     ///
     /// \brief returns the string instruction from the given index
     /// \param indexOfInstruction index of the message from the list of instructions
     /// \return instruction of index
     ///
-    const QString& getInstructionFromIndex(int indexOfInstruction);
+    const QString &getInstructionFromIndex(int indexOfInstruction);
     ///
     /// \brief returns the Minefield contained in this LessonLevel
     /// \return Minefield in this
     ///
-    Minefield& getMinefield();
+    Minefield &getMinefield();
     ///
     /// \brief returns the number of messages this LessonLevel contains
     /// \return number of messages
@@ -76,8 +76,7 @@ public:
 private:
     QString topic;
     QList<QString> lessonGuidance;
-    Quiz *quiz;
-    // Minefield *minefield;
+    Quiz quiz;
     int numMessages;
 };
 

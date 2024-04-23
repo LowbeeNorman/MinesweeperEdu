@@ -18,7 +18,7 @@ public:
     /// \brief constructs a Quiz from the given QJsonObject
     /// \param obj
     ///
-    Quiz(QJsonObject &obj);
+    Quiz (QJsonObject &obj, Minefield *minefield);
     ///
     /// \brief assignment operator
     /// \param rhs

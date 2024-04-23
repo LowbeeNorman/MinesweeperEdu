@@ -31,7 +31,7 @@ void Lesson::makeConnections (Minefield &mines)
     // mines.requestBoard ();
     connect (ui->board, &MinesweeperView::requestBoard
             , &mines, &Minefield::requestBoard);
-    ui->board->setBoardSize (mines.getSize ());
+    // ui->board->setBoardSize (mines.getSize ());
 
     connect (ui->board, &MinesweeperView::clear, &mines, &Minefield::clear);
     connect (ui->board, &MinesweeperView::flag,  &mines, &Minefield::flag);

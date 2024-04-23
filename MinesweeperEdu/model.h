@@ -13,7 +13,11 @@ public:
     explicit Model (QObject *parent = nullptr);
     ~Model ();
 
+    Minefield &getMinefield ();
+
 private:
+    Minefield minefield;
+
     // list of tips
     QList<QString> gameTips;
     // number of lessons
@@ -21,7 +25,7 @@ private:
     // list of all Lessons
     QList<LessonLevel> lessons;
     // current LessonLevel the user is on
-    LessonLevel &currentLesson;
+    LessonLevel currentLesson;
     int currentLessonIndex;
     // current Message index of the current LessonLevel the user is on
     int currentMessageIndex;

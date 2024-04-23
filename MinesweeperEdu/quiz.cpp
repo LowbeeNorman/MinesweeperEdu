@@ -18,30 +18,31 @@ Quiz::Quiz (const Quiz &other)
     : correctMoves (other.correctMoves)
     , completedMoves (other.completedMoves)
     , instructions (other.instructions)
+    , minefield (other.minefield)
     , numInstructions (other.numInstructions)
     , numCorrectMovesLeft (other.numCorrectMovesLeft)
+{}
+
+Quiz::~Quiz() {}
+
+Quiz::Quiz(QJsonObject &obj, Minefield *minefield)
+    : minefield (minefield)
 {
-    minefield = new Minefield (*other.minefield);
-}
-
-Quiz::~Quiz() {
-    if(minefield != nullptr)
-        delete minefield;
-}
-
-Quiz::Quiz(QJsonObject &obj) {
     int width = obj.value("width").toInt();
     int height = obj.value("height").toInt();
 
-    QJsonArray minefieldArr = obj.value("minefield").toArray();
-    bool field[minefieldArr.size ()] = {false};
-    // Add all boolean values contained in the QJsonArray to the bool[]
-    for(int i = 0; i < minefieldArr.size (); ++i)
     {
-        field[i] = minefieldArr[i].toBool();
+        // set up the minefield with the values from json
+        QJsonArray minefieldArr = obj.value("minefield").toArray();
+        bool field[minefieldArr.size ()] = {false};
+        // Add all boolean values contained in the QJsonArray to the bool[]
+        for(int i = 0; i < minefieldArr.size (); ++i)
+        {
+            field[i] = minefieldArr[i].toBool();
+        }
+        minefield->setField (QSize (width, height), field);
     }
-    // Call method in minefield that constructs the board using the values collected.
-    this->minefield = new Minefield (QSize (width, height), field);
+
     // Extract correct moves
     QJsonArray correctMovesArr = obj.value("correctMoves").toArray();
     for(int i = 0; i < correctMovesArr.size(); ++i)
@@ -50,6 +51,7 @@ Quiz::Quiz(QJsonObject &obj) {
         correctMoves.append(UserMove(userMoveObj));
     }
     numCorrectMovesLeft = correctMovesArr.size();
+
     //Extract completed moves
     QJsonArray completedMovesArr = obj.value("completedMoves").toArray();
     for(int i = 0; i < completedMovesArr.size(); ++i)
@@ -57,6 +59,7 @@ Quiz::Quiz(QJsonObject &obj) {
         QJsonObject completedMovesObj = completedMovesArr.at(i).toObject();
         completedMoves.append(UserMove(completedMovesObj));
     }
+
     //Carry out moves
     executeMovesAtIndex(0);
     // Extract instructions
@@ -74,7 +77,7 @@ Minefield *Quiz::getMinefield ()
     return minefield;
 }
 
-const QString& Quiz::getInstructionFromIndex(int indexOfInstruction)
+const QString &Quiz::getInstructionFromIndex(int indexOfInstruction)
 {
     return instructions.at(indexOfInstruction);
 }

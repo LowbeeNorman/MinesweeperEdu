@@ -2,7 +2,9 @@
 
 MinesweeperView::MinesweeperView (QWidget *parent)
     : QGraphicsView (parent)
+    , size (0, 0)
     , pixmap (nullptr)
+    , enabled (true)
 {
     mainScene = new QGraphicsScene (this);
     pixmapItem = new QGraphicsPixmapItem ();
@@ -25,8 +27,6 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     numbers[7] = new QPixmap (QString (":/images/seven.png"));
     numbers[8] = new QPixmap (QString (":/images/eight.png"));
     numbers[9] = new QPixmap (QString (":/images/mine.png"));
-
-    enabled = true;
 }
 
 MinesweeperView::~MinesweeperView ()
@@ -49,31 +49,51 @@ int MinesweeperView::pointToIndex (int x, int y)
     return y * size.width() + x;
 }
 
+void MinesweeperView::internalResize ()
+{
+    // set the scene rect to the pixmap rect since that is all that is
+    // rendered in the view
+    setSceneRect (pixmap->rect ());
+    qInfo () << "pixmap rect" << pixmap->rect ();
+    this->resetTransform ();
+    // this->centerOn (pixmapItem);
+    // find out the maximum dimension of the pixmap
+    int width = pixmap->size ().width ();
+    int height = pixmap->size ().height ();
+    int maxDim = (height > width) ? height : width;
+    // find the minimum dimension of the view
+    int minViewDim = (this->contentsRect ().size ().width ()
+                      < this->contentsRect ().size ().height ())
+                         ? this->contentsRect ().size ().width ()
+                         : this->contentsRect ().size ().height ();
+    // scale the view so the minimum dimension of the view is the same as the
+    // maximum dimension of the pixmap
+    this->scale
+        (minViewDim / (double) maxDim
+         , minViewDim / (double) maxDim);
+}
+
 void MinesweeperView::setBoardSize (QSize size)
 {
+    qInfo () << "changing size to" << size;
     this->size = size;
+    if (pixmap != nullptr)
+        delete pixmap;
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE
                                , size.height () * TILE_SIZE));
     pixmap->fill (Qt::red);
     pixmapItem->setPixmap (*pixmap);
     // zoom the view on the scene
-    // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
-    int width = mainScene->sceneRect ().width ();
-    int height = mainScene->sceneRect ().height ();
-    int maxDim = (height > width) ? height : width;
-    this->resetTransform ();
-    this->scale
-        (this->contentsRect ().width() / (double) maxDim
-        , this->contentsRect ().width() / (double) maxDim);
-    emit requestBoard ();
+    internalResize ();
+    // emit requestBoard ();
 }
 
-void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
+void MinesweeperView::receiveBoard (const QSize &boardSize, const int *board, const Tile *covers)
 {
     // if the size hasn't been initialized, exit this method
-    if (nullptr == pixmap)
-        return;
+    if (nullptr == pixmap || size != boardSize)
+        setBoardSize (boardSize);
     // pixmap->fill (Qt::transparent);
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
@@ -110,7 +130,9 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
 // endgame stuff
 void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
 {
+    Q_UNUSED (mines);
     qInfo () << "dead at" << where;
+    enabled = false;
 }
 
 void MinesweeperView::won (QList<QPoint> mines)
@@ -120,6 +142,7 @@ void MinesweeperView::won (QList<QPoint> mines)
     {
         flagPlaced (mine, numFlags);
     }
+    enabled = false;
 }
 
 // translation methods (very helpful)
@@ -187,30 +210,29 @@ void MinesweeperView::mousePressEvent (QMouseEvent *event)
     // accept the event so it doesn't get passed to the parent
     event->accept ();
 
-    if (enabled)
+    if (!enabled)
+        return;
+    mouse = event->button ();
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
+    switch (mouse)
     {
-        mouse = event->button ();
-        QPoint minesweeperPos = translateToMinesweeper
-            (mapToScene (event->pos ()));
-        switch (mouse)
-        {
-        case Qt::LeftButton:
-            // highlight this tile if it's covered
-            emit requestIfCovered (minesweeperPos);
-            break;
-        case Qt::RightButton:
-            emit flagAttempted (minesweeperPos);
-            // flag/unflag this tile
-            // emit flag (minesweeperPos);
-            break;
-        case Qt::MiddleButton:
-            // highlight the covered tiles around this tile, showing the user
-            // what will be cleared if there are enough flags around the point
-            emit requestChord (minesweeperPos);
-            break;
-        default:
-            break;
-        }
+    case Qt::LeftButton:
+        // highlight this tile if it's covered
+        emit requestIfCovered (minesweeperPos);
+        break;
+    case Qt::RightButton:
+        emit flagAttempted (minesweeperPos);
+        // flag/unflag this tile
+        // emit flag (minesweeperPos);
+        break;
+    case Qt::MiddleButton:
+        // highlight the covered tiles around this tile, showing the user
+        // what will be cleared if there are enough flags around the point
+        emit requestChord (minesweeperPos);
+        break;
+    default:
+        break;
     }
 }
 
@@ -241,27 +263,26 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     // accept the event so it doesn't get passed to the parent
     event->accept ();
 
-    if (enabled)
+    if (!enabled)
+        return;
+    // clear the highlight of the chord
+    displayHighlight (QList<QPoint> ());
+    QPoint minesweeperPos = translateToMinesweeper
+        (mapToScene (event->pos ()));
+    switch (mouse)
     {
-        // clear the highlight of the chord
-        displayHighlight (QList<QPoint> ());
-        QPoint minesweeperPos = translateToMinesweeper
-            (mapToScene (event->pos ()));
-        switch (mouse)
-        {
-        case Qt::LeftButton:
-            // DON'T DELETE:
-             emit clearAttempted (minesweeperPos);
-            // clear
-            // emit clear (minesweeperPos);
-            break;
-        case Qt::MiddleButton:
-            // chord
-             emit chord (minesweeperPos);
-            break;
-        default:
-            break;
-        }
+    case Qt::LeftButton:
+        // DON'T DELETE:
+         emit clearAttempted (minesweeperPos);
+        // clear
+        // emit clear (minesweeperPos);
+        break;
+    case Qt::MiddleButton:
+        // chord
+         emit chord (minesweeperPos);
+        break;
+    default:
+        break;
     }
     // reset the mouse button
     mouse = Qt::NoButton;
@@ -273,16 +294,17 @@ void MinesweeperView::resizeEvent (QResizeEvent* event)
     event->accept ();
     // zoom the view on the scene
     // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
-    int width = mainScene->sceneRect ().width ();
-    int height = mainScene->sceneRect ().height ();
-    int maxDim = (height > width) ? height : width;
-    int minViewDim = (event->size ().width() < event->size ().height ())
-                     ? event->size ().width ()
-                     : event->size ().height ();
-    this->resetTransform ();
-    this->scale
-        (minViewDim / (double) maxDim
-        , minViewDim / (double) maxDim);
+    // int width = mainScene->sceneRect ().width ();
+    // int height = mainScene->sceneRect ().height ();
+    // int maxDim = (height > width) ? height : width;
+    // int minViewDim = (event->size ().width() < event->size ().height ())
+    //                  ? event->size ().width ()
+    //                  : event->size ().height ();
+    // this->resetTransform ();
+    // this->scale
+    //     (minViewDim / (double) maxDim
+    //     , minViewDim / (double) maxDim);
+    internalResize ();
 }
 
 void MinesweeperView::clearCell (QPoint origin)
