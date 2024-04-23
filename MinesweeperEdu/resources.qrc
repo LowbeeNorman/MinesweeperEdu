@@ -62,6 +62,12 @@
         <file>continueSelected.png</file>
         <file>newLesson.png</file>
         <file>newLessonSelected.png</file>
+        <file>levelSelect.png</file>
+        <file>levelSelectSelected.png</file>
+        <file>next.png</file>
+        <file>nextSelected.png</file>
+        <file>previous.png</file>
+        <file>previousSelected.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
@@ -78,10 +84,5 @@
         <file>lesson11.json</file>
         <file>lesson12.json</file>
     </qresource>
-    <qresource prefix="/">
-        <file>levelSelect.png</file>
-        <file>levelSelectSelected.png</file>
-        <file>next.png</file>
-        <file>nextSelected.png</file>
-    </qresource>
+    <qresource prefix="/"/>
 </RCC>
