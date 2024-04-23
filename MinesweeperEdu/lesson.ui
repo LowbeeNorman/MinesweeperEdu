@@ -34,8 +34,22 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:enabled{border-image: url(:/images/levelSelect.png);}
-QPushButton:pressed{border-image: url(:/images/levelSelectSelected.png);}</string>
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/levelSelect.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: orange;
+	border: 6px solid orange;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: red;
+	border: 6px solid red;
+	border-radius: 6px;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -84,9 +98,22 @@ QPushButton:pressed{border-image: url(:/images/levelSelectSelected.png);}</strin
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:enabled{border-image: url(:/images/next.png);}
-QPushButton:pressed{border-image: url(:/images/nextSelected.png);}
-</string>
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/next.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -108,8 +135,22 @@ QPushButton:pressed{border-image: url(:/images/nextSelected.png);}
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:enabled{border-image: url(:/images/previous.png);}
-QPushButton:pressed{border-image: url(:/images/previousSelected.png);}</string>
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/previous.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
        </property>
        <property name="text">
         <string/>

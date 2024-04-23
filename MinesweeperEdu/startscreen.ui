@@ -24,8 +24,22 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:enabled{border-image: url(:/images/newLesson.png);}
-QPushButton:pressed{border-image: url(:/images/newLessonSelected.png);}</string>
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/newLesson.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -40,9 +54,22 @@ QPushButton:pressed{border-image: url(:/images/newLessonSelected.png);}</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:enabled{border-image: url(:/images/continue.png);}
-QPushButton:pressed{border-image: url(:/images/continueSelected.png);}
-</string>
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/continue.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -61,6 +88,9 @@ QPushButton:pressed{border-image: url(:/images/continueSelected.png);}
         <font>
          <pointsize>30</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>MinesweeperEdu</string>

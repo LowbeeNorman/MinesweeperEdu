@@ -9,6 +9,7 @@
 
 #include <QImageWriter>
 #include <QAbstractButton>
+#include <QScrollBar>
 
 LevelSelect::LevelSelect(QWidget *parent)
     : QWidget(parent)
@@ -68,14 +69,14 @@ LevelSelect::LevelSelect(QWidget *parent)
                 "border-image: url(\":/images/level%1.png\");"
             "}"
             "QPushButton:hover {"
-                "background: gray;"
-                "border: 2px solid gray;"
-                "border-radius: 2px;"
+                "background: orange;"
+                "border: 6px solid orange;"
+                "border-radius: 6px;"
             "}"
             "QPushButton:checked {"
-                "background: orange;"
-                "border: 2px solid orange;"
-                "border-radius: 2px;"
+                "background: green;"
+                "border: 6px solid green;"
+                "border-radius: 6px;"
             "}"
         ).arg(i));
         // set the mask so it looks right and stuff
@@ -88,6 +89,7 @@ LevelSelect::LevelSelect(QWidget *parent)
         // Add the button to the group with id i
         group->addButton (button, i);
     }
+    ui->graphicsView->verticalScrollBar()->setSliderPosition(0);
 
     connect (group, &QButtonGroup::buttonToggled
             , this, &LevelSelect::getCurrentLevel);

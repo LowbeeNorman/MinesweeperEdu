@@ -46,19 +46,33 @@
        <widget class="QPushButton" name="menuButton">
         <property name="minimumSize">
          <size>
-          <width>180</width>
-          <height>50</height>
+          <width>135</width>
+          <height>45</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>180</width>
-          <height>50</height>
+          <width>135</width>
+          <height>45</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton:enabled{border-image: url(:/images/menu.png);}
-QPushButton:pressed{border-image: url(:/images/menuPressed.png);}</string>
+         <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/menu.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
         </property>
         <property name="text">
          <string/>
@@ -93,20 +107,39 @@ QPushButton:pressed{border-image: url(:/images/menuPressed.png);}</string>
         </property>
         <property name="minimumSize">
          <size>
-          <width>180</width>
-          <height>50</height>
+          <width>150</width>
+          <height>45</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>180</width>
-          <height>50</height>
+          <width>150</width>
+          <height>45</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton:disabled{border-image: url(:/images/start.png);}
-QPushButton:enabled{border-image: url(:/images/startActive.png);}
-QPushButton:pressed{border-image: url(:/images/startPressed.png);}</string>
+         <string notr="true">QPushButton:disabled {
+	border-image: url(:/images/start.png);
+	background: gray;
+	border: 6px solid gray;
+	border-radius: 6px;
+}
+QPushButton:enabled {
+	border-image: url(:/images/startActive.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
         </property>
         <property name="text">
          <string/>
