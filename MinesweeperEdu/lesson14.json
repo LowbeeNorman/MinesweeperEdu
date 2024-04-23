@@ -58,7 +58,8 @@
                             "x": 0,
                             "y": 1
                         },
-                        "type": 1
+                        "type": 1,
+                        "index": 0
                     },
                     {
                         "cell":
@@ -66,7 +67,8 @@
                             "x": 1,
                             "y": 1
                         },
-                        "type": 1
+                        "type": 1,
+                        "index": 0
                     },
                     {
                         "cell":
@@ -74,7 +76,8 @@
                             "x": 2,
                             "y": 1
                         },
-                        "type": 1
+                        "type": 1,
+                        "index": 0
                     },
                     {
                         "cell":
@@ -82,7 +85,8 @@
                             "x": 3,
                             "y": 1
                         },
-                        "type": 1
+                        "type": 1,
+                        "index": 0
                     },
                     {
                         "cell":
@@ -90,7 +94,8 @@
                             "x": 0,
                             "y": 2
                         },
-                        "type": 1
+                        "type": 1,
+                        "index": 0
                     }
                 ],
                 "instructions":

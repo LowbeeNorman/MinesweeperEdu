@@ -62,6 +62,11 @@ public slots:
     ///
     void receiveStartingNewGame();
 
+    ///
+    /// \brief Highlights the level button that is sent to the method
+    ///
+    void updateCurrentLevel(int levelIndex);
+
 signals:
     ///
     /// \brief Emits the current level, so that we can load the correct lesson

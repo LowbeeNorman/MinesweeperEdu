@@ -127,6 +127,12 @@ signals:
     /// \brief Informs the view it is time for the user to start a lesson
     ///
     void lessonTime ();
+
+    ///
+    /// \brief Sends the levelIndex to whatever asks for it
+    /// \param levelIndex - lesson number
+    ///
+    void sendCurrentLevel(int levelIndex);
 };
 
 #endif // MODEL_H

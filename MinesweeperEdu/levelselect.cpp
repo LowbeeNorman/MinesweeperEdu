@@ -65,18 +65,19 @@ LevelSelect::LevelSelect(QWidget *parent)
         button->setStyleSheet (QString (
             "QPushButton {"
                 "background: transparent;"
-                "border: none;"
+                "border: 6px solid white;"
+                "border-radius: 6px;"
                 "border-image: url(\":/images/level%1.png\");"
             "}"
             "QPushButton:hover {"
                 "background: orange;"
-                "border: 6px solid orange;"
-                "border-radius: 6px;"
+                "border: 4px solid orange;"
+                "border-radius: 4px;"
             "}"
             "QPushButton:checked {"
                 "background: green;"
-                "border: 6px solid green;"
-                "border-radius: 6px;"
+                "border: 4px solid green;"
+                "border-radius: 4px;"
             "}"
         ).arg(i));
         // set the mask so it looks right and stuff
@@ -89,7 +90,7 @@ LevelSelect::LevelSelect(QWidget *parent)
         // Add the button to the group with id i
         group->addButton (button, i);
     }
-    ui->graphicsView->verticalScrollBar()->setSliderPosition(0);
+    ui->graphicsView->verticalScrollBar()->setSliderPosition(1);
 
     connect (group, &QButtonGroup::buttonToggled
             , this, &LevelSelect::getCurrentLevel);
@@ -140,6 +141,26 @@ void LevelSelect::receiveStartingNewGame()
     ui->levelLabel->clear();
 
     // If we lock levels not unlocked yet, that needs to be changed in here!
+}
+
+void LevelSelect::updateCurrentLevel(int levelIndex)
+{
+
+    if (currentLevel != 0) {
+        QPushButton *button = static_cast<QPushButton *>(group->button(currentLevel));
+        if (button) {
+            button->setChecked(false);
+        }
+    }
+
+    currentLevel = levelIndex;
+
+    if (currentLevel != 0) {
+        QPushButton *button = static_cast<QPushButton *>(group->button(currentLevel));
+        if (button) {
+            button->setChecked(true);
+        }
+    }
 }
 
 
