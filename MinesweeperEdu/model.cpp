@@ -87,6 +87,25 @@ void Model::nextMessage()
     }
 }
 
+void Model::previousMessage ()
+{
+    if (currentMessageIndex == 0)
+        emit sendCurrentMessage
+            (currentLesson.getMessageFromIndex(0));
+    else if (currentInstructionIndex != 0)
+    {
+        currentInstructionIndex--;
+        emit sendCurrentInstruction
+            (currentLesson.getInstructionFromIndex(currentInstructionIndex));
+    }
+    else if (currentInstructionIndex == 0)
+    {
+        currentMessageIndex--;
+        emit sendCurrentMessage
+            (currentLesson.getMessageFromIndex(currentMessageIndex));
+    }
+}
+
 void Model::receiveClearAttempted (QPoint origin)
 {
     if(currentLesson.hasCorrectMovesLeft())

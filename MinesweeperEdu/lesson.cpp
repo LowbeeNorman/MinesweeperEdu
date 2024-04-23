@@ -15,6 +15,8 @@ Lesson::Lesson(QWidget *parent) :
             , this, &Lesson::backButtonClicked);
     connect(ui->nextButton, &QPushButton::clicked
             , this, &Lesson::nextButtonClicked);
+    connect(ui->previousButton, &QPushButton::clicked
+            , this, &Lesson::previousButtonClicked);
 }
 
 Lesson::~Lesson()
@@ -61,6 +63,11 @@ void Lesson::backButtonClicked()
 void Lesson::nextButtonClicked()
 {
     emit getNextMessage();
+}
+
+void Lesson::previousButtonClicked()
+{
+    emit getPreviousMessage();
 }
 
 void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Minefield& minefield)

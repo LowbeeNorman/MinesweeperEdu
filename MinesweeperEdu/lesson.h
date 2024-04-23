@@ -34,10 +34,12 @@ signals:
     void requestBoard ();
     void sendBackClicked (int pageIndex);
     void getNextMessage ();
+    void getPreviousMessage ();
 
 public slots:
     void backButtonClicked ();
     void nextButtonClicked ();
+    void previousButtonClicked ();
     ///
     /// \brief Listens for the lesson info
     /// \param topic

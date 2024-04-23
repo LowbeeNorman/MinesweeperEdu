@@ -53,6 +53,11 @@ public slots:
     void nextMessage ();
 
     ///
+    /// \brief Returns the previous message to the view
+    ///
+    void previousMessage ();
+
+    ///
     /// \brief receives event of clear attempted at the origin
     /// \param origin cell left-clicked
     ///
