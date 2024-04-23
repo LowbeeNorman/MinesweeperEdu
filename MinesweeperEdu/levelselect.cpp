@@ -143,6 +143,26 @@ void LevelSelect::receiveStartingNewGame()
     // If we lock levels not unlocked yet, that needs to be changed in here!
 }
 
+void LevelSelect::updateCurrentLevel(int levelIndex)
+{
+
+    if (currentLevel != 0) {
+        QPushButton *button = static_cast<QPushButton *>(group->button(currentLevel));
+        if (button) {
+            button->setChecked(false);
+        }
+    }
+
+    currentLevel = levelIndex;
+
+    if (currentLevel != 0) {
+        QPushButton *button = static_cast<QPushButton *>(group->button(currentLevel));
+        if (button) {
+            button->setChecked(true);
+        }
+    }
+}
+
 
 
 
