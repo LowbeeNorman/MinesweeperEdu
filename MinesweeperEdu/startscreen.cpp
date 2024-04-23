@@ -43,7 +43,7 @@ void StartScreen::setUpBox2D()
     b2BodyDef groundBodyDef;
 
     // Choose where the ground is
-    groundBodyDef.position.Set(0.0f, -15.0f);
+    groundBodyDef.position.Set(0.0f, -20.0f);
 
     // Call the body factory which allocates memory for the ground body
     // from a pool and creates the ground box shape (also from a pool).
@@ -66,7 +66,7 @@ void StartScreen::setUpBox2D()
     bodyDef.type = b2_dynamicBody;
 
     // Starting position of moving item
-    bodyDef.position.Set(0.0f, 3.0f);
+    bodyDef.position.Set(0.0f, 0.0f);
 
     // Angle of moving item (0 because I only care about 1D motion)
     bodyDef.angle = 0;
