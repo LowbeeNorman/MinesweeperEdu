@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
+#include <QButtonGroup>
 
 namespace Ui {
 class LevelSelect;
@@ -21,8 +22,6 @@ class LevelSelect;
 class LevelSelect : public QWidget
 {
     Q_OBJECT
-    QGraphicsPixmapItem *pixmapItem;
-    QPixmap* levels[40];
 
 public:
     explicit LevelSelect(QWidget *parent = nullptr);
@@ -32,7 +31,12 @@ public:
 private:
     Ui::LevelSelect *ui;
     int currentLevel = 0;
-    int previousIndex = -1;
+
+    QGraphicsPixmapItem *pixmapItem;
+    QPixmap *levels[40];
+    QGraphicsScene *scene;
+
+    QButtonGroup *group;
 
 public slots:
     ///
@@ -40,7 +44,7 @@ public slots:
     /// \param Index of the currently selected level
     /// \param Last clicked button
     ///
-    void getCurrentLevel(int levelIndex, QPushButton *button);
+    void getCurrentLevel(QAbstractButton *button, bool checked);
 
     ///
     /// \brief Listens to the play button being clicked
