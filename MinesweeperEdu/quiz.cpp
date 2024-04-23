@@ -5,6 +5,7 @@ Quiz::Quiz() : minefield(nullptr) {}
 
 Quiz& Quiz::operator=(Quiz rhs) {
     std::swap(correctMoves, rhs.correctMoves);
+    std::swap(completedMoves, rhs.completedMoves);
     std::swap(instructions, rhs.instructions);
     std::swap(numInstructions, rhs.numInstructions);
     std::swap(numCorrectMovesLeft, rhs.numCorrectMovesLeft);
@@ -15,6 +16,7 @@ Quiz& Quiz::operator=(Quiz rhs) {
 
 Quiz::Quiz (const Quiz &other)
     : correctMoves (other.correctMoves)
+    , completedMoves (other.completedMoves)
     , instructions (other.instructions)
     , numInstructions (other.numInstructions)
     , numCorrectMovesLeft (other.numCorrectMovesLeft)
@@ -48,6 +50,28 @@ Quiz::Quiz(QJsonObject &obj) {
         correctMoves.append(UserMove(userMoveObj));
     }
     numCorrectMovesLeft = correctMovesArr.size();
+    //Extract completed moves
+    QJsonArray completedMovesArr = obj.value("completedMoves").toArray();
+    for(int i = 0; i < completedMovesArr.size(); ++i)
+    {
+        QJsonObject userMoveObj = completedMovesArr.at(i).toObject();
+        completedMoves.append(UserMove(userMoveObj));
+    }
+    //Carry out moves
+    for(int i = 0; i < completedMoves.size(); ++i)
+    {
+        switch(completedMoves[i].getType())
+        {
+            case UserMove::MoveType::FLAG:
+            {
+                this->minefield->flag(completedMoves[i].getCell());
+            }
+            case UserMove::MoveType::CLEAR:
+            {
+                this->minefield->clear(completedMoves[i].getCell());
+            }
+        }
+    }
     // Extract instructions
     QJsonArray instructionsArr = obj.value("instructions").toArray();
     numInstructions = 0;

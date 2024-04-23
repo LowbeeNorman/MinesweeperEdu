@@ -55,6 +55,7 @@ public:
     bool hasCorrectMovesLeft ();
 private:
     QList<UserMove> correctMoves;
+    QList<UserMove> completedMoves;
     QList<QString> instructions;
     Minefield *minefield;
     static const QList<QString> errorMessages;
