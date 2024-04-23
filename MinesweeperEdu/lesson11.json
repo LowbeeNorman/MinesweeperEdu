@@ -41,6 +41,49 @@
                         "type": 1
                     }
                 ],
+                "completedMoves":
+                [
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 2
+                        },
+                        "type": 1
+                    }
+                ],
                 "instructions":
                 [
                     "Using the information about the pattern you just learned, CLEAR each tile that you know 100% is a mine going from top left to bottom right of the board. Click the \"Next\" button at the bottom right of your screen when you are done."
