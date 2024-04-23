@@ -65,18 +65,19 @@ LevelSelect::LevelSelect(QWidget *parent)
         button->setStyleSheet (QString (
             "QPushButton {"
                 "background: transparent;"
-                "border: none;"
+                "border: 6px solid white;"
+                "border-radius: 6px;"
                 "border-image: url(\":/images/level%1.png\");"
             "}"
             "QPushButton:hover {"
                 "background: orange;"
-                "border: 6px solid orange;"
-                "border-radius: 6px;"
+                "border: 4px solid orange;"
+                "border-radius: 4px;"
             "}"
             "QPushButton:checked {"
                 "background: green;"
-                "border: 6px solid green;"
-                "border-radius: 6px;"
+                "border: 4px solid green;"
+                "border-radius: 4px;"
             "}"
         ).arg(i));
         // set the mask so it looks right and stuff
@@ -89,7 +90,7 @@ LevelSelect::LevelSelect(QWidget *parent)
         // Add the button to the group with id i
         group->addButton (button, i);
     }
-    ui->graphicsView->verticalScrollBar()->setSliderPosition(0);
+    ui->graphicsView->verticalScrollBar()->setSliderPosition(1);
 
     connect (group, &QButtonGroup::buttonToggled
             , this, &LevelSelect::getCurrentLevel);
