@@ -25,7 +25,7 @@ LevelSelect::LevelSelect(QWidget *parent)
     ui->graphicsView->setSceneRect(pixmapItem->boundingRect());
 
     // create the group to add buttons to
-    group = new QButtonGroup (ui->graphicsView);
+    group = new QButtonGroup (ui->verticalLayout);
     group->setExclusive (true);
 
     int numButtons = 20;
@@ -44,7 +44,7 @@ LevelSelect::LevelSelect(QWidget *parent)
 
     for(int i = 0; i <= numButtons; i++)
     {
-        QPushButton *button = new QPushButton(ui->graphicsView);
+        QPushButton *button = new QPushButton();
         scene->addWidget(button);
 
         if (i == 0)
