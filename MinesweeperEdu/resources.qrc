@@ -58,6 +58,10 @@
         <file>startActive.png</file>
         <file>startPressed.png</file>
         <file>menuPressed.png</file>
+        <file>continue.png</file>
+        <file>continueSelected.png</file>
+        <file>newLesson.png</file>
+        <file>newLessonSelected.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
