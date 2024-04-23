@@ -78,4 +78,10 @@
         <file>lesson11.json</file>
         <file>lesson12.json</file>
     </qresource>
+    <qresource prefix="/">
+        <file>levelSelect.png</file>
+        <file>levelSelectSelected.png</file>
+        <file>next.png</file>
+        <file>nextSelected.png</file>
+    </qresource>
 </RCC>
