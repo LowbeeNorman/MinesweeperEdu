@@ -61,6 +61,7 @@
         <file>levelSelect.png</file>
         <file>next.png</file>
         <file>previous.png</file>
+        <file>minesweeperEduLogo.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
