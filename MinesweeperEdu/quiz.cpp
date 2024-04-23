@@ -60,7 +60,7 @@ Quiz::Quiz(QJsonObject &obj) {
     //Carry out moves
     for(int i = 0; i < completedMoves.size(); ++i)
     {
-        if(completedMoves[i].getInstructionIndex()==1)
+        if(completedMoves[i].getInstructionIndex()==0)
         {
             switch(completedMoves[i].getType())
             {
