@@ -23,8 +23,26 @@
          <pointsize>21</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/newLesson.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
+       </property>
        <property name="text">
-        <string>New Lesson</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -35,8 +53,26 @@
          <pointsize>21</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/continue.png);
+	background: black;
+	border: 6px solid black;
+	border-radius: 6px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 6px solid purple;
+	border-radius: 6px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 6px solid green;
+	border-radius: 6px;
+}</string>
+       </property>
        <property name="text">
-        <string>Continue</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -52,6 +88,9 @@
         <font>
          <pointsize>30</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>MinesweeperEdu</string>
