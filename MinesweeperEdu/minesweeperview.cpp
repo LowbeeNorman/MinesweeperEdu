@@ -2,6 +2,7 @@
 
 MinesweeperView::MinesweeperView (QWidget *parent)
     : QGraphicsView (parent)
+    , size (0, 0)
     , pixmap (nullptr)
 {
     mainScene = new QGraphicsScene (this);
@@ -51,6 +52,7 @@ int MinesweeperView::pointToIndex (int x, int y)
 
 void MinesweeperView::setBoardSize (QSize size)
 {
+    qInfo () << "changing size to" << size;
     this->size = size;
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE
@@ -66,14 +68,14 @@ void MinesweeperView::setBoardSize (QSize size)
     this->scale
         (this->contentsRect ().width() / (double) maxDim
         , this->contentsRect ().width() / (double) maxDim);
-    emit requestBoard ();
+    // emit requestBoard ();
 }
 
-void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
+void MinesweeperView::receiveBoard (const QSize &boardSize, const int *board, const Tile *covers)
 {
     // if the size hasn't been initialized, exit this method
-    if (nullptr == pixmap)
-        return;
+    if (nullptr == pixmap || size != boardSize)
+        setBoardSize (boardSize);
     // pixmap->fill (Qt::transparent);
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
@@ -110,6 +112,7 @@ void MinesweeperView::receiveBoard (const int *board, const Tile *covers)
 // endgame stuff
 void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
 {
+    Q_UNUSED (mines);
     qInfo () << "dead at" << where;
 }
 

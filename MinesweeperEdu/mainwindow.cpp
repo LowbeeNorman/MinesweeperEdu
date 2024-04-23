@@ -18,14 +18,22 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->startPage, &StartScreen::sendNewLessonClicked
             , this, &MainWindow::updateScreenIndex);
 
-    connect(ui->startPage, &StartScreen::sendContinueClicked, this, &MainWindow::loadPrevious);
-    connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked, this, &MainWindow::updateScreenIndex);
-    connect(ui->lessonPage, &Lesson::sendBackClicked, this, &MainWindow::updateScreenIndex);
-    connect(ui->lessonPage, &Lesson::getNextMessage, &model, &Model::nextMessage);
-    connect(ui->lessonPage, &Lesson::getPreviousMessage, &model, &Model::previousMessage);
-    connect(ui->startPage , &StartScreen::startingNewGame, ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
-    connect(ui->winScreenPage, &WinScreen::backToLevelSelect, this, &MainWindow::updateScreenIndex);
-    connect(ui->winScreenPage, &WinScreen::goToNextLesson, this, &MainWindow::nextLessonShortcut);
+    connect(ui->startPage, &StartScreen::sendContinueClicked
+            , this, &MainWindow::loadPrevious);
+    connect(ui->levelSelectPage, &LevelSelect::sendMenuClicked
+            , this, &MainWindow::updateScreenIndex);
+    connect(ui->lessonPage, &Lesson::sendBackClicked
+            , this, &MainWindow::updateScreenIndex);
+    connect(ui->lessonPage, &Lesson::getNextMessage
+            , &model, &Model::nextMessage);
+    connect(ui->lessonPage, &Lesson::getPreviousMessage
+            , &model, &Model::previousMessage);
+    connect(ui->startPage , &StartScreen::startingNewGame
+            , ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
+    connect(ui->winScreenPage, &WinScreen::backToLevelSelect
+            , this, &MainWindow::updateScreenIndex);
+    connect(ui->winScreenPage, &WinScreen::goToNextLesson
+            , this, &MainWindow::nextLessonShortcut);
 
     connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
     // retrieves Lesson number
@@ -51,6 +59,9 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
 
     connect(&model, &Model::quizTime, ui->lessonPage->getBoard(), &MinesweeperView::enableBoard);
     connect(&model, &Model::lessonTime, ui->lessonPage->getBoard(), &MinesweeperView::disableBoard);
+
+    // make the connections with the minefield
+    ui->lessonPage->makeConnections (model.getMinefield ());
 }
 
 MainWindow::~MainWindow()

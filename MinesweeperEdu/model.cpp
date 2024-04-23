@@ -6,14 +6,19 @@
 Model::Model(QObject *parent)
     : QObject{parent}
     , numLessons (20)
-    , lessons (createLessonLevels ())
-    , currentLesson (lessons[0])
+    // , lessons (createLessonLevels ())
+    // , currentLesson (lessons[0])
     , currentLessonIndex (0)
     , currentMessageIndex (0)
     , currentInstructionIndex (0)
 {}
 
 Model::~Model () {}
+
+Minefield &Model::getMinefield ()
+{
+    return minefield;
+}
 
 QList<LessonLevel> Model::createLessonLevels () {
     QList<LessonLevel> lessons;
@@ -34,16 +39,20 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
     {
         return LessonLevel ();
     }
-    //   TODO: return something
     // array of bytes contained in file
     QByteArray array = file.readAll ();
+    // make the json doc
     doc = QJsonDocument::fromJson (array);
-    return LessonLevel (doc);
+    // create the lesson level from json
+    return LessonLevel (doc, &minefield);
 }
 
 void Model::setLesson(int lessonNumber)
 {
-    currentLesson = lessons[lessonNumber-1];
+    // load this lesson from json
+    currentLesson = constructLessonLevelFromJSON
+        (QString (":/json/lesson%1.json").arg (lessonNumber));
+    // TODO find out what the lesson wants the board to look like
     currentLessonIndex = lessonNumber;
     emit lessonTime ();
     emit sendLessonInfo (currentLesson.getTopic()

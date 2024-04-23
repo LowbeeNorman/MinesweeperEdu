@@ -17,12 +17,21 @@ class Minefield : public QObject
     Q_OBJECT
 
 public:
+    ///
+    /// \brief Minefield default constructor that creates a minefield with
+    /// uninitialized field and tiles
+    /// \param parent passed to the base constructor
+    ///
+    Minefield (QObject *parent = nullptr);
     Minefield (QSize boardSize, float mineFreq);
     Minefield (QSize boardSize, bool mines[]);
-    Minefield (const Minefield &other);
 
+    // methods to implement rule of 3
+    Minefield (const Minefield &other);
     ~Minefield ();
     Minefield &operator= (Minefield other);
+
+    void setField (QSize boardSize, bool mines[]);
 
     QSize getSize ();
 private:
@@ -131,7 +140,7 @@ signals:
     ///
     /// \brief updateBoard emitted when the board has changed
     ///
-    void updateBoard (const int *field, const Tile *tiles);
+    void updateBoard (const QSize &boardSize, const int *field, const Tile *tiles);
 
     void sendChord (QList<QPoint> coveredTiles);
     void sendCovered (QPoint origin, bool covered);

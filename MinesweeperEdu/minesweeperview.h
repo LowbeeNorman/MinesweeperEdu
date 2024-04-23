@@ -64,7 +64,7 @@ signals:
     ///
     void flagAttempted (QPoint origin);
 public slots:
-    void receiveBoard (const int *board, const Tile *covers);
+    void receiveBoard (const QSize &boardSize, const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);
     void flagRemoved (QPoint point, int numFlags);
     void displayHighlight (QList<QPoint> coveredTiles);

@@ -11,6 +11,18 @@
 #include <cstdio>
 #include <cstring>
 
+Minefield::Minefield (QObject *parent)
+    : QObject (parent)
+    , boardSize (0, 0)
+    , arrayLength (0)
+    , numMines (0)
+    , numFlags (0)
+    , field (nullptr)
+    , tiles (nullptr)
+    , firstMove (false)
+    , initialized (false)
+{}
+
 Minefield::Minefield(QSize boardSize, float mineFreq)
     : QObject (nullptr)
     , boardSize(boardSize)
@@ -67,10 +79,36 @@ Minefield::Minefield (const Minefield &other)
     }
 }
 
-Minefield::~Minefield ()
+void Minefield::setField (QSize boardSize, bool mines[])
 {
+    this->boardSize = boardSize;
+    arrayLength = boardSize.width () * boardSize.height ();
+    firstMove = false;
+    initialized = true;
     delete[] field;
     delete[] tiles;
+    field = new int[arrayLength] {0};
+    tiles = new Tile[arrayLength];
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        tiles[i] = Tile::covered;
+        if (mines[i])
+        {
+            field[i] = 9;
+            numMines++;
+        }
+    }
+    numFlags = numMines;
+    populateFieldNums ();
+    emit updateBoard (boardSize, field, tiles);
+}
+
+Minefield::~Minefield ()
+{
+    if (nullptr != field)
+        delete[] field;
+    if (nullptr != tiles)
+        delete[] tiles;
 }
 
 Minefield &Minefield::operator= (Minefield other)
@@ -273,7 +311,7 @@ void Minefield::clear (QPoint origin)
     }
     if (!internalClear (origin))
         return;
-    emit updateBoard (field, tiles);
+    emit updateBoard (boardSize, field, tiles);
     if (9 == field[pointToIndex (origin)] && Tile::blank == tiles[pointToIndex (origin)])
         emit dead (origin, getMines ());
     else if (checkForWin ())
@@ -317,7 +355,7 @@ void Minefield::chord (QPoint origin) {
                 emit dead (toClear, getMines ());
         }
     }
-    emit updateBoard (field, tiles);
+    emit updateBoard (boardSize, field, tiles);
     if (checkForWin ())
         emit won (getMines ());
 }
@@ -345,5 +383,5 @@ void Minefield::getIfCovered (QPoint origin)
 }
 
 void Minefield::requestBoard () {
-    emit updateBoard (field, tiles);
+    emit updateBoard (boardSize, field, tiles);
 }
