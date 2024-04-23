@@ -41,24 +41,6 @@
                         false,
 
                         false,
-                        true,
-                        false,
-                        false,
-                        false,
-
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-
-                        false,
-                        true,
-                        false,
-                        false,
-                        false,
-
-                        false,
                         false,
                         false,
                         true,
@@ -71,16 +53,34 @@
                         false,
 
                         false,
+                        true,
+                        false,
+                        false,
+                        false,
+
+                        false,
                         false,
                         false,
                         true,
+                        false,
+
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+
+                        false,
+                        true,
+                        false,
+                        false,
                         false,
 
                         true,
                         false,
                         true,
                         false,
-                        false,
+                        true,
 
                         true,
                         true,
@@ -93,6 +93,206 @@
                 ],
                 "completedMoves":
                 [
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 1
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 2
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 3
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 4
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 4
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 4
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 5
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 5
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 6
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 6
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 7
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 7
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 7
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 8
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 8
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 9
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 10
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 10
+                        },
+                        "type": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 10
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 10
+                        },
+                        "type": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 4,
+                            "y": 10
+                        },
+                        "type": 1
+                    }
                 ],
                 "instructions":
                 [
