@@ -23,6 +23,10 @@
          <pointsize>21</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enbaled{border-image: url(:/images/newLesson.png);}
+QPushButton:pressed{border-image: url(:/images/newLessonSelected.png);}</string>
+       </property>
        <property name="text">
         <string>New Lesson</string>
        </property>
