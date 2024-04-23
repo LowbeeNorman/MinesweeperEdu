@@ -53,6 +53,11 @@ public:
     /// \return true if the user still has moves to fulfill, false otherwise
     ///
     bool hasCorrectMovesLeft ();
+    ///
+    /// \brief executes any moves at the provided index
+    /// \param index of instructions to be carried out
+    ///
+    void executeMovesAtIndex (int index);
 private:
     QList<UserMove> correctMoves;
     QList<UserMove> completedMoves;

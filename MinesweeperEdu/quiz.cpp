@@ -58,25 +58,7 @@ Quiz::Quiz(QJsonObject &obj) {
         completedMoves.append(UserMove(completedMovesObj));
     }
     //Carry out moves
-    for(int i = 0; i < completedMoves.size(); ++i)
-    {
-        if(completedMoves[i].getInstructionIndex()==0)
-        {
-            switch(completedMoves[i].getType())
-            {
-            case UserMove::MoveType::FLAG:
-            {
-                this->minefield->flag(completedMoves[i].getCell());
-            }
-            case UserMove::MoveType::CLEAR:
-            {
-                this->minefield->clear(completedMoves[i].getCell());
-            }
-            default:
-            {}
-            }
-        }
-    }
+    executeMovesAtIndex(0);
     // Extract instructions
     QJsonArray instructionsArr = obj.value("instructions").toArray();
     numInstructions = 0;
@@ -110,6 +92,29 @@ int Quiz::getNumCorrectMovesLeft ()
 bool Quiz::hasCorrectMovesLeft ()
 {
     return !(numCorrectMovesLeft == 0);
+}
+
+void Quiz::executeMovesAtIndex (int index)
+{
+    for(int i = 0; i < completedMoves.size(); ++i)
+    {
+        if(completedMoves[i].getInstructionIndex()==index)
+        {
+            switch(completedMoves[i].getType())
+            {
+            case UserMove::MoveType::FLAG:
+            {
+                this->minefield->flag(completedMoves[i].getCell());
+            }
+            case UserMove::MoveType::CLEAR:
+            {
+                this->minefield->clear(completedMoves[i].getCell());
+            }
+            default:
+            {}
+            }
+        }
+    }
 }
 
 bool Quiz::verifyUserMove (QPoint coords, UserMove::MoveType type)
