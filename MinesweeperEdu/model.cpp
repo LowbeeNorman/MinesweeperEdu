@@ -61,6 +61,7 @@ void Model::setLesson(int lessonNumber)
     emit sendCurrentLevel(lessonNumber);
     currentMessageIndex = 0;
     currentInstructionIndex = 0;
+    currentLessonQuizMoves = currentLesson.getNumCorrectMovesLeft();
 }
 
 void Model::nextMessage()
@@ -139,6 +140,7 @@ void Model::receiveClearAttempted (QPoint origin)
         emit sendErrorMessage ("All correct moves have been completed!"
                                " Click \"Next\" to move on!");
     }
+    receiveProgressRequest();
 }
 
 void Model::receiveFlagAttempted (QPoint origin)
@@ -159,6 +161,7 @@ void Model::receiveFlagAttempted (QPoint origin)
         emit sendErrorMessage("All correct moves have been completed!"
                               " Click \"Next\" to move on!");
     }
+    receiveProgressRequest();
 }
 
 void Model::setLessonToNext ()
@@ -168,8 +171,9 @@ void Model::setLessonToNext ()
 
 void Model::receiveProgressRequest()
 {
-    emit sendProgressUpdate(currentMessageIndex, currentLesson.getNumMessages() - 1 + currentLesson.getNumCorrectMovesLeft());
+    emit sendProgressUpdate(currentMessageIndex + currentLessonQuizMoves - currentLesson.getNumCorrectMovesLeft() + currentInstructionIndex
+                            , currentLesson.getNumMessages() - 1 + currentLessonQuizMoves + currentLesson.getNumInstructions());
 
-    qDebug() << "Current message index" << currentMessageIndex << "Current Instruction Index" << currentInstructionIndex <<
-        "Total messages" << currentLesson.getNumMessages() << "Total instructions" << currentLesson.getNumInstructions();
+    qDebug() << "Current message index" << currentMessageIndex << "Current Quiz moves total" << currentLessonQuizMoves << "Current Quiz Moves done" << currentLessonQuizMoves - currentLesson.getNumCorrectMovesLeft() <<
+        "Total messages" << currentLesson.getNumMessages() << "Total quiz moves" << currentLesson.getNumInstructions();
 }

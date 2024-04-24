@@ -31,6 +31,8 @@ private:
     int currentMessageIndex;
     // currrent instruction index of the currnet LessonLevel the user is on
     int currentInstructionIndex;
+    // amount of moves needed to finish the quiz in the current lesson
+    int currentLessonQuizMoves;
     ///
     /// \brief Constructs all the LessonLevels for the application.
     ///
