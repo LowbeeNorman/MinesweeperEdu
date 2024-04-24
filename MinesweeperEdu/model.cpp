@@ -112,6 +112,7 @@ void Model::previousMessage ()
     else if (currentInstructionIndex == 0)
     {
         currentMessageIndex--;
+        currentLesson.executeMovesAtIndex(currentMessageIndex);
         emit sendCurrentMessage
             (currentLesson.getMessageFromIndex(currentMessageIndex));
     }
