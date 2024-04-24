@@ -78,7 +78,7 @@ bool LessonLevel::hasCorrectMovesLeft ()
     return quiz.hasCorrectMovesLeft();
 }
 
-bool LessonLevel::checkMove (QPoint origin, UserMove::MoveType type)
+bool LessonLevel::checkMove (QPoint origin, MoveType type)
 {
     return quiz.verifyUserMove(origin, type);
 }

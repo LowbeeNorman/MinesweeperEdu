@@ -135,7 +135,7 @@ void Model::receiveClearAttempted (QPoint origin)
 {
     if(currentLesson.hasCorrectMovesLeft())
     {
-        if(currentLesson.checkMove(origin, UserMove::MoveType::CLEAR))
+        if(currentLesson.checkMove(origin, MoveType::CLEAR))
         {
             emit updateCellClear (origin);
 
@@ -157,7 +157,7 @@ void Model::receiveFlagAttempted (QPoint origin)
 {
     if(currentLesson.hasCorrectMovesLeft())
     {
-        if(currentLesson.checkMove(origin, UserMove::MoveType::FLAG))
+        if(currentLesson.checkMove(origin, MoveType::FLAG))
         {
             emit updateCellFlag (origin);
         }
