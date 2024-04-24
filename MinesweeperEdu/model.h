@@ -31,6 +31,8 @@ private:
     int currentMessageIndex;
     // currrent instruction index of the currnet LessonLevel the user is on
     int currentInstructionIndex;
+    // the maximum lesson index a user can access
+    int maxLesson;
     ///
     /// \brief Constructs all the LessonLevels for the application.
     ///
@@ -43,6 +45,12 @@ private:
     /// \return LessonLevel
     ///
     LessonLevel constructLessonLevelFromJSON (QString filename);
+
+    ///
+    /// \brief writes the given value to the user's progress file
+    /// \param maxLessonValue max lesson value
+    ///
+    void writeMaxLessonsToFile (int maxLessonValue);
 
 public slots:
     ///
@@ -81,6 +89,28 @@ public slots:
     /// \brief Listens for a request on the progress of the current lesson
     ///
     void receiveProgressRequest ();
+
+    ///
+    /// \brief checks to see if the given lesson number is less than the max
+    /// \param lessonNumber lesson number
+    ///
+    void checkLessonNumber (int lessonNumber);
+
+
+    ///
+    /// \brief loads in the file that contains the user's progress
+    ///
+    void loadUserProgressFile ();
+
+    ///
+    /// \brief resets the user's progress in the file
+    ///
+    void resetUserProgressInFile ();
+
+    ///
+    /// \brief increases the maxLesson value by 1
+    ///
+    void increaseMaxLessonValue ();
 signals:
     ///
     /// \brief Sends the information of the current LessonLevel back to
@@ -143,6 +173,16 @@ signals:
     /// \param The current max, when the user is done with that portion of the lesson
     ///
     void sendProgressUpdate(int current, int max);
+
+    ///
+    /// \brief informs the view the lesson number selected is too big
+    ///
+    void tooBigLessonNumber ();
+
+    ///
+    /// \brief informs the view the lesson number selected is valid
+    ///
+    void validLessonNumber (int lessonNumber);
 };
 
 #endif // MODEL_H

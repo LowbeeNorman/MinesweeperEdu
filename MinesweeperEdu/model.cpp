@@ -2,6 +2,7 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QByteArray>
+#include <QSaveFile>
 
 Model::Model(QObject *parent)
     : QObject{parent}
@@ -11,6 +12,7 @@ Model::Model(QObject *parent)
     , currentLessonIndex (0)
     , currentMessageIndex (0)
     , currentInstructionIndex (0)
+    , maxLesson (0)
 {}
 
 Model::~Model () {}
@@ -167,4 +169,66 @@ void Model::setLessonToNext ()
 void Model::receiveProgressRequest()
 {
     emit sendProgressUpdate(currentMessageIndex, currentLesson.getNumMessages() - 1);
+}
+
+void Model::checkLessonNumber (int lessonNumber)
+{
+    if (lessonNumber - 1 > maxLesson)
+        emit tooBigLessonNumber ();
+    else
+        emit validLessonNumber (lessonNumber);
+}
+
+void Model::loadUserProgressFile ()
+{
+    QFile file ("userProgress.json");
+    // Return nothing if file cannot be opened
+    if (!file.open (QIODevice::ReadOnly))
+    {
+        return;
+    }
+    // array of bytes contained in file
+    QByteArray array = file.readAll ();
+    // make the json doc
+    QJsonDocument doc = QJsonDocument::fromJson (array);
+    // get the json object
+    QJsonObject obj = doc.object();
+    // set maxLesson
+    maxLesson = obj.value("maxLesson").toInt();
+    file.close();
+}
+
+void Model::resetUserProgressInFile ()
+{
+    writeMaxLessonsToFile(0);
+    maxLesson = 0;
+}
+
+void Model::writeMaxLessonsToFile (int maxLessonValue)
+{
+    // json object that holds value
+    QJsonObject obj;
+    obj.insert("maxLesson", maxLessonValue);
+    // document to convert object to text stream
+    QJsonDocument doc;
+    doc.setObject(obj);
+    // byte array of values
+    QByteArray bytes = doc.toJson(QJsonDocument::Indented);
+    // file to write to
+    QSaveFile file("userProgress.json");
+    if(!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << file.errorString();
+        return;
+    }
+    if(file.write(bytes) < 0)
+        return;
+    file.commit();
+}
+
+void Model::increaseMaxLessonValue ()
+{
+    if (currentLessonIndex > maxLesson)
+        maxLesson++;
+    writeMaxLessonsToFile(maxLesson);
 }
