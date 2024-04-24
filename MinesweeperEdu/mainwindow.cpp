@@ -17,6 +17,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     // main window
     connect(ui->startPage, &StartScreen::sendNewLessonClicked
             , this, &MainWindow::updateScreenIndex);
+    connect(ui->startPage, &StartScreen::sendNewLessonClicked
+            , this, &MainWindow::loadNew);
 
     connect(ui->startPage, &StartScreen::sendContinueClicked
             , this, &MainWindow::loadPrevious);
@@ -62,12 +64,24 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
 
     connect(&model, &Model::sendCurrentLevel, ui->levelSelectPage, &LevelSelect::updateCurrentLevel);
 
+    // check if the level selected is valid
+    connect(this, &MainWindow::checkAccess, &model, &Model::checkLessonNumber);
+    connect(&model, &Model::tooBigLessonNumber, this, &MainWindow::invalidLessonSelected);
+    connect(&model, &Model::validLessonNumber, this, &MainWindow::validLessonSelected);
+
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
 
     // connections for the progress bar updating during lessons
     connect(ui->lessonPage, &Lesson::requestProgressUpdate, &model, &Model::receiveProgressRequest);
     connect(&model, &Model::sendProgressUpdate, ui->lessonPage, &Lesson::receiveProgressUpdate);
+
+    // load user progress
+    connect(this, &MainWindow::loadUserProgress, &model, &Model::loadUserProgressFile);
+    // reset progress
+    connect(this, &MainWindow::resetUserProgress, &model, &Model::resetUserProgressInFile);
+    // update progress
+    connect(this, &MainWindow::passedLevel, &model, &Model::increaseMaxLessonValue);
 }
 
 MainWindow::~MainWindow()
@@ -91,9 +105,12 @@ void MainWindow::updateScreenIndex(int index)
 
 void MainWindow::receiveLevelIndex(int levelIndex){
     qDebug() << "Need to load level " << levelIndex + 1 << "(or index" << levelIndex << ")";
+    emit checkAccess(levelIndex);
+}
 
-    emit getLesson(levelIndex);
-
+void MainWindow::validLessonSelected (int lessonNumber)
+{
+    emit getLesson(lessonNumber);
     ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -101,6 +118,7 @@ void MainWindow::loadPrevious()
 {
     // Do something from view -> model for loading
     qDebug() << "Need to load a game to continue";
+    emit loadUserProgress ();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -121,7 +139,25 @@ void MainWindow::nextLessonShortcut()
 
 void MainWindow::showWinScreen ()
 {
+    emit passedLevel();
     ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::invalidLessonSelected ()
+{
+    qDebug() << "reached";
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::loadNew (int index)
+{
+    emit resetUserProgress();
+
+    ui->stackedWidget->setCurrentIndex(index);
+
+    // Reset progress if they go off of the level
+    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    ui->lessonPage->receiveProgressUpdate(0, 100);
 }
 
 

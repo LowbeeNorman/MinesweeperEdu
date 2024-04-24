@@ -62,10 +62,28 @@ public slots:
     ///
     void showWinScreen ();
 
+    ///
+    /// \brief Displays an error message stating the user cannot access the specified
+    /// level
+    ///
+    void invalidLessonSelected ();
+
+    ///
+    /// \brief Allows the user to access the level
+    /// level
+    ///
+    void validLessonSelected (int lessonNumber);
+
+    ///
+    /// \brief loads a new game
+    /// \param index index
+    ///
+    void loadNew (int index);
+
 signals:
     ///
     /// \brief ask the Model for the Lesson of the given number
-    /// \param lessonNumber number of Lesson
+    /// \param lessonNumber number of lesson
     ///
     void getLesson(int lessonNumber);
 
@@ -73,5 +91,26 @@ signals:
     /// \brief retrieves the next lesson
     ///
     void getNextLesson ();
+
+    ///
+    /// \brief checks if a user has access to the level selected
+    /// \param lessonNumber number of lesson
+    ///
+    void checkAccess(int lessonNumber);
+
+    ///
+    /// \brief ask the Model to load in the user's progress
+    ///
+    void loadUserProgress ();
+
+    ///
+    /// \brief ask the Model to reset the user's progress
+    ///
+    void resetUserProgress ();
+
+    ///
+    /// \brief user passes a level
+    ///
+    void passedLevel ();
 };
 #endif // MAINWINDOW_H
