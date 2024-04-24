@@ -116,6 +116,8 @@ public slots:
     /// \param origin the starting point for floodFill.
     ///
     void clear (QPoint origin);
+    void highlightPlaced (QPoint point, int color);
+    void highlightRemoved (QPoint point);
     void getSurroundings (QPoint origin);
     void getIfCovered (QPoint origin);
     void chord (QPoint origin);
@@ -144,6 +146,9 @@ signals:
 
     void sendChord (QList<QPoint> coveredTiles);
     void sendCovered (QPoint origin, bool covered);
+
+    void lessonHighlightPlaced (QPoint point, int color);
+    void lessonHighlightRemoved (QPoint point);
 };
 
 #endif // MINEFIELD_H

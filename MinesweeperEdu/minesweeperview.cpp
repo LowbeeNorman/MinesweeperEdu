@@ -17,6 +17,14 @@ MinesweeperView::MinesweeperView (QWidget *parent)
     // load in all the images used to display the number grid
     flagImage  = new QPixmap (QString (":/images/flag.png"));
     coverImage = new QPixmap (QString (":/images/cover.png"));
+    redHighlight = new QPixmap (QString (":/images/redFrame.png"));
+    orangeHighlight = new QPixmap (QString (":/images/orangeFrame.png"));
+    yellowHighlight = new QPixmap (QString (":/images/yellowFrame.png"));
+    pinkHighlight = new QPixmap (QString (":/images/pinkFrame.png"));
+    blueHighlight = new QPixmap (QString (":/images/blueFrame.png"));
+    purpleHighlight = new QPixmap (QString (":/images/purpleFrame.png"));
+    brownHighlight = new QPixmap (QString (":/images/brownFrame.png"));
+    blackHighlight = new QPixmap (QString (":/images/blackFrame.png"));
     numbers[0] = new QPixmap (QString (":/images/clear.png"));
     numbers[1] = new QPixmap (QString (":/images/one.png"));
     numbers[2] = new QPixmap (QString (":/images/two.png"));
@@ -170,6 +178,53 @@ void MinesweeperView::flagPlaced (QPoint point, int numFlags)
 void MinesweeperView::flagRemoved (QPoint point, int numFlags)
 {
     this->numFlags = numFlags;
+    QPainter painter (pixmap);
+    painter.setBackgroundMode (Qt::TransparentMode);
+    painter.drawPixmap (translateFromMinesweeper(point), *coverImage);
+    pixmapItem->setPixmap (*pixmap);
+}
+
+void MinesweeperView::lessonHighlightPlaced(QPoint point, int color)
+{
+    QPainter painter (pixmap);
+    painter.setBackgroundMode (Qt::TransparentMode);
+    if(color==2)
+        {
+        painter.drawPixmap (translateFromMinesweeper(point), *redHighlight);
+        }
+    else if(color==3)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *orangeHighlight);
+        }
+    else if(color==4)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *yellowHighlight);
+        }
+    else if(color==5)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *pinkHighlight);
+        }
+    else if(color==6)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *blueHighlight);
+        }
+    else if(color==7)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *purpleHighlight);
+        }
+    else if(color==8)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *brownHighlight);
+        }
+    else if(color==9)
+        {
+            painter.drawPixmap (translateFromMinesweeper(point), *blackHighlight);
+        }
+    pixmapItem->setPixmap (*pixmap);
+}
+
+void MinesweeperView::lessonHighlightRemoved(QPoint point)
+{
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
     painter.drawPixmap (translateFromMinesweeper(point), *coverImage);

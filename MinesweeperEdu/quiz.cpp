@@ -103,18 +103,23 @@ void Quiz::executeMovesAtIndex (int index)
     {
         if(completedMoves[i].getInstructionIndex()==index)
         {
-            switch(completedMoves[i].getType())
-            {
-            case UserMove::MoveType::FLAG:
+            if (completedMoves[i].getType()==UserMove::MoveType::FLAG)
             {
                 this->minefield->flag(completedMoves[i].getCell());
             }
-            case UserMove::MoveType::CLEAR:
+            else if (completedMoves[i].getType()==UserMove::MoveType::CLEAR)
             {
                 this->minefield->clear(completedMoves[i].getCell());
             }
-            default:
-            {}
+            else if (completedMoves[i].getType()==UserMove::MoveType::HIGHLIGHTREMOVED)
+            {
+                qInfo() << "cleared"<<(int)completedMoves[i].getType();
+                this->minefield->highlightRemoved(completedMoves[i].getCell());
+            }
+            else
+            {
+                qInfo() << (int)completedMoves[i].getType();
+                this->minefield->highlightPlaced(completedMoves[i].getCell(),(int)completedMoves[i].getType());
             }
         }
     }

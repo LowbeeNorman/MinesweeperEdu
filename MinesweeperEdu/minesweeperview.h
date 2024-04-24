@@ -24,6 +24,7 @@ private:
     int numFlags;
 
     QPixmap *flagImage, *coverImage;
+    QPixmap *redHighlight, *orangeHighlight, *yellowHighlight, *pinkHighlight, *blueHighlight, *purpleHighlight, *brownHighlight, *blackHighlight;
     QPixmap *numbers[10];
 
     QList<QPoint> prevChord;
@@ -92,6 +93,8 @@ public slots:
     void receiveBoard (const QSize &boardSize, const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);
     void flagRemoved (QPoint point, int numFlags);
+    void lessonHighlightPlaced (QPoint point, int color);
+    void lessonHighlightRemoved (QPoint point);
     void displayHighlight (QList<QPoint> coveredTiles);
     void receiveIfCovered (QPoint origin, bool covered);
 
