@@ -9,7 +9,7 @@
 
 WinScreen::WinScreen(QWidget *parent)
     : QWidget(parent)
-    , world(b2Vec2(0.0f, -13.0f))
+    , world(b2Vec2(0.0f, 0.0f))
     , ui(new Ui::WinScreen)
 {
     ui->setupUi(this);
@@ -108,9 +108,7 @@ void WinScreen::setUpBox2D()
     fixtureDef.friction = 0.0f;
 
     // Bounciness
-    fixtureDef.restitution = 1.0f;
-
-
+    fixtureDef.restitution = 0.0f;
 
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
@@ -128,15 +126,26 @@ void WinScreen::updateWorld()
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0f / 60.0f, 6, 2);
 
-    // Now print the position and angle of the body.
-    b2Vec2 position = body->GetPosition();
-    // float32 angle = body->GetAngle();
-    ui->winLabel->setGeometry(
-        ui->winLabel->x(),
-        -position.y * 15.0f,
-        ui->winLabel->width(),
-        ui->winLabel->height()
-        );
+    // New position of the label
+    b2Vec2 velocity = body->GetLinearVelocity();
+    int newX = ui->winLabel->x() + velocity.x * 5.0f;
+    int newY = ui->winLabel->y() + velocity.y * 5.0f;
 
-    // printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+    int labelWidth = ui->winLabel->width();
+    int labelHeight = ui->winLabel->height();
+
+    // Check if the new position hits any of the window edges
+    if (newX <= 0 || newX >= width() - labelWidth) {
+        // If the label hits the left or right hand side of the window, the horizontal velocity will be inverted
+        body->SetLinearVelocity(b2Vec2(-velocity.x, velocity.y));
+    }
+    if (newY <= 0 || newY >= height() - labelHeight) {
+        // If the label hits the top or bottom side of the window, the vertical velocity will be inverted
+        body->SetLinearVelocity(b2Vec2(velocity.x, -velocity.y));
+    }
+
+    // Position is changed
+    ui->winLabel->setGeometry(newX, newY, labelWidth, labelHeight);
 }
+
+
