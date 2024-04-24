@@ -56,7 +56,7 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
 
 void Model::setLesson(int lessonNumber)
 {
-    if(lessonNumber <= maxLesson + 1)
+    if(lessonNumber <= numLessons)
         {
         // load this lesson from json
         currentLesson = constructLessonLevelFromJSON
