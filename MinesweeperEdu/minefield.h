@@ -24,6 +24,7 @@ public:
     ///
     Minefield (QObject *parent = nullptr);
     Minefield (QSize boardSize, float mineFreq);
+    Minefield (QSize boardSize, int numMines);
     Minefield (QSize boardSize, bool mines[]);
 
     // methods to implement rule of 3
@@ -32,6 +33,7 @@ public:
     Minefield &operator= (Minefield other);
 
     void setField (QSize boardSize, bool mines[]);
+    void setAutoComplete (bool autocomplete);
 
     QSize getSize ();
 private:
@@ -43,6 +45,7 @@ private:
     Tile* tiles;
     bool firstMove;
     bool initialized;
+    bool autocomplete;
 
     ///
     /// \brief initializeField initializes a randomized minefield using the
@@ -103,6 +106,7 @@ private:
 
     bool checkForWin ();
     QList<QPoint> getMines ();
+    QList<QPoint> getMinesLeft ();
 
 public slots:
     ///
