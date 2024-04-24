@@ -2,7 +2,7 @@
         "topic": "Start With Corners",
 	"lessonGuidance":
 	[
-                "The first tile you click is guaranteed to be safe and usually clears a group of tiles.",
+                "The first tile you click is guaranteed to be safe and usually clears a group of tiles when you are playing a normal game.",
                 "A good strategy to start with is to look at the corners of your revealed tiles as they are usually the easiest to figure out.",
                 "You can then flag all adjacent tiles, allowing you to continue outward from the flagged area. This strategy will be explored more in depth shortly."
 	],
