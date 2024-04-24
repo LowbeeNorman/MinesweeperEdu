@@ -63,6 +63,17 @@
         <file>previous.png</file>
         <file>minesweeperEduLogo.png</file>
         <file>selectLevelLabel.png</file>
+        <file>blackFrame.png</file>
+        <file>blueFrame.png</file>
+        <file>brownFrame.png</file>
+        <file>greenFrame.png</file>
+        <file>lightBlueFrame.png</file>
+        <file>orangeFrame.png</file>
+        <file>pinkFrame.png</file>
+        <file>purpleFrame.png</file>
+        <file>redFrame.png</file>
+        <file>tealFrame.png</file>
+        <file>yellowFrame.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
