@@ -27,7 +27,7 @@ StartScreen::StartScreen(QWidget *parent)
     // Call to set up box2d
     setUpBox2D();
 
-    background.load(":images/startScreenBackground.png"); //replace later
+    background.load(":/images/startScreenBackground.png"); //replace later
 
     //HIDING FREE PLAY BUTTON
     ui->freePlayButton->hide();
