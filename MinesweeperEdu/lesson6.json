@@ -13,7 +13,6 @@
 		"width": 6,
 		"height": 6,
 		"minefield":
-		[
                     [
                             true,
                             false,
