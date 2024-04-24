@@ -70,7 +70,7 @@ void Model::nextMessage()
     if (currentMessageIndex < currentLesson.getNumMessages() - 1)
     {
         currentMessageIndex++;
-        currentLesson.executeMovesAtIndex(currentMessageIndex);
+        currentLesson.executeMovesAtIndex(currentMessageIndex, false);
         emit sendCurrentMessage
             (currentLesson.getMessageFromIndex(currentMessageIndex));
     }
@@ -116,7 +116,7 @@ void Model::previousMessage ()
     else if (currentInstructionIndex == 0)
     {
         currentMessageIndex--;
-        currentLesson.executeMovesAtIndex(currentMessageIndex);
+        currentLesson.executeMovesAtIndex(currentMessageIndex, true);
         emit sendCurrentMessage
             (currentLesson.getMessageFromIndex(currentMessageIndex));
     }
