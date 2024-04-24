@@ -77,6 +77,10 @@ public slots:
     /// \brief Sets the LessonLevel number to be the next one
     ///
     void setLessonToNext ();
+    ///
+    /// \brief Listens for a request on the progress of the current lesson
+    ///
+    void receiveProgressRequest ();
 signals:
     ///
     /// \brief Sends the information of the current LessonLevel back to
@@ -133,6 +137,12 @@ signals:
     /// \param levelIndex - lesson number
     ///
     void sendCurrentLevel(int levelIndex);
+    ///
+    /// \brief Emits an update of the lesson progress to all listeners
+    /// \param The current progress
+    /// \param The current max, when the user is done with that portion of the lesson
+    ///
+    void sendProgressUpdate(int current, int max);
 };
 
 #endif // MODEL_H

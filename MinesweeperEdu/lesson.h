@@ -35,10 +35,22 @@ signals:
     void sendBackClicked (int pageIndex);
     void getNextMessage ();
     void getPreviousMessage ();
+    void updateMaxProgress (int max);
+    void updateCurrentProgress (int current);
+    void requestProgressUpdate ();
 
 public slots:
+    ///
+    /// \brief Listens for the level select button to be clicked
+    ///
     void backButtonClicked ();
+    ///
+    /// \brief Listens for the next button to be clicked
+    ///
     void nextButtonClicked ();
+    ///
+    /// \brief Listens for the previous button to be clicked
+    ///
     void previousButtonClicked ();
     ///
     /// \brief Listens for the lesson info
@@ -57,6 +69,12 @@ public slots:
     /// \param message
     ///
     void receiveFeedback(QString message);
+    ///
+    /// \brief Listens for an update on the progress of the lesson
+    /// \param The current progress
+    /// \param The max amount
+    ///
+    void receiveProgressUpdate (int current, int max);
 
     MinesweeperView* getBoard ();
 };

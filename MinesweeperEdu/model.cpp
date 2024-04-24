@@ -161,3 +161,8 @@ void Model::setLessonToNext ()
 {
     setLesson(++currentLessonIndex);
 }
+
+void Model::receiveProgressRequest()
+{
+    emit sendProgressUpdate(currentMessageIndex, currentLesson.getNumMessages() - 1);
+}

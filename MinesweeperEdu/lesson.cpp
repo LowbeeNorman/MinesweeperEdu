@@ -53,16 +53,23 @@ void Lesson::makeConnections (Minefield &mines)
     connect (&mines, &Minefield::won
             , ui->board, &MinesweeperView::won);
     // for when user is in Quiz and left clicks
+
+    connect (this, &Lesson::updateCurrentProgress, ui->progressDisplay, &QProgressBar::setValue);
+    connect (this, &Lesson::updateMaxProgress, ui->progressDisplay, &QProgressBar::setMaximum);
+
 }
 
 void Lesson::backButtonClicked()
 {
     emit sendBackClicked(1);
+    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    emit receiveProgressUpdate(0, 100);
 }
 
 void Lesson::nextButtonClicked()
 {
     emit getNextMessage();
+    emit requestProgressUpdate();
 }
 
 void Lesson::previousButtonClicked()
@@ -90,4 +97,14 @@ MinesweeperView* Lesson::getBoard ()
 void Lesson::receiveFeedback (QString message)
 {
     ui->feedback->setText(message);
+}
+
+void Lesson::receiveProgressUpdate (int current, int max)
+{
+    // Will not work for lessons with one part to them
+    if(max != ui->progressDisplay->maximum() || current > ui->progressDisplay->value())
+    {
+        emit updateCurrentProgress(current);
+        emit updateMaxProgress(max);
+    }
 }

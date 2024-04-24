@@ -64,6 +64,10 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
 
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
+
+    // connections for the progress bar updating during lessons
+    connect(ui->lessonPage, &Lesson::requestProgressUpdate, &model, &Model::receiveProgressRequest);
+    connect(&model, &Model::sendProgressUpdate, ui->lessonPage, &Lesson::receiveProgressUpdate);
 }
 
 MainWindow::~MainWindow()
@@ -79,6 +83,10 @@ void MainWindow::makeConnections (Minefield &mines)
 void MainWindow::updateScreenIndex(int index)
 {
     ui->stackedWidget->setCurrentIndex(index);
+
+    // Reset progress if they go off of the level
+    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    ui->lessonPage->receiveProgressUpdate(0, 100);
 }
 
 void MainWindow::receiveLevelIndex(int levelIndex){
@@ -105,6 +113,10 @@ void MainWindow::nextLessonShortcut()
     ui->stackedWidget->setCurrentIndex(2);
 
     emit getNextLesson();
+
+    // Reset progress for next level
+    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    ui->lessonPage->receiveProgressUpdate(0, 100);
 }
 
 void MainWindow::showWinScreen ()

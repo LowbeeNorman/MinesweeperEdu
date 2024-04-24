@@ -57,7 +57,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="2" column="2" colspan="3">
-      <widget class="QProgressBar" name="progressDiaplay">
+      <widget class="QProgressBar" name="progressDisplay">
        <property name="value">
         <number>0</number>
        </property>
