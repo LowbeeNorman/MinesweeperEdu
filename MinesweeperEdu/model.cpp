@@ -61,6 +61,8 @@ void Model::setLesson(int lessonNumber)
                         , currentLesson.getMessageFromIndex(0)
                         , currentLesson.getMinefield());
     emit sendCurrentLevel(lessonNumber);
+    currentMessageIndex = 0;
+    currentInstructionIndex = 0;
 }
 
 void Model::nextMessage()
@@ -168,7 +170,10 @@ void Model::setLessonToNext ()
 
 void Model::receiveProgressRequest()
 {
-    emit sendProgressUpdate(currentMessageIndex, currentLesson.getNumMessages() - 1);
+    emit sendProgressUpdate(currentMessageIndex, currentLesson.getNumMessages() - 1 + currentLesson.getNumCorrectMovesLeft());
+
+    qDebug() << "Current message index" << currentMessageIndex << "Current Instruction Index" << currentInstructionIndex <<
+        "Total messages" << currentLesson.getNumMessages() << "Total instructions" << currentLesson.getNumInstructions();
 }
 
 void Model::checkLessonNumber (int lessonNumber)
