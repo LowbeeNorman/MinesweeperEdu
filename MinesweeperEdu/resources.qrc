@@ -74,6 +74,7 @@
         <file>redFrame.png</file>
         <file>tealFrame.png</file>
         <file>yellowFrame.png</file>
+        <file>nextLesson.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
