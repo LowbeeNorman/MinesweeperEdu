@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Caleb Norman
+
 #include "model.h"
 #include <QJsonDocument>
 #include <QFile>
@@ -173,7 +178,4 @@ void Model::receiveProgressRequest()
 {
     emit sendProgressUpdate(currentMessageIndex + currentLessonQuizMoves - currentLesson.getNumCorrectMovesLeft() + currentInstructionIndex
                             , currentLesson.getNumMessages() - 1 + currentLessonQuizMoves + currentLesson.getNumInstructions());
-
-    qDebug() << "Current message index" << currentMessageIndex << "Current Quiz moves total" << currentLessonQuizMoves << "Current Quiz Moves done" << currentLessonQuizMoves - currentLesson.getNumCorrectMovesLeft() <<
-        "Total messages" << currentLesson.getNumMessages() << "Total quiz moves" << currentLesson.getNumInstructions();
 }
