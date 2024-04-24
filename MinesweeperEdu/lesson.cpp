@@ -40,6 +40,10 @@ void Lesson::makeConnections (Minefield &mines)
             , ui->board, &MinesweeperView::flagPlaced);
     connect (&mines, &Minefield::flagRemoved
             , ui->board, &MinesweeperView::flagRemoved);
+    connect (&mines, &Minefield::lessonHighlightPlaced, ui->board,
+            &MinesweeperView::lessonHighlightPlaced);
+    connect (&mines, &Minefield::lessonHighlightRemoved, ui->board,
+            &MinesweeperView::lessonHighlightRemoved);
     connect (ui->board, &MinesweeperView::requestChord
             , &mines, &Minefield::getSurroundings);
     connect (&mines, &Minefield::sendChord

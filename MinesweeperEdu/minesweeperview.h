@@ -24,7 +24,7 @@ private:
     int numFlags;
 
     QPixmap *flagImage, *coverImage;
-    QPixmap *redHighlight;
+    QPixmap *redHighlight, *orangeHighlight, *yellowHighlight, *pinkHighlight, *blueHighlight, *purpleHighlight, *brownHighlight, *blackHighlight;
     QPixmap *numbers[10];
 
     QList<QPoint> prevChord;

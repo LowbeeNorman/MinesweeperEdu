@@ -269,7 +269,6 @@ void Minefield::flag (QPoint point) {
 void Minefield::highlightPlaced(QPoint point, int color)
 {
     emit lessonHighlightPlaced(point, color);
-    qInfo () << "Kinda Made it hurray "<<color<<" "<<point;
 }
 
 void Minefield::highlightRemoved(QPoint point)

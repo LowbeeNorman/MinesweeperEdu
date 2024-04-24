@@ -15,7 +15,7 @@ public:
     UserMove(QJsonObject &obj);
     enum class MoveType
     {
-        FLAG, CLEAR, RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN
+        FLAG, CLEAR, RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN, BLACK, HIGHLIGHTREMOVED
     };
 
     QPoint getCell ();
