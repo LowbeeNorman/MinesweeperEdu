@@ -266,6 +266,17 @@ void Minefield::flag (QPoint point) {
     emit flagPlaced(point, numFlags);
 }
 
+void Minefield::highlightPlaced(QPoint point, int color)
+{
+    emit lessonHighlightPlaced(point, color);
+    qInfo () << "Kinda Made it hurray "<<color<<" "<<point;
+}
+
+void Minefield::highlightRemoved(QPoint point)
+{
+    emit lessonHighlightRemoved(point);
+}
+
 bool Minefield::internalClear (QPoint origin)
 {
     int index = pointToIndex (origin);

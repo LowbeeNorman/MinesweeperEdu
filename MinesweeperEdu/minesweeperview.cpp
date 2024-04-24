@@ -181,6 +181,7 @@ void MinesweeperView::lessonHighlightPlaced(QPoint point, int color)
 {
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
+    qInfo () << "Made it hurray";
     switch(color)
     {
         case 3:

@@ -113,8 +113,12 @@ void Quiz::executeMovesAtIndex (int index)
             {
                 this->minefield->clear(completedMoves[i].getCell());
             }
-            default:
-            {}
+            case UserMove::MoveType::RED:
+            {
+
+                qInfo ()<< "Shits Whack"<<(int)completedMoves[i].getType();
+                this->minefield->highlightPlaced(completedMoves[i].getCell(), (int)completedMoves[i].getType());
+            }
             }
         }
     }
