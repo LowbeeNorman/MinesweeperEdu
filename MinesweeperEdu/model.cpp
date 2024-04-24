@@ -56,19 +56,22 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
 
 void Model::setLesson(int lessonNumber)
 {
-    // load this lesson from json
-    currentLesson = constructLessonLevelFromJSON
-        (QString (":/json/lesson%1.json").arg (lessonNumber));
-    // TODO find out what the lesson wants the board to look like
-    currentLessonIndex = lessonNumber;
-    emit lessonTime ();
-    emit sendLessonInfo (currentLesson.getTopic()
-                        , currentLesson.getMessageFromIndex(0)
-                        , currentLesson.getMinefield());
-    emit sendCurrentLevel(lessonNumber);
-    currentMessageIndex = 0;
-    currentInstructionIndex = 0;
-    currentLessonQuizMoves = currentLesson.getNumCorrectMovesLeft();
+    if(lessonNumber <= maxLesson + 1)
+        {
+        // load this lesson from json
+        currentLesson = constructLessonLevelFromJSON
+            (QString (":/json/lesson%1.json").arg (lessonNumber));
+        // TODO find out what the lesson wants the board to look like
+        currentLessonIndex = lessonNumber;
+        emit lessonTime ();
+        emit sendLessonInfo (currentLesson.getTopic()
+                            , currentLesson.getMessageFromIndex(0)
+                            , currentLesson.getMinefield());
+        emit sendCurrentLevel(lessonNumber);
+        currentMessageIndex = 0;
+        currentInstructionIndex = 0;
+        currentLessonQuizMoves = currentLesson.getNumCorrectMovesLeft();
+    }
 }
 
 void Model::nextMessage()
