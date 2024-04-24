@@ -21,6 +21,7 @@ Minefield::Minefield (QObject *parent)
     , tiles (nullptr)
     , firstMove (false)
     , initialized (false)
+    , autocomplete (false)
 {}
 
 Minefield::Minefield(QSize boardSize, float mineFreq)
@@ -31,6 +32,23 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
     , numFlags (numMines)
     , firstMove (true)
     , initialized (false)
+    , autocomplete (true)
+{
+    field = new int[arrayLength] {0};
+    tiles = new Tile[arrayLength];
+    for (int i = 0; i < arrayLength; ++i)
+        tiles[i] = Tile::covered;
+}
+
+Minefield::Minefield (QSize boardSize, int numMines)
+    : QObject (nullptr)
+    , boardSize(boardSize)
+    , arrayLength (boardSize.width() * boardSize.height ())
+    , numMines (numMines)
+    , numFlags (numMines)
+    , firstMove (true)
+    , initialized (false)
+    , autocomplete (true)
 {
     field = new int[arrayLength] {0};
     tiles = new Tile[arrayLength];
@@ -46,6 +64,7 @@ Minefield::Minefield (QSize boardSize, bool mines[])
     , numFlags (0)
     , firstMove (false)
     , initialized (true)
+    , autocomplete (false)
 {
     field = new int[arrayLength] {0};
     tiles = new Tile[arrayLength];
@@ -69,6 +88,7 @@ Minefield::Minefield (const Minefield &other)
     , numFlags (other.numFlags)
     , firstMove (other.firstMove)
     , initialized (other.initialized)
+    , autocomplete (other.autocomplete)
 {
     field = new int[arrayLength];
     tiles = new Tile[arrayLength];
@@ -85,6 +105,7 @@ void Minefield::setField (QSize boardSize, bool mines[])
     arrayLength = boardSize.width () * boardSize.height ();
     firstMove = false;
     initialized = true;
+    autocomplete = false;
     delete[] field;
     delete[] tiles;
     field = new int[arrayLength] {0};
@@ -101,6 +122,11 @@ void Minefield::setField (QSize boardSize, bool mines[])
     numFlags = numMines;
     populateFieldNums ();
     emit updateBoard (boardSize, field, tiles);
+}
+
+void Minefield::setAutoComplete (bool autocomplete)
+{
+    this->autocomplete = autocomplete;
 }
 
 Minefield::~Minefield ()
@@ -175,15 +201,15 @@ void Minefield::guaranteeSafe (QPoint firstTile) {
 }
 
 void Minefield::populateFieldNums () {
-    for (int y = 0; y < boardSize.height(); y++) {
-        for (int x = 0; x < boardSize.width(); x++) {
+    for (int y = 0; y < boardSize.height(); ++y) {
+        for (int x = 0; x < boardSize.width(); ++x) {
             QPoint origin(x, y);
             int index = pointToIndex(origin);
             if (field[index] == 9) {
                 continue;
             }
-            for (int relY = -1; relY <= 1; relY++){
-                for (int relX = -1; relX <= 1; relX++) {
+            for (int relY = -1; relY <= 1; ++relY){
+                for (int relX = -1; relX <= 1; ++relX) {
                     if (checkNeighborAt(origin, relX, relY, field, 9)) {
                         field[index]++;
                     }
@@ -299,6 +325,19 @@ QList<QPoint> Minefield::getMines ()
     return mines;
 }
 
+QList<QPoint> Minefield::getMinesLeft ()
+{
+    QList<QPoint> mines;
+    if (!autocomplete)
+        return mines;
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        if (9 == field[i] && tiles[i] != Tile::flagged)
+            mines.append (indexToPoint (i));
+    }
+    return mines;
+}
+
 bool Minefield::checkForWin ()
 {
     for (int i = 0; i < arrayLength; ++i)
@@ -325,7 +364,7 @@ void Minefield::clear (QPoint origin)
     if (9 == field[pointToIndex (origin)] && Tile::blank == tiles[pointToIndex (origin)])
         emit dead (origin, getMines ());
     else if (checkForWin ())
-        emit won (getMines ());
+        emit won (getMinesLeft ());
 }
 
 void Minefield::chord (QPoint origin) {
@@ -367,15 +406,15 @@ void Minefield::chord (QPoint origin) {
     }
     emit updateBoard (boardSize, field, tiles);
     if (checkForWin ())
-        emit won (getMines ());
+        emit won (getMinesLeft ());
 }
 
 void Minefield::getSurroundings (QPoint origin)
 {
     QList<QPoint> coveredTiles;
-    for (int relY = -1; relY <= 1; relY++)
+    for (int relY = -1; relY <= 1; ++relY)
     {
-        for (int relX = -1; relX <= 1; relX++)
+        for (int relX = -1; relX <= 1; ++relX)
         {
             if (checkNeighborAt(origin, relX, relY, tiles, Tile::covered))
             {
@@ -392,6 +431,7 @@ void Minefield::getIfCovered (QPoint origin)
     emit sendCovered (origin, Tile::covered == tiles[pointToIndex (origin)]);
 }
 
-void Minefield::requestBoard () {
+void Minefield::requestBoard ()
+{
     emit updateBoard (boardSize, field, tiles);
 }

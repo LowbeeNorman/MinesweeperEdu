@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Caleb Norman
+
 #ifndef MODEL_H
 #define MODEL_H
 
@@ -31,8 +36,11 @@ private:
     int currentMessageIndex;
     // currrent instruction index of the currnet LessonLevel the user is on
     int currentInstructionIndex;
-    // the maximum lesson index a user can access
+    // amount of moves needed to finish the quiz in the current lesson
+    int currentLessonQuizMoves;
+
     int maxLesson;
+    
     ///
     /// \brief Constructs all the LessonLevels for the application.
     ///

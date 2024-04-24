@@ -37,51 +37,70 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->winScreenPage, &WinScreen::goToNextLesson
             , this, &MainWindow::nextLessonShortcut);
 
-    connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel, this, &MainWindow::receiveLevelIndex);
+    connect(ui->levelSelectPage, &LevelSelect::sendCurrentLevel
+            , this, &MainWindow::receiveLevelIndex);
     // retrieves Lesson number
     connect(this, &MainWindow::getLesson, &model, &Model::setLesson);
     // sends Lesson info back
-    connect(&model, &Model::sendLessonInfo, ui->lessonPage, &Lesson::receiveLessonInfo);
+    connect(&model, &Model::sendLessonInfo
+            , ui->lessonPage, &Lesson::receiveLessonInfo);
     // get next Message
-    connect(&model, &Model::sendCurrentMessage, ui->lessonPage, &Lesson::receiveNextMessage);
+    connect(&model, &Model::sendCurrentMessage
+            , ui->lessonPage, &Lesson::receiveNextMessage);
     // get next Instruction
-    connect(&model, &Model::sendCurrentInstruction, ui->lessonPage, &Lesson::receiveNextMessage);
+    connect(&model, &Model::sendCurrentInstruction
+            , ui->lessonPage, &Lesson::receiveNextMessage);
     // get error message
-    connect(&model, &Model::sendErrorMessage, ui->lessonPage, &Lesson::receiveFeedback);
+    connect(&model, &Model::sendErrorMessage
+            , ui->lessonPage, &Lesson::receiveFeedback);
 
-    connect(ui->lessonPage->getBoard(), &MinesweeperView::clearAttempted, &model, &Model::receiveClearAttempted);
-    connect(&model, &Model::updateCellClear, ui->lessonPage->getBoard(), &MinesweeperView::clearCell);
+    connect(ui->lessonPage->getBoard(), &MinesweeperView::clearAttempted
+            , &model, &Model::receiveClearAttempted);
+    connect(&model, &Model::updateCellClear
+            , ui->lessonPage->getBoard(), &MinesweeperView::clearCell);
 
-    connect(ui->lessonPage->getBoard(), &MinesweeperView::flagAttempted, &model, &Model::receiveFlagAttempted);
-    connect(&model, &Model::updateCellFlag, ui->lessonPage->getBoard(), &MinesweeperView::flagCell);
+    connect(ui->lessonPage->getBoard(), &MinesweeperView::flagAttempted
+            , &model, &Model::receiveFlagAttempted);
+    connect(&model, &Model::updateCellFlag
+            , ui->lessonPage->getBoard(), &MinesweeperView::flagCell);
 
     connect(this, &MainWindow::getNextLesson, &model, &Model::setLessonToNext);
 
     connect(&model, &Model::quizCompleted, this, &MainWindow::showWinScreen);
 
-    connect(&model, &Model::quizTime, ui->lessonPage->getBoard(), &MinesweeperView::enableBoard);
-    connect(&model, &Model::lessonTime, ui->lessonPage->getBoard(), &MinesweeperView::disableBoard);
+    connect(&model, &Model::quizTime
+            , ui->lessonPage->getBoard(), &MinesweeperView::enableBoard);
+    connect(&model, &Model::lessonTime
+            , ui->lessonPage->getBoard(), &MinesweeperView::disableBoard);
 
-    connect(&model, &Model::sendCurrentLevel, ui->levelSelectPage, &LevelSelect::updateCurrentLevel);
+    connect(&model, &Model::sendCurrentLevel
+            , ui->levelSelectPage, &LevelSelect::updateCurrentLevel);
 
     // check if the level selected is valid
     connect(this, &MainWindow::checkAccess, &model, &Model::checkLessonNumber);
-    connect(&model, &Model::tooBigLessonNumber, this, &MainWindow::invalidLessonSelected);
-    connect(&model, &Model::validLessonNumber, this, &MainWindow::validLessonSelected);
+    connect(&model, &Model::tooBigLessonNumber
+            , this, &MainWindow::invalidLessonSelected);
+    connect(&model, &Model::validLessonNumber
+            , this, &MainWindow::validLessonSelected);
 
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
 
     // connections for the progress bar updating during lessons
-    connect(ui->lessonPage, &Lesson::requestProgressUpdate, &model, &Model::receiveProgressRequest);
-    connect(&model, &Model::sendProgressUpdate, ui->lessonPage, &Lesson::receiveProgressUpdate);
+    connect(ui->lessonPage, &Lesson::requestProgressUpdate
+            , &model, &Model::receiveProgressRequest);
+    connect(&model, &Model::sendProgressUpdate
+            , ui->lessonPage, &Lesson::receiveProgressUpdate);
 
     // load user progress
-    connect(this, &MainWindow::loadUserProgress, &model, &Model::loadUserProgressFile);
+    connect(this, &MainWindow::loadUserProgress
+            , &model, &Model::loadUserProgressFile);
     // reset progress
-    connect(this, &MainWindow::resetUserProgress, &model, &Model::resetUserProgressInFile);
+    connect(this, &MainWindow::resetUserProgress
+            , &model, &Model::resetUserProgressInFile);
     // update progress
-    connect(this, &MainWindow::passedLevel, &model, &Model::increaseMaxLessonValue);
+    connect(this, &MainWindow::passedLevel
+            , &model, &Model::increaseMaxLessonValue);
 }
 
 MainWindow::~MainWindow()
@@ -89,17 +108,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::makeConnections (Minefield &mines)
-{
-    ui->lessonPage->makeConnections (mines);
-}
-
 void MainWindow::updateScreenIndex(int index)
 {
     ui->stackedWidget->setCurrentIndex(index);
 
     // Reset progress if they go off of the level
-    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    // set with some arbitrary max that we will never hit, makes checking
+    // the logic easier
     ui->lessonPage->receiveProgressUpdate(0, 100);
 }
 
@@ -133,7 +148,8 @@ void MainWindow::nextLessonShortcut()
     emit getNextLesson();
 
     // Reset progress for next level
-    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    // set with some arbitrary max that we will never hit, makes checking
+    // the logic easier
     ui->lessonPage->receiveProgressUpdate(0, 100);
 }
 
@@ -156,7 +172,8 @@ void MainWindow::loadNew (int index)
     ui->stackedWidget->setCurrentIndex(index);
 
     // Reset progress if they go off of the level
-    // set with some arbitrary max that we will never hit, makes checking the logic easier
+    // set with some arbitrary max that we will never hit, makes checking
+    // the logic easier
     ui->lessonPage->receiveProgressUpdate(0, 100);
 }
 
