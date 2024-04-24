@@ -82,3 +82,8 @@ bool LessonLevel::checkMove (QPoint origin, UserMove::MoveType type)
 {
     return quiz.verifyUserMove(origin, type);
 }
+
+void LessonLevel::executeMovesAtIndex (int index)
+{
+    quiz.executeMovesAtIndex(index);
+}

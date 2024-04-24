@@ -66,6 +66,7 @@ void Model::nextMessage()
     if (currentMessageIndex < currentLesson.getNumMessages() - 1)
     {
         currentMessageIndex++;
+        currentLesson.executeMovesAtIndex(currentMessageIndex);
         emit sendCurrentMessage
             (currentLesson.getMessageFromIndex(currentMessageIndex));
     }
