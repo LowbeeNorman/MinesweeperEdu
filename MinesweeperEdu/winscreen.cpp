@@ -14,9 +14,11 @@ WinScreen::WinScreen(QWidget *parent)
 {
     ui->setupUi(this);
 
+    connect(timer, &QTimer::timeout, this, &WinScreen::updateWorld);
     connect(ui->levelSelectButton, &QPushButton::clicked, this, &WinScreen::levelSelectButtonClicked);
     connect(ui->nextLessonButton, &QPushButton::clicked, this, &WinScreen::nextLessonButtonClicked);
 
+    setUpBox2D();
     background.load(":/images/tv.png");
 }
 
@@ -76,11 +78,17 @@ void WinScreen::setUpBox2D()
     // Starting position of moving item
     bodyDef.position.Set(0.0f, 0.0f);
 
-    // Angle of moving item (0 because I only care about 1D motion)
-    bodyDef.angle = 0;
+    // Angle of moving item
+    bodyDef.angle = 0.45f;
 
     // Links body to specifications we just made, through a method in world
     body = world.CreateBody(&bodyDef);
+
+    // Bounce angle
+    body->SetTransform(body->GetPosition(), 45.0f * b2_pi / 180.0f);
+    body->SetAngularVelocity(0.0f);
+    b2Vec2 initialVelocity(std::cos(45.0f * b2_pi / 180.0f), std::sin(45.0f * b2_pi / 180.0f));
+    body->SetLinearVelocity(initialVelocity);
 
     // Slowdown rate, want it at 0 because it should not slow down
     body->SetLinearDamping(0.0f);
@@ -94,7 +102,7 @@ void WinScreen::setUpBox2D()
     fixtureDef.shape = &dynamicBox;
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
+    fixtureDef.density = 0.0f;
 
     // Override the default friction.
     fixtureDef.friction = 0.0f;
@@ -110,6 +118,7 @@ void WinScreen::setUpBox2D()
     // timer->start(1.0f / 60.0f);
     timer->setInterval (1.0f / 60.0f * 1000);
     timer->start ();
+
 }
 // 1.0f / 60.0f      100
 
@@ -128,7 +137,6 @@ void WinScreen::updateWorld()
         ui->winLabel->width(),
         ui->winLabel->height()
         );
-
 
     // printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 }

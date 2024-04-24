@@ -148,5 +148,4 @@ void StartScreen::paintEvent(QPaintEvent *event)
     painter.end();
 
     event->accept();
-    qDebug() << "HI";
 }
