@@ -61,7 +61,7 @@ Quiz::Quiz(QJsonObject &obj, Minefield *minefield)
     }
 
     //Carry out moves
-    executeMovesAtIndex(0);
+    executeMovesAtIndex(0, false);
     // Extract instructions
     QJsonArray instructionsArr = obj.value("instructions").toArray();
     numInstructions = 0;
@@ -97,17 +97,17 @@ bool Quiz::hasCorrectMovesLeft ()
     return !(numCorrectMovesLeft == 0);
 }
 
-void Quiz::executeMovesAtIndex (int index)
+void Quiz::executeMovesAtIndex (int index, bool highlightOnly)
 {
     for(int i = 0; i < completedMoves.size(); ++i)
     {
         if(completedMoves[i].getInstructionIndex() == index)
         {
-            if (completedMoves[i].getType() == MoveType::FLAG)
+            if (completedMoves[i].getType() == MoveType::FLAG && !highlightOnly)
             {
                 this->minefield->flag(completedMoves[i].getCell());
             }
-            else if (completedMoves[i].getType() == MoveType::CLEAR)
+            else if (completedMoves[i].getType() == MoveType::CLEAR && !highlightOnly)
             {
                 this->minefield->clear(completedMoves[i].getCell());
             }

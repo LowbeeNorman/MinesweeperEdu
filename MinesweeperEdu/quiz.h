@@ -57,7 +57,7 @@ public:
     /// \brief executes any moves at the provided index
     /// \param index of instructions to be carried out
     ///
-    void executeMovesAtIndex (int index);
+    void executeMovesAtIndex (int index, bool highlightOnly);
 private:
     QSet<UserMove> correctMoves;
     QList<UserMove> completedMoves;
