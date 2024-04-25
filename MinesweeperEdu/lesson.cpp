@@ -64,6 +64,7 @@ void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Min
     ui->topicText->setText(topic);
     ui->instructions->setText(message);
     ui->feedback->clear();
+    maxPage = 0;
 }
 
 void Lesson::receiveNextMessage(const QString& message)
@@ -84,12 +85,15 @@ void Lesson::receiveFeedback (QString message)
 
 void Lesson::receiveProgressUpdate (int current, int max)
 {
+    if(current < maxPage) {
+        return;
+    }
     emit updateCurrentProgress(current);
     emit updateMaxProgress(max);
+    maxPage = current;
 }
 
 void Lesson::setFlagsRemaining(int numFlags)
 {
     ui->flagCounter->display(numFlags);
-    qDebug() << numFlags;
 }
