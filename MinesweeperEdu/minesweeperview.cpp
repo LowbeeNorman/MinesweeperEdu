@@ -242,7 +242,7 @@ void MinesweeperView::lessonHighlightPlaced(QPoint point, int color)
 
 void MinesweeperView::lessonHighlightRemoved(QPoint point)
 {
-    if (!enabled || nullptr == pixmap)
+    if (nullptr == pixmap)
         return;
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
