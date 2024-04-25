@@ -48,6 +48,10 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::updateScreenIndex);
     connect(ui->winScreenPage, &WinScreen::goToNextLesson
             , this, &MainWindow::nextLessonShortcut);
+    connect(ui->levelSelectPage, &LevelSelect::disableNextLesson
+            , ui->winScreenPage, &WinScreen::disableNextButton);
+    connect(ui->levelSelectPage, &LevelSelect::enableNextLesson
+            , ui->winScreenPage, &WinScreen::enableNextButton);
 
     // main window connections
     connect(this, &MainWindow::getLesson, &model, &Model::setLesson);

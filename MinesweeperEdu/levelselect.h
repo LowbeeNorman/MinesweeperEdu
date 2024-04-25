@@ -39,11 +39,10 @@ private:
     QButtonGroup *group;
 
 public slots:
-    ///
+
     /// \brief Receives the current level and button from the view
     /// \param Index of the currently selected level
     /// \param Last clicked button
-    ///
     void getCurrentLevel(QAbstractButton *button, bool checked);
 
     ///
@@ -85,6 +84,16 @@ signals:
     /// \param The index to change the mainwindow stacked widget to
     ///
     void sendMenuClicked(int menuIndex);
+
+    ///
+    /// \brief disableNextLesson
+    ///
+    void disableNextLesson();
+
+    ///
+    /// \brief enableNextLesson
+    ///
+    void enableNextLesson();
 };
 
 #endif // LEVELSELECT_H

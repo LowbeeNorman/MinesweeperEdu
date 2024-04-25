@@ -111,4 +111,12 @@ void WinScreen::updateWorld()
     ui->winLabel->setGeometry(newX, newY, labelWidth, labelHeight);
 }
 
+void WinScreen::disableNextButton() {
+    ui->nextLessonButton->setDisabled(true);
+}
+
+void WinScreen::enableNextButton() {
+    ui->nextLessonButton->setDisabled(false);
+}
+
 

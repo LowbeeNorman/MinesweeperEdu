@@ -120,7 +120,11 @@ void LevelSelect::getCurrentLevel (QAbstractButton *button, bool checked)
 
     ui->playButton->setEnabled(true);
     currentLevel = group->checkedId ();
-    qInfo () << "currentLevel:" << currentLevel;
+    if (currentLevel == 20) {
+        emit disableNextLesson();
+    } else {
+        emit enableNextLesson();
+    }
 }
 
 void LevelSelect::playButtonClicked()
@@ -161,14 +165,15 @@ void LevelSelect::updateCurrentLevel(int levelIndex)
 }
 
 void LevelSelect::receiveMaxLesson(int maxLesson) {
-    for(int i = 1; i <= maxLesson; i++) {
-        group->button(i)->setDisabled(false);
-        qInfo() << "here" << i;
+    if (maxLesson > 20) {
+        return;
     }
-    for(int i = maxLesson + 1; i <= 20; i++)
+    for (int i = 1; i <= maxLesson; i++) {
+        group->button(i)->setDisabled(false);
+    }
+    for (int i = maxLesson + 1; i <= 20; i++)
     {
         group->button(i)->setDisabled(true);
-        qInfo() << "there" << i;
     }
 }
 
