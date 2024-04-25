@@ -139,6 +139,7 @@ bool Quiz::verifyUserMove (QPoint coords, MoveType type)
     if (correctMoves.contains (currentMove))
     {
         numCorrectMovesLeft--;
+        correctMoves.remove (currentMove);
         return true;
     }
     return false;
