@@ -28,7 +28,7 @@ public:
     MainWindow(Model &model, QWidget *parent = nullptr);
     ~MainWindow();
 
-    void makeConnections (Minefield &mines);
+    // void makeConnections (Minefield &mines);
 
 private:
     Ui::MainWindow *ui;

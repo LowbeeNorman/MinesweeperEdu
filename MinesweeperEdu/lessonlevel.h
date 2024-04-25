@@ -73,7 +73,7 @@ public:
     /// \return true if the correct move, false otherwise
     ///
     bool checkMove(QPoint origin, UserMove::MoveType type);
-    void executeMovesAtIndex(int index);
+    void executeMovesAtIndex(int index, bool highlightOnly);
 private:
     QString topic;
     QList<QString> lessonGuidance;

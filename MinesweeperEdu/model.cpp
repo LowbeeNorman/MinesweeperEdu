@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Caleb Norman
+
 #include "model.h"
 #include <QJsonDocument>
 #include <QFile>
@@ -51,16 +56,22 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
 
 void Model::setLesson(int lessonNumber)
 {
-    // load this lesson from json
-    currentLesson = constructLessonLevelFromJSON
-        (QString (":/json/lesson%1.json").arg (lessonNumber));
-    // TODO find out what the lesson wants the board to look like
-    currentLessonIndex = lessonNumber;
-    emit lessonTime ();
-    emit sendLessonInfo (currentLesson.getTopic()
-                        , currentLesson.getMessageFromIndex(0)
-                        , currentLesson.getMinefield());
-    emit sendCurrentLevel(lessonNumber);
+    if(lessonNumber <= numLessons)
+        {
+        // load this lesson from json
+        currentLesson = constructLessonLevelFromJSON
+            (QString (":/json/lesson%1.json").arg (lessonNumber));
+        // TODO find out what the lesson wants the board to look like
+        currentLessonIndex = lessonNumber;
+        emit lessonTime ();
+        emit sendLessonInfo (currentLesson.getTopic()
+                            , currentLesson.getMessageFromIndex(0)
+                            , currentLesson.getMinefield());
+        emit sendCurrentLevel(lessonNumber);
+        currentMessageIndex = 0;
+        currentInstructionIndex = 0;
+        currentLessonQuizMoves = currentLesson.getNumCorrectMovesLeft();
+    }
 }
 
 void Model::nextMessage()
@@ -68,7 +79,7 @@ void Model::nextMessage()
     if (currentMessageIndex < currentLesson.getNumMessages() - 1)
     {
         currentMessageIndex++;
-        currentLesson.executeMovesAtIndex(currentMessageIndex);
+        currentLesson.executeMovesAtIndex(currentMessageIndex, false);
         emit sendCurrentMessage
             (currentLesson.getMessageFromIndex(currentMessageIndex));
     }
@@ -114,7 +125,7 @@ void Model::previousMessage ()
     else if (currentInstructionIndex == 0)
     {
         currentMessageIndex--;
-        currentLesson.executeMovesAtIndex(currentMessageIndex);
+        currentLesson.executeMovesAtIndex(currentMessageIndex, true);
         emit sendCurrentMessage
             (currentLesson.getMessageFromIndex(currentMessageIndex));
     }
@@ -139,6 +150,7 @@ void Model::receiveClearAttempted (QPoint origin)
         emit sendErrorMessage ("All correct moves have been completed!"
                                " Click \"Next\" to move on!");
     }
+    receiveProgressRequest();
 }
 
 void Model::receiveFlagAttempted (QPoint origin)
@@ -159,6 +171,7 @@ void Model::receiveFlagAttempted (QPoint origin)
         emit sendErrorMessage("All correct moves have been completed!"
                               " Click \"Next\" to move on!");
     }
+    receiveProgressRequest();
 }
 
 void Model::setLessonToNext ()
@@ -168,7 +181,8 @@ void Model::setLessonToNext ()
 
 void Model::receiveProgressRequest()
 {
-    emit sendProgressUpdate(currentMessageIndex, currentLesson.getNumMessages() - 1);
+    emit sendProgressUpdate(currentMessageIndex + currentLessonQuizMoves - currentLesson.getNumCorrectMovesLeft() + currentInstructionIndex
+                            , currentLesson.getNumMessages() - 1 + currentLessonQuizMoves + currentLesson.getNumInstructions());
 }
 
 void Model::checkLessonNumber (int lessonNumber)
