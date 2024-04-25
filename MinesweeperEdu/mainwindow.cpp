@@ -137,6 +137,21 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::returnToMenu, this, &MainWindow::updateScreenIndex);
     connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::nextFreeplayLevel, this, &MainWindow::updateScreenIndex);
 
+    connect(&model.getFreeplayField(), &Minefield::won
+            , ui->freeplayWinScreenPage, &FreeplayWinScreen::gameWon);
+    connect(&model.getFreeplayField(), &Minefield::dead
+            , ui->freeplayWinScreenPage, &FreeplayWinScreen::gameLost);
+    connect(&model.getFreeplayField(), &Minefield::won
+            , ui->freeplayPage, &Freeplay::gameOver);
+    connect(&model.getFreeplayField(), &Minefield::dead
+            , ui->freeplayPage, &Freeplay::gameOver);
+    connect(ui->freeplayPage, &Freeplay::goToWinScreen
+            , this, &MainWindow::updateScreenIndex);
+    connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::newBoard
+            , &model.getFreeplayField(), &Minefield::resetField);
+    connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::newBoard
+            , ui->freeplayPage->getBoard(), &MinesweeperView::enableBoard);
+
 }
 
 MainWindow::~MainWindow()

@@ -35,3 +35,8 @@ void Freeplay::menuButtonClicked()
 {
     emit returnToMenu(0);
 }
+
+void Freeplay::gameOver()
+{
+    emit goToWinScreen(5);
+}

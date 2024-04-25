@@ -36,12 +36,16 @@ signals:
     ///
     void returnToMenu(int i);
 
+    void goToWinScreen(int index);
+
 public slots:
 
     ///
     /// \brief Listens for the menu button to be clicked
     ///
     void menuButtonClicked();
+
+    void gameOver();
 
 };
 
