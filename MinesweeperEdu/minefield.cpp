@@ -146,6 +146,7 @@ void Minefield::resetField (QSize boardSize, float mineFreq)
     arrayLength = boardSize.width () * boardSize.height ();
     numMines = mineFreq * arrayLength;
     numFlags = numMines;
+    autocomplete = true;
     // reset to the first move
     firstMove = true;
     initialized = false;

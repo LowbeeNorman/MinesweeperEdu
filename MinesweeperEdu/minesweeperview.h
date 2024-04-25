@@ -98,6 +98,9 @@ signals:
     /// \param origin cell that was clicked
     ///
     void flagAttempted (QPoint origin);
+
+    void viewWon ();
+    void viewDead ();
 public slots:
     void receiveBoard (const QSize &boardSize, const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);

@@ -145,17 +145,23 @@ void MinesweeperView::receiveBoard (const QSize &boardSize, const int *board, co
 void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
 {
     Q_UNUSED (mines);
+    if (!enabled)
+        return;
     qInfo () << "dead at" << where;
     enabled = false;
+    emit viewDead ();
 }
 
 void MinesweeperView::won (QList<QPoint> mines)
 {
+    if (!enabled)
+        return;
     qInfo () << "won";
     for (const auto &mine : mines)
     {
         flagPlaced (mine, numFlags);
     }
+    emit viewWon ();
     enabled = false;
 }
 
@@ -200,38 +206,35 @@ void MinesweeperView::lessonHighlightPlaced(QPoint point, int color)
 {
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
-    if(color==2)
-        {
+    switch (color)
+    {
+    case 2:
         painter.drawPixmap (translateFromMinesweeper(point), redHighlight);
-        }
-    else if(color==3)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), orangeHighlight);
-        }
-    else if(color==4)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), yellowHighlight);
-        }
-    else if(color==5)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), pinkHighlight);
-        }
-    else if(color==6)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), blueHighlight);
-        }
-    else if(color==7)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), purpleHighlight);
-        }
-    else if(color==8)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), brownHighlight);
-        }
-    else if(color==9)
-        {
-            painter.drawPixmap (translateFromMinesweeper(point), blackHighlight);
-        }
+        break;
+    case 3:
+        painter.drawPixmap (translateFromMinesweeper(point), orangeHighlight);
+        break;
+    case 4:
+        painter.drawPixmap (translateFromMinesweeper(point), yellowHighlight);
+        break;
+    case 5:
+        painter.drawPixmap (translateFromMinesweeper(point), pinkHighlight);
+        break;
+    case 6:
+        painter.drawPixmap (translateFromMinesweeper(point), blueHighlight);
+        break;
+    case 7:
+        painter.drawPixmap (translateFromMinesweeper(point), purpleHighlight);
+        break;
+    case 8:
+        painter.drawPixmap (translateFromMinesweeper(point), brownHighlight);
+        break;
+    case 9:
+        painter.drawPixmap (translateFromMinesweeper(point), blackHighlight);
+        break;
+    default:
+        break;
+    }
     pixmapItem->setPixmap (*pixmap);
 }
 
