@@ -121,3 +121,4 @@ void FreeplayWinScreen::updateWorld()
     // Position is changed
     ui->winLabel->setGeometry(newX, newY, labelWidth, labelHeight);
 }
+

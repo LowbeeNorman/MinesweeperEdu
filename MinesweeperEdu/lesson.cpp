@@ -87,6 +87,7 @@ void Lesson::receiveProgressUpdate (int current, int max)
     emit updateCurrentProgress(current);
     emit updateMaxProgress(max);
 }
+
 void Lesson::setFlagsRemaining(int numFlags)
 {
     ui->flagCounter->display(numFlags);

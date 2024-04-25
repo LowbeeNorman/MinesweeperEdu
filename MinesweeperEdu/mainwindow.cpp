@@ -117,6 +117,9 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     ui->lessonPage->getBoard()->makeConnections (model.getMinefield());
     ui->freeplayPage->getBoard()->makeConnections (model.getFreeplayField());
 
+    connect(&model.getFreeplayField(), &Minefield::numFlagsChanged
+            , ui->freeplayPage, &Freeplay::setFlagsRemaining);
+
 
     // connections for the progress bar updating during lessons
     connect(ui->lessonPage, &Lesson::requestProgressUpdate

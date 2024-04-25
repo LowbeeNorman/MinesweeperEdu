@@ -11,8 +11,8 @@ Freeplay::Freeplay(QWidget *parent)
     , ui(new Ui::Freeplay)
 {
     ui->setupUi(this);
-
     connect(ui->menuButton, &QPushButton::clicked, this, &Freeplay::menuButtonClicked);
+
 }
 
 Freeplay::~Freeplay()
@@ -39,4 +39,10 @@ void Freeplay::menuButtonClicked()
 void Freeplay::gameOver()
 {
     emit goToWinScreen(5);
+}
+
+void Freeplay::setFlagsRemaining(int numFlags)
+{
+    ui->flagCount->display(numFlags);
+    qDebug() << numFlags;
 }

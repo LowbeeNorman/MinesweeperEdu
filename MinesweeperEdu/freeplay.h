@@ -47,6 +47,8 @@ public slots:
 
     void gameOver();
 
+    void setFlagsRemaining(int numFlags);
+
 };
 
 #endif // FREEPLAY_H
