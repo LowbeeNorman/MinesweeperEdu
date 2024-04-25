@@ -18,13 +18,14 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="StartScreen" name="startPage"/>
       <widget class="LevelSelect" name="levelSelectPage"/>
       <widget class="Lesson" name="lessonPage"/>
       <widget class="WinScreen" name="winScreenPage"/>
       <widget class="Freeplay" name="freeplayPage"/>
+      <widget class="FreeplayWinScreen" name="freeplayWinScreenPage"/>
      </widget>
     </item>
    </layout>
@@ -60,6 +61,12 @@
    <class>Freeplay</class>
    <extends>QWidget</extends>
    <header>freeplay.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FreeplayWinScreen</class>
+   <extends>QWidget</extends>
+   <header>freeplaywinscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
