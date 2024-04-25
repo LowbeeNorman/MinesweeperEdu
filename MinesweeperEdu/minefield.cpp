@@ -42,6 +42,7 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
         tiles[i] = Tile::covered;
 
     emit numFlagsChanged(numFlags);
+    emit updateBoard(boardSize, field, tiles);
 }
 
 Minefield::Minefield (QSize boardSize, int numMines)
