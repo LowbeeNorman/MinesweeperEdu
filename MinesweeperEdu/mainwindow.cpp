@@ -26,6 +26,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
             , &model, &Model::setFreePlay);
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
+            , ui->freeplayPage->getBoard (), &MinesweeperView::enableBoard);
+    connect (ui->startPage, &StartScreen::sendFreeplayClicked
             , &model.getFreeplayField (), &Minefield::resetField);
     connect(ui->startPage, &StartScreen::sendContinueClicked
             , this, &MainWindow::loadPrevious);
