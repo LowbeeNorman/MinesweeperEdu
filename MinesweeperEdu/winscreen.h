@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/19/24
-/// Edited by: Caleb Norman
+/// 4/24/24
+/// Edited by: Caleb Norman, Abdul Asim
 
 #ifndef WINSCREEN_H
 #define WINSCREEN_H

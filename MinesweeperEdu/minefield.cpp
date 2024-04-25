@@ -1,14 +1,16 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Written by: Jayden Ferrin, Winston Ji
+
 #include "minefield.h"
 #include <algorithm>
 #include <random>
 #include <chrono>
 #include <cstdlib>
-#include <ctime>
-// testing
 #include <QDebug>
 #include <QRect>
 #include <QTimer>
-#include <cstdio>
 #include <cstring>
 
 Minefield::Minefield (QObject *parent)
