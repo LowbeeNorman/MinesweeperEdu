@@ -7,6 +7,11 @@
 
 UserMove::UserMove() {}
 
+UserMove::UserMove (QPoint cell, MoveType type)
+    : cell (cell)
+    , type (type)
+{}
+
 UserMove::UserMove(QJsonObject &obj) {
     QJsonObject qPointObj = obj.value("cell").toObject();
     int x = qPointObj.value("x").toInt();
@@ -24,7 +29,7 @@ QPoint UserMove::getCell ()
     return cell;
 }
 
-UserMove::MoveType UserMove::getType ()
+MoveType UserMove::getType ()
 {
     return type;
 }
@@ -32,4 +37,17 @@ UserMove::MoveType UserMove::getType ()
 int UserMove::getInstructionIndex ()
 {
     return instructionIndex;
+}
+
+bool UserMove::operator== (const UserMove &other) const noexcept
+{
+    return cell == other.cell && type == other.type;
+}
+
+size_t qHash (const UserMove &key, size_t seed) noexcept
+{
+    QtPrivate::QHashCombine hash;
+    seed = hash (seed, key.cell);
+    seed = hash (seed, key.type);
+    return seed;
 }
