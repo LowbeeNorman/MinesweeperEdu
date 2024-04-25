@@ -151,11 +151,11 @@ void Model::receiveClearAttempted (QPoint origin)
         if(currentLesson.checkMove(origin, MoveType::CLEAR))
         {
             emit updateCellClear (origin);
-
+            emit sendErrorMessage ("That's right! Great job!");
         }
         else
         {
-            emit sendErrorMessage("Wrong move");
+            emit sendErrorMessage("Wrong move, this tile is not guaranteed to be safe.");
         }
     }
     else
@@ -178,10 +178,11 @@ void Model::receiveFlagAttempted (QPoint origin)
         if(currentLesson.checkMove(origin, MoveType::FLAG))
         {
             emit updateCellFlag (origin);
+            emit sendErrorMessage ("That's right! Great job!");
         }
         else
         {
-            emit sendErrorMessage("Wrong move");
+            emit sendErrorMessage("Wrong move, this tile is not guaranteed to be a mine.");
         }
     }
     else

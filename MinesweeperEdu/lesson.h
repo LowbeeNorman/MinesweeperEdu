@@ -31,6 +31,7 @@ public:
 
 private:
     Ui::Lesson *ui;
+    int maxPage = 0;
 
 signals:
     ///
