@@ -1,7 +1,7 @@
 /// Assignment 9: MinesweeperEdu
 /// CS3505
 /// 4/24/2024
-/// Written by: Jayden Ferrin, Winston Ji
+/// Written by: Jayden Ferrin, Winston Ji, Noah Sikorski
 
 #include "minesweeperview.h"
 #include <QTimer>

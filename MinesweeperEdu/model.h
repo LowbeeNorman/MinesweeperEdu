@@ -1,7 +1,7 @@
 /// Assignment 9: MinesweeperEdu
 /// CS3505
 /// 4/24/2024
-/// Caleb Norman
+/// Caleb Norman, Kyle Stewart, Jayden Ferrin, Noah Sikorski
 
 #ifndef MODEL_H
 #define MODEL_H

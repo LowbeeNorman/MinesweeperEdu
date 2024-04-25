@@ -59,12 +59,39 @@ public:
     ///
     void executeMovesAtIndex (int index, bool highlightOnly);
 private:
+    ///
+    /// \brief correctMoves set of valid moves
+    ///
     QSet<UserMove> correctMoves;
+
+    ///
+    /// \brief completedMoves list of completed moves
+    ///
     QList<UserMove> completedMoves;
+
+    ///
+    /// \brief instructions list of lesson content
+    ///
     QList<QString> instructions;
+
+    ///
+    /// \brief minefield in the lesson
+    ///
     Minefield *minefield;
+
+    ///
+    /// \brief errorMessages List of error messages
+    ///
     static const QList<QString> errorMessages;
+
+    ///
+    /// \brief numInstructions count of instructions in the lesson
+    ///
     int numInstructions;
+
+    ///
+    /// \brief numCorrectMovesLeft count of correct moves that have not yet been made
+    ///
     int numCorrectMovesLeft;
 };
 
