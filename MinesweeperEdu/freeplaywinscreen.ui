@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WinScreen</class>
- <widget class="QWidget" name="WinScreen">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
+ <class>FreeplayWinScreen</class>
+ <widget class="QWidget" name="FreeplayWinScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
-    <height>574</height>
+    <width>663</width>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
-  </property>
   <property name="styleSheet">
    <string notr="true">border-image: url(:/images/tv.png);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="2" colspan="2" alignment="Qt::AlignLeft">
-    <widget class="QPushButton" name="nextLessonButton">
+   <item row="3" column="1" alignment="Qt::AlignRight">
+    <widget class="QPushButton" name="menuButton">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -39,15 +33,9 @@
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton:enabled {
-	border-image: url(:/images/nextLesson.png);
+	border-image: url(:/images/menu.png);
 	background: black;
 	border: 8px solid black;
-	border-radius: 8px;
-}
-QPushButton:disabled {
-	border-image: url(:/images/nextLessonDisabled.png);
-	background: gray;
-	border: 8px solid gray;
 	border-radius: 8px;
 }
 QPushButton:hover {
@@ -66,7 +54,7 @@ QPushButton:pressed {
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+   <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
     <widget class="QLabel" name="winLabel">
      <property name="minimumSize">
       <size>
@@ -91,8 +79,8 @@ QPushButton:pressed {
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2" alignment="Qt::AlignRight">
-    <widget class="QPushButton" name="levelSelectButton">
+   <item row="3" column="2" alignment="Qt::AlignLeft">
+    <widget class="QPushButton" name="nextLevelButton">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -107,19 +95,19 @@ QPushButton:pressed {
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton:enabled {
-	border-image: url(:/images/levelSelect.png);
+	border-image: url(:/images/next.png);
 	background: black;
 	border: 8px solid black;
 	border-radius: 8px;
 }
 QPushButton:hover {
-	background: orange;
-	border: 4px solid orange;
+	background: purple;
+	border: 4px solid purple;
 	border-radius: 4px;
 }
 QPushButton:pressed {
-	background: red;
-	border: 4px solid red;
+	background: green;
+	border: 4px solid green;
 	border-radius: 4px;
 }</string>
      </property>
