@@ -66,6 +66,10 @@ void MinesweeperView::internalResize ()
 {
     // set the scene rect to the pixmap rect since that is all that is
     // rendered in the view
+    if (nullptr == pixmap)
+    {
+        return;
+    }
     setSceneRect (pixmap->rect ());
     qInfo () << "pixmap rect" << pixmap->rect ();
     this->resetTransform ();
@@ -92,6 +96,11 @@ void MinesweeperView::setBoardSize (QSize size)
     this->size = size;
     if (pixmap != nullptr)
         delete pixmap;
+    else
+    {
+        emit requestBoard ();
+        return;
+    }
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE
                                , size.height () * TILE_SIZE));
