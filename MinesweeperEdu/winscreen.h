@@ -47,6 +47,15 @@ public slots:
     ///
     void updateWorld();
 
+    ///
+    /// \brief Disables the Next Lesson button
+    ///
+    void disableNextButton();
+
+    ///
+    /// \brief Enables the Next Lesson button
+    ///
+    void enableNextButton();
 
 signals:
 

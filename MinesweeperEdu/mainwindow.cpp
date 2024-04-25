@@ -48,6 +48,10 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::updateScreenIndex);
     connect(ui->winScreenPage, &WinScreen::goToNextLesson
             , this, &MainWindow::nextLessonShortcut);
+    connect(ui->levelSelectPage, &LevelSelect::disableNextLesson
+            , ui->winScreenPage, &WinScreen::disableNextButton);
+    connect(ui->levelSelectPage, &LevelSelect::enableNextLesson
+            , ui->winScreenPage, &WinScreen::enableNextButton);
 
     // main window connections
     connect(this, &MainWindow::getLesson, &model, &Model::setLesson);
@@ -83,6 +87,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::invalidLessonSelected);
     connect(&model, &Model::validLessonNumber
             , this, &MainWindow::validLessonSelected);
+    connect(&model, &Model::sendMaxLesson
+            , ui->levelSelectPage, &LevelSelect::receiveMaxLesson);
 
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
