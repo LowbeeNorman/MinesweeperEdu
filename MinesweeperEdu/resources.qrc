@@ -81,6 +81,7 @@
         <file>lock.png</file>
         <file>nextLessonDisabled.png</file>
         <file>freeplay.png</file>
+        <file>youLose.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
