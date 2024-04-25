@@ -6,7 +6,8 @@
             "First looking at the pink cells they border a one guaranteeing a maximum of one mine",
             "Next looking at the orange cells they also border a one guaranteeing a maximum of one mine",
             "Now looking at the two guarantees that there must be mines present in both the pink and orange",
-            "This allows you to clear all other cells bordering the two ones mentioned before"
+            "This allows you to clear all other cells bordering the two ones mentioned before",
+            "Anytime you see this 1>2<1 pattern you can clear these cells"
         ],
 	"quiz":
 	{
@@ -182,6 +183,231 @@
                         },
                         "type": 1,
                         "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 5,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 5,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 3,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 3,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 4,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 4,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 4,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 3,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 3,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 5,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 5,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 5
                     }
                 ],
                 "instructions":
