@@ -182,6 +182,8 @@ QPoint MinesweeperView::translateFromMinesweeper (QPoint point)
 // stuff the mouse uses
 void MinesweeperView::flagPlaced (QPoint point, int numFlags)
 {
+    if (nullptr == pixmap)
+        return;
     this->numFlags = numFlags;
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
@@ -191,6 +193,8 @@ void MinesweeperView::flagPlaced (QPoint point, int numFlags)
 
 void MinesweeperView::flagRemoved (QPoint point, int numFlags)
 {
+    if (nullptr == pixmap)
+        return;
     this->numFlags = numFlags;
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
