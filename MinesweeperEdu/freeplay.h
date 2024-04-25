@@ -40,10 +40,6 @@ public slots:
     /// \brief Listens for the menu button to be clicked
     ///
     void menuButtonClicked();
-    ///
-    /// \brief Listens to update the count of flags left
-    ///
-    //void updateFlagsLeft();
 
 };
 
