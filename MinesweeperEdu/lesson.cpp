@@ -83,6 +83,7 @@ void Lesson::previousButtonClicked()
 
 void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Minefield& minefield)
 {
+    ui->topicText->setText(topic);
     ui->instructions->setText(message);
     ui->feedback->clear();
     makeConnections(minefield);
@@ -101,6 +102,7 @@ MinesweeperView* Lesson::getBoard ()
 void Lesson::receiveFeedback (QString message)
 {
     ui->feedback->setText(message);
+
 }
 
 void Lesson::receiveProgressUpdate (int current, int max)

@@ -7,63 +7,41 @@
     <x>0</x>
     <y>0</y>
     <width>726</width>
-    <height>511</height>
+    <height>537</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2" rowstretch="0" columnstretch="0">
+  <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0" columnstretch="0">
    <property name="sizeConstraint">
     <enum>QLayout::SetNoConstraint</enum>
    </property>
-   <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout" rowstretch="1,1,0" columnstretch="0,0,1,0,0,0">
-     <item row="2" column="0">
-      <widget class="QPushButton" name="backButton">
-       <property name="minimumSize">
-        <size>
-         <width>150</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>150</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:enabled {
-	border-image: url(:/images/levelSelect.png);
-	background: black;
-	border: 8px solid black;
-	border-radius: 8px;
-}
-QPushButton:hover {
-	background: orange;
-	border: 4px solid orange;
-	border-radius: 4px;
-}
-QPushButton:pressed {
-	background: red;
-	border: 4px solid red;
-	border-radius: 4px;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2" colspan="3">
+   <item row="1" column="0">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="1,0,0,0" columnstretch="0,0,0,0,0,0">
+     <item row="3" column="2" colspan="3">
       <widget class="QProgressBar" name="progressDisplay">
        <property name="value">
         <number>0</number>
        </property>
       </widget>
      </item>
-     <item row="0" column="0" rowspan="2" colspan="4">
+     <item row="1" column="4" colspan="2">
+      <widget class="QTextBrowser" name="instructions">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" rowspan="2" colspan="4">
       <widget class="MinesweeperView" name="board">
        <property name="minimumSize">
         <size>
@@ -73,54 +51,7 @@ QPushButton:pressed {
        </property>
       </widget>
      </item>
-     <item row="1" column="4" colspan="2">
-      <widget class="QTextBrowser" name="feedback">
-       <property name="minimumSize">
-        <size>
-         <width>200</width>
-         <height>0</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="5">
-      <widget class="QPushButton" name="nextButton">
-       <property name="minimumSize">
-        <size>
-         <width>90</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>90</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:enabled {
-	border-image: url(:/images/next.png);
-	background: black;
-	border: 8px solid black;
-	border-radius: 8px;
-}
-QPushButton:hover {
-	background: purple;
-	border: 4px solid purple;
-	border-radius: 4px;
-}
-QPushButton:pressed {
-	background: green;
-	border: 4px solid green;
-	border-radius: 4px;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QPushButton" name="previousButton">
        <property name="minimumSize">
         <size>
@@ -157,13 +88,181 @@ QPushButton:pressed {
        </property>
       </widget>
      </item>
-     <item row="0" column="4" colspan="2">
-      <widget class="QTextBrowser" name="instructions">
+     <item row="2" column="4" colspan="2">
+      <widget class="QTextBrowser" name="feedback">
        <property name="minimumSize">
         <size>
          <width>200</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="5">
+      <widget class="QPushButton" name="nextButton">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>90</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/next.png);
+	background: black;
+	border: 8px solid black;
+	border-radius: 8px;
+}
+QPushButton:hover {
+	background: purple;
+	border: 4px solid purple;
+	border-radius: 4px;
+}
+QPushButton:pressed {
+	background: green;
+	border: 4px solid green;
+	border-radius: 4px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="backButton">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:enabled {
+	border-image: url(:/images/levelSelect.png);
+	background: black;
+	border: 8px solid black;
+	border-radius: 8px;
+}
+QPushButton:hover {
+	background: orange;
+	border: 4px solid orange;
+	border-radius: 4px;
+}
+QPushButton:pressed {
+	background: red;
+	border: 4px solid red;
+	border-radius: 4px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="flagInfoGrid">
+       <item row="0" column="0">
+        <widget class="QLabel" name="flagImage">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/flag.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLCDNumber" name="flagCounter">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="smallDecimalPoint">
+          <bool>false</bool>
+         </property>
+         <property name="digitCount">
+          <number>1</number>
+         </property>
+         <property name="mode">
+          <enum>QLCDNumber::Dec</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Filled</enum>
+         </property>
+         <property name="intValue" stdset="0">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1" colspan="3">
+      <widget class="QLabel" name="topicText">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <bold>false</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
