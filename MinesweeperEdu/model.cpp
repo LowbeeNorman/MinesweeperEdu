@@ -53,10 +53,10 @@ LessonLevel Model::constructLessonLevelFromJSON(QString filename) {
     return LessonLevel (doc, &minefield);
 }
 
-void Model::setLesson(int lessonNumber)
+void Model::setLesson (int lessonNumber)
 {
-    if(lessonNumber <= numLessons)
-        {
+    if (lessonNumber <= numLessons)
+    {
         // load this lesson from json
         currentLesson = constructLessonLevelFromJSON
             (QString (":/json/lesson%1.json").arg (lessonNumber));
