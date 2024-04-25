@@ -58,7 +58,6 @@ SOURCES += \
     lesson.cpp \
     lessonlevel.cpp \
     levelselect.cpp \
-    boardview.cpp \
     main.cpp \
     mainwindow.cpp \
     minesweeperview.cpp \
@@ -121,7 +120,6 @@ HEADERS += \
     lesson.h \
     lessonlevel.h \
     levelselect.h \
-    boardview.h \
     mainwindow.h \
     minesweeperview.h \
     quiz.h \
