@@ -28,9 +28,6 @@ StartScreen::StartScreen(QWidget *parent)
     setUpBox2D();
 
     background.load(":/images/startScreenBackground.png"); //replace later
-
-    //HIDING FREE PLAY BUTTON
-    ui->freePlayButton->hide();
 }
 
 StartScreen::~StartScreen()
