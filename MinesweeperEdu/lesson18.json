@@ -8,7 +8,7 @@
             "The two touches all of the red spaces so that's one mine accounted for The other mine is guaranteed to be in one of the orange spaces",
             "Now looking at the three the blue and orange spaces contain a maximum of two mines meaning the space up and to the left is a guaranteed mine and can be flagged",
             "Continuing with the three one mine we just accounted for the second is in one of the two blue spaces and the third is in one of the adjacent orange spaces this means the remaining orange spaces can be cleared",
-            "T Patterns can typically be worked out in this way"
+            "T Patterns can typically be solved in a similar way"
         ],
 	"quiz":
 	{

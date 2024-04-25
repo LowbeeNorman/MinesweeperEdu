@@ -5,7 +5,10 @@
                 "As a reminder, there are three ways to interact with the grid.",
                 "You can left or right-click a hidden tile.",
                 "Left-clicking reveals the tile if it is safe, or sets off a mine losing the game if it is not.",
-                "Right-clicking flags a mine, marking it as an unsafe tile."
+                "Right-clicking flags a mine, marking it as an unsafe tile.",
+                "The last way to interact with the board is with the middle click",
+                "You can only middle click a numbered tile this action is called chording and reveals all adjacent tiles"
+"
         ],
         "quiz":
         {

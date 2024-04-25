@@ -2,7 +2,7 @@
         "topic": "The Number in the Top Left",
         "lessonGuidance":
         [
-                "In the top right corner of the game board, there will be a number corresponding to the number of mines left unflagged on the board.",
+                "In the top left corner of the game board, there will be a number corresponding to the number of mines left unflagged on the board.",
                 "The number will go down by one for each flag placed, whether it is correctly placed flag or not.",
                 "To win the game, the number in the corner must be zero. This means that every mine has been flagged. All non-flagged tiles must be revealed as well."
         ],
