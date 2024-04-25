@@ -80,6 +80,7 @@
         <file>tv.png</file>
         <file>lock.png</file>
         <file>nextLessonDisabled.png</file>
+        <file>freeplay.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>test.json</file>
