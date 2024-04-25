@@ -76,6 +76,8 @@ public slots:
     ///
     void receiveProgressUpdate (int current, int max);
 
+    void setFlagsRemaining(int numFlags);
+
     MinesweeperView* getBoard ();
 };
 

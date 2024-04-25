@@ -101,6 +101,7 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     // update progress
     connect(this, &MainWindow::passedLevel
             , &model, &Model::increaseMaxLessonValue);
+
 }
 
 MainWindow::~MainWindow()

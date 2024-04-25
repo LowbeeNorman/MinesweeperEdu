@@ -136,6 +136,8 @@ signals:
     void flagPlaced(QPoint point, int numFlags);
     void flagRemoved (QPoint point, int numFlags);
 
+    void numFlagsChanged(int numFlags);
+
     ///
     /// \brief dead emitted when
     /// \param origin point of death

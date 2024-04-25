@@ -17,6 +17,8 @@ Lesson::Lesson(QWidget *parent) :
             , this, &Lesson::nextButtonClicked);
     connect(ui->previousButton, &QPushButton::clicked
             , this, &Lesson::previousButtonClicked);
+
+    ui->flagCounter->display(999);
 }
 
 Lesson::~Lesson()
@@ -57,6 +59,9 @@ void Lesson::makeConnections (Minefield &mines)
     connect (&mines, &Minefield::won
             , ui->board, &MinesweeperView::won);
     // for when user is in Quiz and left clicks
+
+    connect(&mines, &Minefield::numFlagsChanged
+            , this, &Lesson::setFlagsRemaining);
 
     connect (this, &Lesson::updateCurrentProgress, ui->progressDisplay, &QProgressBar::setValue);
     connect (this, &Lesson::updateMaxProgress, ui->progressDisplay, &QProgressBar::setMaximum);
@@ -113,4 +118,9 @@ void Lesson::receiveProgressUpdate (int current, int max)
         emit updateCurrentProgress(current);
         emit updateMaxProgress(max);
     }
+}
+void Lesson::setFlagsRemaining(int numFlags)
+{
+    ui->flagCounter->display(numFlags);
+    qDebug() << numFlags;
 }

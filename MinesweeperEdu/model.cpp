@@ -64,7 +64,7 @@ void Model::setLesson(int lessonNumber)
         // TODO find out what the lesson wants the board to look like
         currentLessonIndex = lessonNumber;
         emit lessonTime ();
-        emit sendLessonInfo (currentLesson.getTopic()
+        emit sendLessonInfo ("Lesson: " + QString::number(lessonNumber) + "\n" + currentLesson.getTopic()
                             , currentLesson.getMessageFromIndex(0)
                             , currentLesson.getMinefield());
         emit sendCurrentLevel(lessonNumber);
