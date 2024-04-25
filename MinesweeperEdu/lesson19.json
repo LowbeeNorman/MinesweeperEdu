@@ -5,16 +5,17 @@
             "This is a more applicable pattern than the T pattern to apply but it requires a lot of remembering stuff/writing it down",
             "Your situation will not look like this exactly it could be any combination of numbers in basically any shape but preferably a wall of numbers of some sort",
             "We are going to examine this situation first by starting from the top",
-            "Looking at the top right 2 it borders the two yellow cells guaranteeing one mine",
-            "The three below it has one mine from the flag and now one mine from the yellow cells so its third mine must be in of the pink cells",
+            "Looking at the top right 2 it borders the two purple cells guaranteeing one mine",
+            "The three below it has one mine from the flag and now one mine from the purple cells so its third mine must be in of the pink cells",
             "We don’t have a great way of continuing to examine from the top so we will jump to the bottom",
             "First looking at the 2 at the middle of the bottom row it has one mine accounted for with the flag so the second mine must be one of the three orange cells",
             "The two two spaces above the last two has one mine accounted for in the oranges cells so its second mine must be in one of the red cells",
-            "The two above that’s first mine is in the red cells ands its second mine must be in the white cells",
-            "The two two spaces above that’s first mine is in the white cells so it’s second must be in the brown cells",
-            "The two above that’s first mine is in the brown cells so it’s second must be in cyan cells",
-            "Now looking at the top two in the middle column Its first mine must be in the pink cells The second mine has to be in the cyan cells",
-            "So the tiles marked can be cleared"
+            "The two above that’s first mine is in the red cells ands its second mine must be in the black cells",
+            "The two two spaces above that’s first mine is in the black cells so it’s second must be in the brown cells",
+            "The two above that’s first mine is in the brown cells so it’s second must be in blue cells",
+            "Now looking at the top two in the middle column Its first mine must be in the pink cells The second mine has to be in the blue cells",
+            "So the tiles marked in yellow can be cleared",
+            "This kind of dependency chain can take time to work through but it will sometimes allow you to clear tiles with 100% certainty"
         ],
 	"quiz":
 	{
@@ -333,6 +334,654 @@
                         },
                         "type": 1,
                         "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 7,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 7,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 5,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 5,
+                        "index": 4
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 9
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 9
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 9
+                        },
+                        "type": 10,
+                        "index": 5
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 9
+                        },
+                        "type": 3,
+                        "index": 6
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 9
+                        },
+                        "type": 3,
+                        "index": 6
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 9
+                        },
+                        "type": 3,
+                        "index": 6
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 8
+                        },
+                        "type": 10,
+                        "index": 6
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 8
+                        },
+                        "type": 10,
+                        "index": 6
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 7
+                        },
+                        "type": 10,
+                        "index": 6
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 8
+                        },
+                        "type": 2,
+                        "index": 7
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 8
+                        },
+                        "type": 2,
+                        "index": 7
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 7
+                        },
+                        "type": 2,
+                        "index": 7
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 6
+                        },
+                        "type": 10,
+                        "index": 7
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 10,
+                        "index": 7
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 6
+                        },
+                        "type": 9,
+                        "index": 8
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 9,
+                        "index": 8
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 5
+                        },
+                        "type": 10,
+                        "index": 8
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 10,
+                        "index": 8
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 10,
+                        "index": 8
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 5
+                        },
+                        "type": 8,
+                        "index": 9
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 8,
+                        "index": 9
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 8,
+                        "index": 9
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 9
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 9
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 6,
+                        "index": 10
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 6,
+                        "index": 10
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 11
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 8,
+                        "index": 11
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 4,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 4,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 7,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 7,
+                        "index": 12
+                    },
+                   {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 5,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 5,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 9
+                        },
+                        "type": 3,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 9
+                        },
+                        "type": 3,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 9
+                        },
+                        "type": 3,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 8
+                        },
+                        "type": 2,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 8
+                        },
+                        "type": 2,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 7
+                        },
+                        "type": 2,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 6
+                        },
+                        "type": 9,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 9,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 5
+                        },
+                        "type": 8,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 8,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 6,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 6,
+                        "index": 12
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 9
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 9
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 9
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 8
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 8
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 7
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 6
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 5
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 10,
+                        "index": 13
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 13
                     }
                 ],
                 "instructions":

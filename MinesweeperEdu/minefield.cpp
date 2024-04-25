@@ -1,14 +1,16 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Written by: Jayden Ferrin, Winston Ji
+
 #include "minefield.h"
 #include <algorithm>
 #include <random>
 #include <chrono>
 #include <cstdlib>
-#include <ctime>
-// testing
 #include <QDebug>
 #include <QRect>
 #include <QTimer>
-#include <cstdio>
 #include <cstring>
 
 Minefield::Minefield (QObject *parent)
@@ -38,6 +40,8 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
     tiles = new Tile[arrayLength];
     for (int i = 0; i < arrayLength; ++i)
         tiles[i] = Tile::covered;
+
+    emit numFlagsChanged(numFlags);
 }
 
 Minefield::Minefield (QSize boardSize, int numMines)
@@ -54,6 +58,8 @@ Minefield::Minefield (QSize boardSize, int numMines)
     tiles = new Tile[arrayLength];
     for (int i = 0; i < arrayLength; ++i)
         tiles[i] = Tile::covered;
+
+    emit numFlagsChanged(numFlags);
 }
 
 Minefield::Minefield (QSize boardSize, bool mines[])
@@ -78,6 +84,7 @@ Minefield::Minefield (QSize boardSize, bool mines[])
         }
     }
     populateFieldNums();
+    emit numFlagsChanged(numFlags);
 }
 
 Minefield::Minefield (const Minefield &other)
@@ -97,6 +104,8 @@ Minefield::Minefield (const Minefield &other)
         tiles[i] = other.tiles[i];
         field[i] = other.field[i];
     }
+
+    emit numFlagsChanged(numFlags);
 }
 
 void Minefield::setField (QSize boardSize, bool mines[])
@@ -110,6 +119,7 @@ void Minefield::setField (QSize boardSize, bool mines[])
     delete[] tiles;
     field = new int[arrayLength] {0};
     tiles = new Tile[arrayLength];
+    numMines = 0;
     for (int i = 0; i < arrayLength; ++i)
     {
         tiles[i] = Tile::covered;
@@ -122,6 +132,7 @@ void Minefield::setField (QSize boardSize, bool mines[])
     numFlags = numMines;
     populateFieldNums ();
     emit updateBoard (boardSize, field, tiles);
+    emit numFlagsChanged(numFlags);
 }
 
 void Minefield::setAutoComplete (bool autocomplete)
@@ -290,6 +301,7 @@ void Minefield::flag (QPoint point) {
     tiles[index] = Tile::flagged;
     numFlags--;
     emit flagPlaced(point, numFlags);
+    emit numFlagsChanged(numFlags);
 }
 
 void Minefield::highlightPlaced(QPoint point, int color)

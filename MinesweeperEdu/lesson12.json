@@ -3,8 +3,9 @@
 	"lessonGuidance":
 	[
                 "The pictured pattern is known as the 1-2 pattern. This is similar to the 1-1 pattern but a little more useful.",
-                "The 1 on the left guarantees a maximum of one mine in the two adjacent hidden tiles to it.",
-                "The 2 tile needs two mines and borders the two adjacent tiles to the left 1 and one additional tile above it to the right. The two adjacent tiles directly above and to the left cannot both be mines due to the 1 to the left of the 2. This guarantees a mine in the tile above and to the right of the 2."
+                "The 1 on the left guarantees a maximum of one mine in the two blue tiles",
+                "The 2 tile needs two mines and borders the two blue tiles and only one additional tile both blue tiles cannot be mines guaranteeing a mine in the third tile",
+                "So whenever you see a 1-2 pattern like this the third tile can be flagged"
 	],
 	"quiz":
 	{
@@ -86,6 +87,105 @@
                         },
                         "type": 1,
                         "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 9,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 3
                     }
                 ],
                 "instructions":

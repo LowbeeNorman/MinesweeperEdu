@@ -1,5 +1,6 @@
 /// Assignment 9: Educational App
 /// CS3505
+/// 4/24/2024
 /// Written by: Caleb Norman
 
 #ifndef LESSON_H
@@ -31,12 +32,36 @@ private:
     Ui::Lesson *ui;
 
 signals:
+    ///
+    /// \brief Requests the current state of the board
+    ///
     void requestBoard ();
+    ///
+    /// \brief Lets listeners know that the lesson page asked to go back to the lesson select
+    /// \param The number of the page to go to
+    ///
     void sendBackClicked (int pageIndex);
+    ///
+    /// \brief Asks for the next message that needs to be displayed in the lesson, if there is one to display
+    ///
     void getNextMessage ();
+    ///
+    /// \brief Asks for the previous message that needs to be displayed in the lesson, if there is one to display
+    ///
     void getPreviousMessage ();
+    ///
+    /// \brief Tells the ui to update the max value on the progress bar
+    /// \param The value to update the max value with
+    ///
     void updateMaxProgress (int max);
+    ///
+    /// \brief Tells the ui to update the current value on the progress bar
+    /// \param The value to update the current value with
+    ///
     void updateCurrentProgress (int current);
+    ///
+    /// \brief Asks the model for an update on the progress of the lesson
+    ///
     void requestProgressUpdate ();
 
 public slots:
@@ -75,6 +100,8 @@ public slots:
     /// \param The max amount
     ///
     void receiveProgressUpdate (int current, int max);
+
+    void setFlagsRemaining(int numFlags);
 
     MinesweeperView* getBoard ();
 };

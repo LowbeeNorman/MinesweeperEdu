@@ -12,8 +12,6 @@
 Model::Model(QObject *parent)
     : QObject{parent}
     , numLessons (20)
-    // , lessons (createLessonLevels ())
-    // , currentLesson (lessons[0])
     , currentLessonIndex (0)
     , currentMessageIndex (0)
     , currentInstructionIndex (0)
@@ -61,10 +59,9 @@ void Model::setLesson(int lessonNumber)
         // load this lesson from json
         currentLesson = constructLessonLevelFromJSON
             (QString (":/json/lesson%1.json").arg (lessonNumber));
-        // TODO find out what the lesson wants the board to look like
         currentLessonIndex = lessonNumber;
         emit lessonTime ();
-        emit sendLessonInfo (currentLesson.getTopic()
+        emit sendLessonInfo ("Lesson: " + QString::number(lessonNumber) + "\n" + currentLesson.getTopic()
                             , currentLesson.getMessageFromIndex(0)
                             , currentLesson.getMinefield());
         emit sendCurrentLevel(lessonNumber);
@@ -95,7 +92,6 @@ void Model::nextMessage()
             emit quizTime();
         }
     }
-    // NOT SURE IF THIS IS NEEDED
     // User has completed the Quiz: moves on to next LessonLevel
     else if (!currentLesson.hasCorrectMovesLeft())
     {

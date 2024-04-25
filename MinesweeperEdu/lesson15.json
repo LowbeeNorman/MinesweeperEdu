@@ -3,8 +3,9 @@
 	"lessonGuidance":
 	[
             "The pattern pictured is known as the Hole 1",
-            "First by looking at the bottom 1 we can guarantee a mine in one of the yellow tiles",
-            "Looking at the top one it borders both yellow tiles meaning that its mine is already accounted for and the three tiles above it can all be cleared."
+            "First by looking at the bottom 1 we can guarantee a mine in one of the blue tiles",
+            "Looking at the top one it borders both blue tiles meaning that its mine is already accounted for and the three yellow tiles above it can all be cleared.",
+            "All hole 1 patterns can have the three tiles above the top one cleared"
 
         ],
 	"quiz":
@@ -130,6 +131,159 @@
                         },
                         "type": 1,
                         "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 6,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 6,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 4,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 4,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 4,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 6,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 6,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 10,
+                        "index": 3
                     }
                 ],
                 "instructions":

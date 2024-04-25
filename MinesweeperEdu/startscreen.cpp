@@ -1,6 +1,6 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/19/24
+/// 4/24/24
 /// Written by: Caleb Norman, Abdul Asim
 
 #include "startscreen.h"
@@ -27,7 +27,7 @@ StartScreen::StartScreen(QWidget *parent)
     // Call to set up box2d
     setUpBox2D();
 
-    background.load(":images/startScreenBackground.png"); //replace later
+    background.load(":/images/startScreenBackground.png"); //replace later
 
     //HIDING FREE PLAY BUTTON
     ui->freePlayButton->hide();
@@ -49,7 +49,6 @@ void StartScreen::continueButtonClicked() {
 
 void StartScreen::freePlayButtonClicked() {
     emit freePlayClicked();
-    qDebug() << "Implement free play if time permits";
 }
 
 void StartScreen::setUpBox2D()
@@ -114,11 +113,9 @@ void StartScreen::setUpBox2D()
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
 
-    // timer->start(1.0f / 60.0f);
     timer->setInterval (1.0f / 60.0f * 1000);
     timer->start ();
 }
-// 1.0f / 60.0f      100
 
 void StartScreen::updateWorld()
 {
@@ -134,10 +131,7 @@ void StartScreen::updateWorld()
         -position.y * 15.0f,
         ui->startScreenLabel->width(),
         ui->startScreenLabel->height()
-        );
-
-
-    // printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+    );
 }
 
 void StartScreen::paintEvent(QPaintEvent *event)
@@ -148,5 +142,4 @@ void StartScreen::paintEvent(QPaintEvent *event)
     painter.end();
 
     event->accept();
-    qDebug() << "HI";
 }

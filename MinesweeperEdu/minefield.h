@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Written by: Jayden Ferrin, Winston Ji
+
 #ifndef MINEFIELD_H
 #define MINEFIELD_H
 
@@ -12,6 +17,9 @@ enum class Tile {
     flagged
 };
 
+///
+/// \brief The minefield class represents all backend aspects for the minesweeper board included in lessons
+///
 class Minefield : public QObject
 {
     Q_OBJECT
@@ -83,6 +91,11 @@ private:
     ///
     int pointToIndex (QPoint point);
 
+    ///
+    /// \brief Converts an index to a point
+    /// \param index
+    /// \return a QPoint
+    ///
     QPoint indexToPoint (int index);
 
     ///
@@ -104,8 +117,22 @@ private:
     ///
     bool internalClear (QPoint origin);
 
+    ///
+    /// \brief Check to see if the board is in a completed state
+    /// \return true if it is completed, false otherwise
+    ///
     bool checkForWin ();
+
+    ///
+    /// \brief A method to get the locations for mines
+    /// \return A QList of QPoints that represent mine locations
+    ///
     QList<QPoint> getMines ();
+
+    ///
+    /// \brief A method to get the locations for all mines remaining
+    /// \return A QList of QPoints that represent mine locations for remaining mines
+    ///
     QList<QPoint> getMinesLeft ();
 
 public slots:
@@ -120,11 +147,27 @@ public slots:
     /// \param origin the starting point for floodFill.
     ///
     void clear (QPoint origin);
+    ///
+    /// \brief listens for a highlight to be placed
+    /// \param the point the highlight was placed on
+    /// \param the color of the highlight
+    ///
     void highlightPlaced (QPoint point, int color);
+    ///
+    /// \brief listens for a highlight to be removed
+    /// \param the point the highlight was removed from
+    ///
     void highlightRemoved (QPoint point);
+    ///
+    /// \brief listens for a click, and returns the surrounding numbers from that click
+    /// \param the point clicked
+    ///
     void getSurroundings (QPoint origin);
+
     void getIfCovered (QPoint origin);
+
     void chord (QPoint origin);
+
     void requestBoard ();
 
 signals:
@@ -134,13 +177,24 @@ signals:
     /// \param numFlags the total number of flags left
     ///
     void flagPlaced(QPoint point, int numFlags);
-    void flagRemoved (QPoint point, int numFlags);
+
+    void numFlagsChanged(int numFlags);
 
     ///
-    /// \brief dead emitted when
+    /// \brief flagRemoved emitted when a flag is removed
+    /// \param point the location of the old flag
+    /// \param numFlags the total number of flags left
+    ///
+    void flagRemoved (QPoint point, int numFlags);
+    ///
+    /// \brief dead emitted when lesson is failed
     /// \param origin point of death
     ///
     void dead (QPoint origin, QList<QPoint> mines);
+    ///
+    /// \brief won emitted when lesson is completed
+    /// \param mines all mines that were on the board
+    ///
     void won (QList<QPoint> mines);
 
     ///
@@ -149,9 +203,11 @@ signals:
     void updateBoard (const QSize &boardSize, const int *field, const Tile *tiles);
 
     void sendChord (QList<QPoint> coveredTiles);
+
     void sendCovered (QPoint origin, bool covered);
 
     void lessonHighlightPlaced (QPoint point, int color);
+
     void lessonHighlightRemoved (QPoint point);
 };
 

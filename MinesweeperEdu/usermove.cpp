@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Written by: Kyle Stewart, Noah Sikorski, Jayden Ferrin
+
 #include "usermove.h"
 
 UserMove::UserMove() {}

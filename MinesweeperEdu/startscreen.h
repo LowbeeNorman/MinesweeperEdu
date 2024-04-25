@@ -36,6 +36,7 @@ public:
 private:
     QPainter painter;
     QPixmap background;
+    Ui::StartScreen *ui;
 
 public slots:
     ///
@@ -93,9 +94,6 @@ signals:
     ///
     void freePlayClicked();
 
-
-private:
-    Ui::StartScreen *ui;
 };
 
 #endif // STARTSCREEN_H
