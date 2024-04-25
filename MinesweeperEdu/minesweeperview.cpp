@@ -4,6 +4,7 @@
 /// Written by: Jayden Ferrin, Winston Ji
 
 #include "minesweeperview.h"
+#include <QTimer>
 
 MinesweeperView::MinesweeperView (QWidget *parent)
     : QGraphicsView (parent)
@@ -149,7 +150,8 @@ void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
         return;
     qInfo () << "dead at" << where;
     enabled = false;
-    emit viewDead ();
+    QTimer::singleShot(20, this, [this] {emit viewDead ();});
+    // emit viewDead ();
 }
 
 void MinesweeperView::won (QList<QPoint> mines)
@@ -161,7 +163,7 @@ void MinesweeperView::won (QList<QPoint> mines)
     {
         flagPlaced (mine, numFlags);
     }
-    emit viewWon ();
+    QTimer::singleShot(20, this, [this] {emit viewWon ();});
     enabled = false;
 }
 
