@@ -34,15 +34,6 @@ LevelSelect::LevelSelect(QWidget *parent)
     int buttonHeight = 100;
     int buffer = 40;
 
-    QString imagePath ("image.jpg");
-    QImage image = QPixmap (QString (":/images/level1.png"))
-                       .mask ()
-                       .toImage ();
-    {
-        QImageWriter writer (imagePath);
-        writer.write (image);
-    }
-
     for(int i = 0; i <= numButtons; i++)
     {
         QPushButton *button = new QPushButton();

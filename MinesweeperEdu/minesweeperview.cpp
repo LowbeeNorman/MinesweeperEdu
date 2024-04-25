@@ -64,7 +64,7 @@ void MinesweeperView::internalResize ()
         return;
     }
     setSceneRect (pixmap->rect ());
-    qInfo () << "pixmap rect" << pixmap->rect ();
+    
     this->resetTransform ();
     // this->centerOn (pixmapItem);
     // find out the maximum dimension of the pixmap
@@ -90,7 +90,6 @@ void MinesweeperView::display ()
 
 void MinesweeperView::setBoardSize (QSize size)
 {
-    qInfo () << "changing size to" << size;
     this->size = size;
     if (pixmap != nullptr)
         delete pixmap;
@@ -148,7 +147,7 @@ void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
     Q_UNUSED (mines);
     if (!enabled)
         return;
-    qInfo () << "dead at" << where;
+    
     enabled = false;
     QTimer::singleShot(20, this, [this] {emit viewDead ();});
     // emit viewDead ();
@@ -158,7 +157,7 @@ void MinesweeperView::won (QList<QPoint> mines)
 {
     if (!enabled)
         return;
-    qInfo () << "won";
+    
     for (const auto &mine : mines)
     {
         flagPlaced (mine, numFlags);
@@ -184,7 +183,6 @@ void MinesweeperView::flagPlaced (QPoint point, int numFlags)
 {
     if (!enabled || nullptr == pixmap)
         return;
-    qInfo () << "view flag placed" << point;
     this->numFlags = numFlags;
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
@@ -196,7 +194,6 @@ void MinesweeperView::flagRemoved (QPoint point, int numFlags)
 {
     if (!enabled || nullptr == pixmap)
         return;
-    qInfo () << "view flag removed" << point;
     this->numFlags = numFlags;
     QPainter painter (pixmap);
     painter.setBackgroundMode (Qt::TransparentMode);
@@ -316,7 +313,6 @@ void MinesweeperView::mouseMoveEvent (QMouseEvent *event)
 {
     // accept the event so it doesn't get passed to the parent
     event->accept ();
-
     // the only purpose of this method is to highlight tiles that haven't been
     // cleared yet
     QPoint minesweeperPos = translateToMinesweeper
@@ -366,7 +362,7 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
 
 void MinesweeperView::resizeEvent (QResizeEvent* event)
 {
-    qInfo () << "New size" << event->size () << "old size" << event->oldSize () << "viewport size" << contentsRect () << "scene size" << mainScene->sceneRect ();
+    
     event->accept ();
     internalResize ();
 }
@@ -375,7 +371,7 @@ void MinesweeperView::clearCell (QPoint origin)
 {
     if (!enabled)
         return;
-    qInfo () << "view emitting clear" << origin << enabled;
+    
     emit clear (origin);
 }
 
@@ -383,7 +379,7 @@ void MinesweeperView::flagCell (QPoint origin)
 {
     if (!enabled)
         return;
-    qInfo () << "view emitting flag" << origin << enabled;
+    
     emit flag (origin);
 }
 
