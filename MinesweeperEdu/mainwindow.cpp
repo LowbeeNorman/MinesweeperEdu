@@ -41,6 +41,11 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::loadPrevious);
     connect (ui->startPage, &StartScreen::sendContinueClicked
             , &model, &Model::setInQuiz);
+    // also disable the freeplay when continue is clicked
+    connect (ui->startPage, &StartScreen::sendContinueClicked
+            , ui->freeplayPage->getBoard (), &MinesweeperView::disableBoard);
+    connect (ui->startPage, &StartScreen::sendContinueClicked
+            , ui->lessonPage->getBoard (), &MinesweeperView::enableBoard);
     connect(ui->startPage , &StartScreen::startingNewGame
             , ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
 
