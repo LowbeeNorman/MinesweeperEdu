@@ -110,6 +110,7 @@ void Model::nextMessage()
 
 void Model::setFreePlay ()
 {
+    minefield.resetField (QSize (10, 10), 0.15f);
     inQuiz = false;
 }
 
@@ -150,11 +151,11 @@ void Model::receiveClearAttempted (QPoint origin)
         if(currentLesson.checkMove(origin, MoveType::CLEAR))
         {
             emit updateCellClear (origin);
-
+            emit sendErrorMessage ("That's right! Great job!");
         }
         else
         {
-            emit sendErrorMessage("Wrong move");
+            emit sendErrorMessage("Wrong move, this tile is not guaranteed to be safe.");
         }
     }
     else
@@ -177,10 +178,11 @@ void Model::receiveFlagAttempted (QPoint origin)
         if(currentLesson.checkMove(origin, MoveType::FLAG))
         {
             emit updateCellFlag (origin);
+            emit sendErrorMessage ("That's right! Great job!");
         }
         else
         {
-            emit sendErrorMessage("Wrong move");
+            emit sendErrorMessage("Wrong move, this tile is not guaranteed to be a mine.");
         }
     }
     else
@@ -267,7 +269,7 @@ void Model::increaseMaxLessonValue ()
     emit sendMaxLesson(maxLesson + 1);
 }
 
-Minefield& Model::getFreeplayField()
-{
-    return freePlay;
-}
+// Minefield& Model::getFreeplayField()
+// {
+//     return freePlay;
+// }

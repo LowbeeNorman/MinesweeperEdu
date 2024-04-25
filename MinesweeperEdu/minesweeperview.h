@@ -28,9 +28,10 @@ private:
     int pointToIndex (int x, int y);
     int numFlags;
 
-    QPixmap *flagImage, *coverImage;
-    QPixmap *redHighlight, *orangeHighlight, *yellowHighlight, *pinkHighlight, *blueHighlight, *purpleHighlight, *brownHighlight, *blackHighlight;
-    QPixmap *numbers[10];
+    QPixmap flagImage, coverImage;
+    QPixmap redHighlight, orangeHighlight, yellowHighlight, pinkHighlight;
+    QPixmap blueHighlight, purpleHighlight, brownHighlight, blackHighlight;
+    QPixmap numbers[10];
 
     QList<QPoint> prevChord;
 
@@ -97,6 +98,9 @@ signals:
     /// \param origin cell that was clicked
     ///
     void flagAttempted (QPoint origin);
+
+    void viewWon ();
+    void viewDead ();
 public slots:
     void receiveBoard (const QSize &boardSize, const int *board, const Tile *covers);
     void flagPlaced (QPoint point, int numFlags);

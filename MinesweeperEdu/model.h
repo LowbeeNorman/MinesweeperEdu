@@ -19,7 +19,7 @@ public:
     ~Model ();
 
     Minefield &getMinefield ();
-    Minefield &getFreeplayField();
+    // Minefield &getFreeplayField();
 
 private:
     Minefield minefield;

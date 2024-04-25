@@ -139,11 +139,18 @@ void Minefield::setField (QSize boardSize, bool mines[])
     emit numFlagsChanged(numFlags);
 }
 
-void Minefield::resetField ()
+void Minefield::resetField (QSize boardSize, float mineFreq)
 {
+    // set the new size
+    this->boardSize = boardSize;
+    arrayLength = boardSize.width () * boardSize.height ();
+    numMines = mineFreq * arrayLength;
+    numFlags = numMines;
+    autocomplete = true;
+    // reset to the first move
     firstMove = true;
     initialized = false;
-    numFlags = numMines;
+    // delete the old field and tiles
     delete[] field;
     delete[] tiles;
     field = new int[arrayLength] {0};
