@@ -2,30 +2,39 @@
 <ui version="4.0">
  <class>WinScreen</class>
  <widget class="QWidget" name="WinScreen">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>784</width>
-    <height>441</height>
+    <width>664</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-image: url(:/images/tv.png);</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0" colspan="2" alignment="Qt::AlignHCenter">
+   <item row="1" column="0" colspan="2" alignment="Qt::AlignRight">
     <widget class="QPushButton" name="levelSelectButton">
      <property name="minimumSize">
       <size>
-       <width>250</width>
-       <height>50</height>
+       <width>200</width>
+       <height>45</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>250</width>
-       <height>50</height>
+       <width>200</width>
+       <height>45</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -51,18 +60,18 @@ QPushButton:pressed {
      </property>
     </widget>
    </item>
-   <item row="1" column="2" colspan="2" alignment="Qt::AlignHCenter">
+   <item row="1" column="2" colspan="2" alignment="Qt::AlignLeft">
     <widget class="QPushButton" name="nextLessonButton">
      <property name="minimumSize">
       <size>
-       <width>250</width>
-       <height>50</height>
+       <width>200</width>
+       <height>45</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>250</width>
-       <height>50</height>
+       <width>200</width>
+       <height>45</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -89,7 +98,7 @@ QPushButton:pressed {
     </widget>
    </item>
    <item row="0" column="0" colspan="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-    <widget class="QLabel" name="winText">
+    <widget class="QLabel" name="winLabel">
      <property name="minimumSize">
       <size>
        <width>150</width>
