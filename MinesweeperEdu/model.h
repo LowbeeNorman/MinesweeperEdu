@@ -23,6 +23,7 @@ public:
 
 private:
     Minefield minefield;
+    Minefield freePlay;
 
     // list of tips
     QList<QString> gameTips;
@@ -41,6 +42,8 @@ private:
     int currentLessonQuizMoves;
 
     int maxLesson;
+
+    bool inQuiz;
     
     ///
     /// \brief Constructs all the LessonLevels for the application.
@@ -120,6 +123,9 @@ public slots:
     /// \brief increases the maxLesson value by 1
     ///
     void increaseMaxLessonValue ();
+
+    void setFreePlay ();
+    void setInQuiz ();
 signals:
     ///
     /// \brief Sends the information of the current LessonLevel back to

@@ -66,7 +66,9 @@ public:
     ///
     MinesweeperView (QWidget *parent = nullptr);
     ~MinesweeperView ();
-    void setBoardSize(QSize size);
+
+    void display ();
+    void setBoardSize (QSize size);
 
     // mouse stuff
     void mousePressEvent (QMouseEvent *event) override;

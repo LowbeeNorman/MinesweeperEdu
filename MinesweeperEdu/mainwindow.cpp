@@ -17,10 +17,18 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::updateScreenIndex);
     connect(ui->startPage, &StartScreen::sendNewLessonClicked
             , this, &MainWindow::loadNew);
+    connect (ui->startPage, &StartScreen::sendNewLessonClicked
+            , &model, &Model::setInQuiz);
     connect(ui->startPage, &StartScreen::sendFreeplayClicked
             , this, &MainWindow::updateScreenIndex);
+    connect (ui->startPage, &StartScreen::sendFreeplayClicked
+            , ui->freeplayPage, &Freeplay::display);
+    connect (ui->startPage, &StartScreen::sendFreeplayClicked
+            , &model, &Model::setFreePlay);
     connect(ui->startPage, &StartScreen::sendContinueClicked
             , this, &MainWindow::loadPrevious);
+    connect (ui->startPage, &StartScreen::sendContinueClicked
+            , &model, &Model::setInQuiz);
     connect(ui->startPage , &StartScreen::startingNewGame
             , ui->levelSelectPage, &LevelSelect::receiveStartingNewGame);
 
@@ -40,7 +48,11 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , &model, &Model::previousMessage);
     connect(ui->lessonPage->getBoard(), &MinesweeperView::clearAttempted
             , &model, &Model::receiveClearAttempted);
+    connect (ui->freeplayPage->getBoard (), &MinesweeperView::clearAttempted
+            , &model, &Model::receiveClearAttempted);
     connect(ui->lessonPage->getBoard(), &MinesweeperView::flagAttempted
+            , &model, &Model::receiveFlagAttempted);
+    connect(ui->freeplayPage->getBoard(), &MinesweeperView::flagAttempted
             , &model, &Model::receiveFlagAttempted);
     connect(ui->lessonPage, &Lesson::requestProgressUpdate
             , &model, &Model::receiveProgressRequest);
@@ -74,8 +86,12 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , ui->lessonPage, &Lesson::receiveFeedback);
     connect(&model, &Model::updateCellClear
             , ui->lessonPage->getBoard(), &MinesweeperView::clearCell);
+    connect(&model, &Model::updateCellClear
+            , ui->freeplayPage->getBoard(), &MinesweeperView::clearCell);
     connect(&model, &Model::updateCellFlag
             , ui->lessonPage->getBoard(), &MinesweeperView::flagCell);
+    connect(&model, &Model::updateCellFlag
+            , ui->freeplayPage->getBoard(), &MinesweeperView::flagCell);
     connect(&model, &Model::quizCompleted, this, &MainWindow::showWinScreen);
     connect(&model, &Model::quizTime
             , ui->lessonPage->getBoard(), &MinesweeperView::enableBoard);
@@ -95,7 +111,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
     ui->lessonPage->getBoard()->makeConnections (model.getMinefield());
-    ui->freeplayPage->getBoard()->makeConnections(model.getFreeplayField());
+    ui->freeplayPage->getBoard()->makeConnections (model.getFreeplayField());
+
 
     // connections for the progress bar updating during lessons
     connect(ui->lessonPage, &Lesson::requestProgressUpdate

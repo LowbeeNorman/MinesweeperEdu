@@ -11,6 +11,7 @@
 
 Model::Model(QObject *parent)
     : QObject{parent}
+    , freePlay (QSize (10, 10), .15f)
     , numLessons (20)
     , currentLessonIndex (0)
     , currentMessageIndex (0)
@@ -107,6 +108,16 @@ void Model::nextMessage()
     }
 }
 
+void Model::setFreePlay ()
+{
+    inQuiz = false;
+}
+
+void Model::setInQuiz ()
+{
+    inQuiz = true;
+}
+
 void Model::previousMessage ()
 {
     if (currentMessageIndex == 0)
@@ -129,6 +140,11 @@ void Model::previousMessage ()
 
 void Model::receiveClearAttempted (QPoint origin)
 {
+    if (!inQuiz)
+    {
+        emit updateCellClear (origin);
+        return;
+    }
     if(currentLesson.hasCorrectMovesLeft())
     {
         if(currentLesson.checkMove(origin, UserMove::MoveType::CLEAR))
@@ -151,6 +167,11 @@ void Model::receiveClearAttempted (QPoint origin)
 
 void Model::receiveFlagAttempted (QPoint origin)
 {
+    if (!inQuiz)
+    {
+        emit updateCellFlag (origin);
+        return;
+    }
     if(currentLesson.hasCorrectMovesLeft())
     {
         if(currentLesson.checkMove(origin, UserMove::MoveType::FLAG))
@@ -248,6 +269,5 @@ void Model::increaseMaxLessonValue ()
 
 Minefield& Model::getFreeplayField()
 {
-    minefield = Minefield(QSize(10, 10), 0.15f);
-    return minefield;
+    return freePlay;
 }

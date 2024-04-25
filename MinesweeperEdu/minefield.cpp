@@ -288,6 +288,8 @@ bool Minefield::checkNeighborAt(QPoint origin, int relativeX, int relativeY
 }
 
 void Minefield::flag (QPoint point) {
+    if (nullptr == tiles)
+        return;
     int index = pointToIndex(point);
     if (Tile::blank == tiles[index]) {
         return;
@@ -366,6 +368,8 @@ bool Minefield::checkForWin ()
 
 void Minefield::clear (QPoint origin)
 {
+    if (nullptr == tiles)
+        return;
     if (firstMove) {
         firstMove = false;
         guaranteeSafe (origin);
@@ -381,6 +385,8 @@ void Minefield::clear (QPoint origin)
 }
 
 void Minefield::chord (QPoint origin) {
+    if (nullptr == tiles)
+        return;
     int index = pointToIndex (origin);
     // don't allow chords on any tile that is not blank
     if (Tile::blank != tiles[index])

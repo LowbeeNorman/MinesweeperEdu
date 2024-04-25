@@ -90,17 +90,17 @@ void MinesweeperView::internalResize ()
          , minViewDim / (double) maxDim);
 }
 
+void MinesweeperView::display ()
+{
+    emit requestBoard ();
+}
+
 void MinesweeperView::setBoardSize (QSize size)
 {
     qInfo () << "changing size to" << size;
     this->size = size;
     if (pixmap != nullptr)
         delete pixmap;
-    else
-    {
-        emit requestBoard ();
-        return;
-    }
     // initialize the pixmap and add it to the scene
     pixmap = new QPixmap (QSize (size.width () * TILE_SIZE
                                , size.height () * TILE_SIZE));
@@ -342,13 +342,13 @@ void MinesweeperView::mouseReleaseEvent (QMouseEvent *event)
     {
     case Qt::LeftButton:
         // DON'T DELETE:
-         emit clearAttempted (minesweeperPos);
+        emit clearAttempted (minesweeperPos);
         // clear
         // emit clear (minesweeperPos);
         break;
     case Qt::MiddleButton:
         // chord
-         emit chord (minesweeperPos);
+        emit chord (minesweeperPos);
         break;
     default:
         break;
@@ -361,18 +361,6 @@ void MinesweeperView::resizeEvent (QResizeEvent* event)
 {
     qInfo () << "New size" << event->size () << "old size" << event->oldSize () << "viewport size" << contentsRect () << "scene size" << mainScene->sceneRect ();
     event->accept ();
-    // zoom the view on the scene
-    // this->fitInView (mainScene->sceneRect (), Qt::KeepAspectRatio);
-    // int width = mainScene->sceneRect ().width ();
-    // int height = mainScene->sceneRect ().height ();
-    // int maxDim = (height > width) ? height : width;
-    // int minViewDim = (event->size ().width() < event->size ().height ())
-    //                  ? event->size ().width ()
-    //                  : event->size ().height ();
-    // this->resetTransform ();
-    // this->scale
-    //     (minViewDim / (double) maxDim
-    //     , minViewDim / (double) maxDim);
     internalResize ();
 }
 

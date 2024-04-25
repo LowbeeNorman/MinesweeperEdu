@@ -18,6 +18,8 @@ public:
     ~Freeplay();
     MinesweeperView* getBoard();
 
+    void display (int index);
+
 private:
     Ui::Freeplay *ui;
 

@@ -17,3 +17,9 @@ MinesweeperView *Freeplay::getBoard ()
 {
     return ui->board;
 }
+
+void Freeplay::display (int index)
+{
+    Q_UNUSED (index);
+    ui->board->display ();
+}
