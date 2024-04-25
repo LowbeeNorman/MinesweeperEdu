@@ -226,7 +226,7 @@ QPushButton:pressed {
           <bool>false</bool>
          </property>
          <property name="digitCount">
-          <number>1</number>
+          <number>2</number>
          </property>
          <property name="mode">
           <enum>QLCDNumber::Dec</enum>
