@@ -136,6 +136,27 @@ void Minefield::setField (QSize boardSize, bool mines[])
     emit numFlagsChanged(numFlags);
 }
 
+void Minefield::resetField ()
+{
+    firstMove = true;
+    initialized = false;
+    numFlags = numMines;
+    delete[] field;
+    delete[] tiles;
+    field = new int[arrayLength] {0};
+    tiles = new Tile[arrayLength];
+    for (int i = 0; i < numMines; ++i)
+    {
+        field[i] = 9;
+    }
+    for (int i = 0; i < arrayLength; ++i)
+    {
+        tiles[i] = Tile::covered;
+    }
+    emit updateBoard (boardSize, field, tiles);
+    emit numFlagsChanged (numFlags);
+}
+
 void Minefield::setAutoComplete (bool autocomplete)
 {
     this->autocomplete = autocomplete;

@@ -170,6 +170,8 @@ public slots:
 
     void requestBoard ();
 
+    void resetField ();
+
 signals:
     ///
     /// \brief flagPlaced emitted when a flag is placed

@@ -25,6 +25,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , ui->freeplayPage, &Freeplay::display);
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
             , &model, &Model::setFreePlay);
+    connect (ui->startPage, &StartScreen::sendFreeplayClicked
+            , &model.getFreeplayField (), &Minefield::resetField);
     connect(ui->startPage, &StartScreen::sendContinueClicked
             , this, &MainWindow::loadPrevious);
     connect (ui->startPage, &StartScreen::sendContinueClicked
