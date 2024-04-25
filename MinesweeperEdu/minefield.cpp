@@ -8,7 +8,6 @@
 #include <random>
 #include <chrono>
 #include <cstdlib>
-#include <QDebug>
 #include <QRect>
 #include <QTimer>
 #include <cstring>
@@ -43,24 +42,6 @@ Minefield::Minefield(QSize boardSize, float mineFreq)
 
     emit numFlagsChanged(numFlags);
     emit updateBoard(boardSize, field, tiles);
-}
-
-Minefield::Minefield (QSize boardSize, int numMines)
-    : QObject (nullptr)
-    , boardSize(boardSize)
-    , arrayLength (boardSize.width() * boardSize.height ())
-    , numMines (numMines)
-    , numFlags (numMines)
-    , firstMove (true)
-    , initialized (false)
-    , autocomplete (true)
-{
-    field = new int[arrayLength] {0};
-    tiles = new Tile[arrayLength];
-    for (int i = 0; i < arrayLength; ++i)
-        tiles[i] = Tile::covered;
-
-    emit numFlagsChanged(numFlags);
 }
 
 Minefield::Minefield (QSize boardSize, bool mines[])

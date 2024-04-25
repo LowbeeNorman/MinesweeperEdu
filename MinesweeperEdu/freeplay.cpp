@@ -43,5 +43,4 @@ void Freeplay::gameOver()
 void Freeplay::setFlagsRemaining(int numFlags)
 {
     ui->flagCount->display(numFlags);
-    qDebug() << numFlags;
 }

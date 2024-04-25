@@ -61,6 +61,7 @@ void Lesson::previousButtonClicked()
 
 void Lesson::receiveLessonInfo(const QString& topic, const QString& message, Minefield& minefield)
 {
+    Q_UNUSED (minefield);
     ui->topicText->setText(topic);
     ui->instructions->setText(message);
     ui->feedback->clear();

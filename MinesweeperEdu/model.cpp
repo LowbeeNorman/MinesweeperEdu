@@ -253,7 +253,6 @@ void Model::writeMaxLessonsToFile (int maxLessonValue)
     QSaveFile file("userProgress.json");
     if(!file.open(QIODevice::WriteOnly))
     {
-        qDebug() << file.errorString();
         return;
     }
     if(file.write(bytes) < 0)
