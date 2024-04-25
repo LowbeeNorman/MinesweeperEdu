@@ -1,5 +1,6 @@
 /// Assignment 9: Educational App
 /// CS3505
+/// 4/24/2024
 /// Written by: Kyle Stewart and Noah Sikorski
 #ifndef LESSONLEVEL_H
 #define LESSONLEVEL_H
@@ -9,6 +10,9 @@
 #include "minefield.h"
 #include "quiz.h"
 
+///
+/// \brief LessonLevel represents the background information for a lesson
+///
 class LessonLevel
 {
 public:
@@ -16,7 +20,7 @@ public:
 
     ///
     /// \brief constructs a LessonLevel from a given QJsonDocument
-    /// \param doc
+    /// \param The json document to read in
     ///
     LessonLevel (QJsonDocument &doc, Minefield *minefield);
 

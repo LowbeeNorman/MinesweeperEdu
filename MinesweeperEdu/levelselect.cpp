@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/16/24
-/// Written by: Caleb Norman, Abdul Asim
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji
 
 #include "levelselect.h"
 #include "ui_levelselect.h"
@@ -130,17 +130,8 @@ void LevelSelect::menuButtonClicked()
 
 void LevelSelect::receiveStartingNewGame()
 {
-    qDebug() << "Need to delete all old saved progress";
-
-    ui->playButton->setEnabled(false);
-    if(currentButton != nullptr)
-    {
-        // currentButton->setStyleSheet("background-color: rgb(0,0,255);");
-    }
     currentButton = nullptr;
     ui->levelLabel->clear();
-
-    // If we lock levels not unlocked yet, that needs to be changed in here!
 }
 
 void LevelSelect::updateCurrentLevel(int levelIndex)

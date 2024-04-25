@@ -5,7 +5,7 @@
             "The next pattern pictured is very similar to the 1-2-1 pattern and once again implements two 1-2’s it is known as the 1-2-2-1",
             "First by implementing the 1-2 pattern on the left guarantees a mine above the right two",
             "Implementing the 1-2 pattern on the left guarantees a mine above the left two",
-            "Therefore any 1-2-2-1 ones can be flagged as above"
+            "Therefore any 1-2-2-1 patterns can be flagged above the twos"
 
 	],
 	"quiz":
@@ -96,6 +96,132 @@
                         },
                         "type": 1,
                         "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 0
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 9,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 1
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 9,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 0
+                        },
+                        "type": 6,
+                        "index": 2
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 3
+                    },
+                    {
+                        "cell":
+                        {
+                            "x": 3,
+                            "y": 0
+                        },
+                        "type": 10,
+                        "index": 3
                     }
                 ],
                 "instructions":
