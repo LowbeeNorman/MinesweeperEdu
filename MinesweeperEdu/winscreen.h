@@ -7,6 +7,9 @@
 #define WINSCREEN_H
 
 #include <QWidget>
+#include <Box2D/Box2D.h>
+#include <QTimer>
+#include <QPainter>
 
 namespace Ui {
 class WinScreen;
@@ -18,10 +21,15 @@ class WinScreen;
 class WinScreen : public QWidget
 {
     Q_OBJECT
+    b2World world;
+    b2Body* body;
+    QTimer* timer = new QTimer(this);
 
 public:
     explicit WinScreen(QWidget *parent = nullptr);
     ~WinScreen();
+    void setUpBox2D();
+    void paintEvent(QPaintEvent *event) override;
 
 public slots:
     ///
@@ -33,6 +41,11 @@ public slots:
     /// \brief Listens for the next lesson button to be clicked so it can notify the model
     ///
     void nextLessonButtonClicked();
+
+    ///
+    /// \brief Updates the world based on a time increment
+    ///
+    void updateWorld();
 
 
 signals:
@@ -50,6 +63,8 @@ signals:
 
 private:
     Ui::WinScreen *ui;
+    QPainter painter;
+    QPixmap background;
 };
 
 #endif // WINSCREEN_H
