@@ -170,7 +170,7 @@ public slots:
 
     void requestBoard ();
 
-    void resetField ();
+    void resetField (QSize boardSize, float mineFreq);
 
 signals:
     ///

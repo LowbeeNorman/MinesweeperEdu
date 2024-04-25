@@ -19,16 +19,24 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::loadNew);
     connect (ui->startPage, &StartScreen::sendNewLessonClicked
             , &model, &Model::setInQuiz);
+    // enable the quiz view and disable the freeplay view
+    connect (ui->startPage, &StartScreen::sendNewLessonClicked
+            , ui->freeplayPage->getBoard (), &MinesweeperView::disableBoard);
+    connect (ui->startPage, &StartScreen::sendNewLessonClicked
+            , ui->lessonPage->getBoard (), &MinesweeperView::enableBoard);
     connect(ui->startPage, &StartScreen::sendFreeplayClicked
             , this, &MainWindow::updateScreenIndex);
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
             , ui->freeplayPage, &Freeplay::display);
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
             , &model, &Model::setFreePlay);
+    // disable the quiz and enable the freeplay view on freeplay clicked
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
             , ui->freeplayPage->getBoard (), &MinesweeperView::enableBoard);
     connect (ui->startPage, &StartScreen::sendFreeplayClicked
-            , &model.getFreeplayField (), &Minefield::resetField);
+            , ui->lessonPage->getBoard (), &MinesweeperView::disableBoard);
+    // connect (ui->startPage, &StartScreen::sendFreeplayClicked
+    //         , &model.getFreeplayField (), &Minefield::resetField);
     connect(ui->startPage, &StartScreen::sendContinueClicked
             , this, &MainWindow::loadPrevious);
     connect (ui->startPage, &StartScreen::sendContinueClicked
@@ -115,9 +123,9 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
     ui->lessonPage->getBoard()->makeConnections (model.getMinefield());
-    ui->freeplayPage->getBoard()->makeConnections (model.getFreeplayField());
+    ui->freeplayPage->getBoard()->makeConnections (model.getMinefield());
 
-    connect(&model.getFreeplayField(), &Minefield::numFlagsChanged
+    connect(&model.getMinefield(), &Minefield::numFlagsChanged
             , ui->freeplayPage, &Freeplay::setFlagsRemaining);
 
 
@@ -140,18 +148,20 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::returnToMenu, this, &MainWindow::updateScreenIndex);
     connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::nextFreeplayLevel, this, &MainWindow::updateScreenIndex);
 
-    connect(&model.getFreeplayField(), &Minefield::won
-            , ui->freeplayWinScreenPage, &FreeplayWinScreen::gameWon);
-    connect(&model.getFreeplayField(), &Minefield::dead
-            , ui->freeplayWinScreenPage, &FreeplayWinScreen::gameLost);
-    connect(&model.getFreeplayField(), &Minefield::won
-            , ui->freeplayPage, &Freeplay::gameOver);
-    connect(&model.getFreeplayField(), &Minefield::dead
-            , ui->freeplayPage, &Freeplay::gameOver);
+    // connect(&model.getFreeplayField(), &Minefield::won
+    //         , ui->freeplayWinScreenPage, &FreeplayWinScreen::gameWon);
+    // connect(&model.getFreeplayField(), &Minefield::dead
+    //         , ui->freeplayWinScreenPage, &FreeplayWinScreen::gameLost);
+    // connect(&model.getFreeplayField(), &Minefield::won
+    //         , ui->freeplayPage, &Freeplay::gameOver);
+    // connect(&model.getFreeplayField(), &Minefield::dead
+    //         , ui->freeplayPage, &Freeplay::gameOver);
     connect(ui->freeplayPage, &Freeplay::goToWinScreen
             , this, &MainWindow::updateScreenIndex);
-    connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::newBoard
-            , &model.getFreeplayField(), &Minefield::resetField);
+    // connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::newBoard
+    //         , &model.getFreeplayField(), &Minefield::resetField);
+    connect (ui->freeplayWinScreenPage, &FreeplayWinScreen::newBoard
+            , &model, &Model::setFreePlay);
     connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::newBoard
             , ui->freeplayPage->getBoard(), &MinesweeperView::enableBoard);
 

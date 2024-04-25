@@ -110,6 +110,7 @@ void Model::nextMessage()
 
 void Model::setFreePlay ()
 {
+    minefield.resetField (QSize (10, 10), 0.15f);
     inQuiz = false;
 }
 
@@ -267,7 +268,7 @@ void Model::increaseMaxLessonValue ()
     emit sendMaxLesson(maxLesson + 1);
 }
 
-Minefield& Model::getFreeplayField()
-{
-    return freePlay;
-}
+// Minefield& Model::getFreeplayField()
+// {
+//     return freePlay;
+// }

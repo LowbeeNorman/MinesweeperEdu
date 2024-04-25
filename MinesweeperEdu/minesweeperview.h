@@ -28,9 +28,10 @@ private:
     int pointToIndex (int x, int y);
     int numFlags;
 
-    QPixmap *flagImage, *coverImage;
-    QPixmap *redHighlight, *orangeHighlight, *yellowHighlight, *pinkHighlight, *blueHighlight, *purpleHighlight, *brownHighlight, *blackHighlight;
-    QPixmap *numbers[10];
+    QPixmap flagImage, coverImage;
+    QPixmap redHighlight, orangeHighlight, yellowHighlight, pinkHighlight;
+    QPixmap blueHighlight, purpleHighlight, brownHighlight, blackHighlight;
+    QPixmap numbers[10];
 
     QList<QPoint> prevChord;
 
