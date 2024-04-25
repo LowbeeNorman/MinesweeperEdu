@@ -144,6 +144,7 @@ void MinesweeperView::receiveBoard (const QSize &boardSize, const int *board, co
 // endgame stuff
 void MinesweeperView::dead (QPoint where, QList<QPoint> mines)
 {
+    Q_UNUSED (where);
     Q_UNUSED (mines);
     if (!enabled)
         return;
