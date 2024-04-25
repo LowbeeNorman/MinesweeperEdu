@@ -17,7 +17,32 @@
    <string notr="true">border-image: url(:/images/tv.png);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="1" alignment="Qt::AlignRight">
+   <item row="0" column="0">
+    <widget class="QLabel" name="winLabel">
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>125</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>150</width>
+       <height>125</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/images/youWin.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QPushButton" name="menuButton">
      <property name="minimumSize">
       <size>
@@ -54,32 +79,7 @@ QPushButton:pressed {
      </property>
     </widget>
    </item>
-   <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-    <widget class="QLabel" name="winLabel">
-     <property name="minimumSize">
-      <size>
-       <width>150</width>
-       <height>125</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>150</width>
-       <height>125</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image: url(:/images/youWin.png);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2" alignment="Qt::AlignLeft">
+   <item row="1" column="1">
     <widget class="QPushButton" name="nextLevelButton">
      <property name="minimumSize">
       <size>
