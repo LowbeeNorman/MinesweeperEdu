@@ -65,7 +65,6 @@ SOURCES += \
     startscreen.cpp \
     minefield.cpp \
     model.cpp \
-    tipsview.cpp \
     usermove.cpp \
     winscreen.cpp
 
@@ -126,7 +125,6 @@ HEADERS += \
     startscreen.h \
     minefield.h \
     model.h \
-    tipsview.h \
     usermove.h \
     winscreen.h
 

@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Written by: Kyle Stewart and Noah Sikorski
+
 #include "quiz.h"
 #include <QJsonArray>
 

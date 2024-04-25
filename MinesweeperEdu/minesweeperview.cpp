@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/2024
+/// Written by: Jayden Ferrin, Winston Ji
+
 #include "minesweeperview.h"
 
 MinesweeperView::MinesweeperView (QWidget *parent)
