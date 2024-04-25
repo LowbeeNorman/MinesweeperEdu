@@ -27,7 +27,7 @@ public:
     Quiz& operator=(Quiz rhs);
     ~Quiz();
 
-    bool verifyUserMove(QPoint coords, UserMove::MoveType type);
+    bool verifyUserMove(QPoint coords, MoveType type);
 
     Minefield *getMinefield ();
 
@@ -59,7 +59,7 @@ public:
     ///
     void executeMovesAtIndex (int index, bool highlightOnly);
 private:
-    QList<UserMove> correctMoves;
+    QSet<UserMove> correctMoves;
     QList<UserMove> completedMoves;
     QList<QString> instructions;
     Minefield *minefield;

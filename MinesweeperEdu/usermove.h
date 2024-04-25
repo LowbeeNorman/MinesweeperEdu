@@ -7,6 +7,16 @@
 #define USERMOVE_H
 #include <QPoint>
 #include <QJsonObject>
+#include <QHash>
+
+class UserMove;
+
+enum class MoveType
+{
+    FLAG, CLEAR, RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN, BLACK, HIGHLIGHTREMOVED
+};
+
+size_t qHash (const UserMove &key, size_t seed = 0) noexcept;
 
 ///
 /// \brief UserMove represents a click that the user can make on the minesweeper board
@@ -14,17 +24,13 @@
 class UserMove
 {
 public:
-    UserMove(QPoint cell);
+    UserMove (QPoint cell, MoveType type);
     UserMove();
     ///
     /// \brief Builds a UserMove from JSON
     /// \param obj
     ///
     UserMove(QJsonObject &obj);
-    enum class MoveType
-    {
-        FLAG, CLEAR, RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN, BLACK, HIGHLIGHTREMOVED
-    };
 
     ///
     /// \brief get the cell that the user clicked on
@@ -41,6 +47,9 @@ public:
     /// \return an index, representing the current location
     ///
     int getInstructionIndex();
+
+    bool operator== (const UserMove &other) const noexcept;
+    friend size_t qHash (const UserMove &key, size_t seed) noexcept;
 private:
     QPoint cell;
     MoveType type;
