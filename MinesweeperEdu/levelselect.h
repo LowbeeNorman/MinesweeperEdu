@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/16/2024
-/// Written by: Caleb Norman, Abdul Asim
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji, Kyle Stewart
 
 #ifndef LEVELSELECT_H
 #define LEVELSELECT_H
@@ -24,18 +24,51 @@ class LevelSelect : public QWidget
     Q_OBJECT
 
 public:
+    ///
+    /// \brief LevelSelect constructor
+    /// \param parent MainWindow
+    ///
     explicit LevelSelect(QWidget *parent = nullptr);
+
+    ///
+    /// \brief destructor
+    ///
     ~LevelSelect();
+
+    ///
+    /// \brief currentButton level button that is currently selected
+    ///
     QPushButton *currentButton = nullptr;
 
 private:
+    ///
+    /// \brief ui of LevelSelect
+    ///
     Ui::LevelSelect *ui;
+
+    ///
+    /// \brief currentLevel from the Model
+    ///
     int currentLevel = 0;
 
+    ///
+    /// \brief pixmapItem stores the background image.
+    ///
     QGraphicsPixmapItem *pixmapItem;
+
+    ///
+    /// \brief levels contains all the images for each of the buttons
+    ///
     QPixmap *levels[40];
+
+    ///
+    /// \brief scene of this Graphics View
+    ///
     QGraphicsScene *scene;
 
+    ///
+    /// \brief group contains all the level buttons in a group
+    ///
     QButtonGroup *group;
 
 public slots:

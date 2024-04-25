@@ -1,3 +1,8 @@
+/// Assignment 9: MinesweeperEdu
+/// CS3505
+/// 4/24/24
+/// Written by: Caleb Norman, Winston Ji, Jayden Ferrin, Abdulahad Asim
+
 #include "freeplaywinscreen.h"
 #include "ui_freeplaywinscreen.h"
 #include <QPaintEvent>

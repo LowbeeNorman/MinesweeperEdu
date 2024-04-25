@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/24/24
-/// Written by: Caleb Norman, Abdul Asim, and Kyle Stewart
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji, Kyle Stewart, Jayden Ferrin, Noah Sikorski
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"

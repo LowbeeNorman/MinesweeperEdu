@@ -31,8 +31,19 @@ public:
     /// \param parent passed to the base constructor
     ///
     Minefield (QObject *parent = nullptr);
+
+    ///
+    /// \brief Minefield constructor using size and frequencies to generate random board
+    /// \param boardSize dimensions of the board
+    /// \param mineFreq frequency of mines on the board
+    ///
     Minefield (QSize boardSize, float mineFreq);
-    Minefield (QSize boardSize, int numMines);
+
+    ///
+    /// \brief Minefield constructor used to load predetermined boards for quizzes
+    /// \param boardSize dimensions of the board
+    /// \param mines number of mines in the board
+    ///
     Minefield (QSize boardSize, bool mines[]);
 
     // methods to implement rule of 3
@@ -40,10 +51,25 @@ public:
     ~Minefield ();
     Minefield &operator= (Minefield other);
 
+    ///
+    /// \brief setField used by model to setup a new board
+    /// \param boardSize dimensions of the board
+    /// \param mines number of mines
+    ///
     void setField (QSize boardSize, bool mines[]);
+
+    ///
+    /// \brief setAutoComplete sets when a board is able to auto complete the rest of the flags
+    /// \param autocomplete
+    ///
     void setAutoComplete (bool autocomplete);
 
+    ///
+    /// \brief getSize getter for board size
+    /// \return QSize of the board
+    ///
     QSize getSize ();
+
 private:
     QSize boardSize;
     int arrayLength;
@@ -164,12 +190,28 @@ public slots:
     ///
     void getSurroundings (QPoint origin);
 
+    ///
+    /// \brief getIfCovered getter for if a tile is covered
+    /// \param origin central tile that we are checking
+    ///
     void getIfCovered (QPoint origin);
 
+    ///
+    /// \brief chord uncovers the tiles around the origin
+    /// \param origin the central tile that we are checking
+    ///
     void chord (QPoint origin);
 
+    ///
+    /// \brief requestBoard listens for if the MinesweeperView is needing the current board.
+    ///
     void requestBoard ();
 
+    ///
+    /// \brief resetField used by Freeplay to reset the board
+    /// \param boardSize dimensions of the board
+    /// \param mineFreq frequency of mines on the board
+    ///
     void resetField (QSize boardSize, float mineFreq);
 
 signals:
@@ -180,6 +222,10 @@ signals:
     ///
     void flagPlaced(QPoint point, int numFlags);
 
+    ///
+    /// \brief numFlagsChanged emitted when a flag is used or unused
+    /// \param numFlags the current number of flags remaining
+    ///
     void numFlagsChanged(int numFlags);
 
     ///
@@ -204,12 +250,30 @@ signals:
     ///
     void updateBoard (const QSize &boardSize, const int *field, const Tile *tiles);
 
+    ///
+    /// \brief sendChord emits which tiles are in the chord
+    /// \param coveredTiles the tiles in the chord
+    ///
     void sendChord (QList<QPoint> coveredTiles);
 
+    ///
+    /// \brief sendCovered sends if a tile is covered
+    /// \param origin the central tile we are checking
+    /// \param covered boolean of if the tile is covered
+    ///
     void sendCovered (QPoint origin, bool covered);
 
+    ///
+    /// \brief lessonHighlightPlaced emitted when a highlight has been placed on the board
+    /// \param point the tile to be highlighted
+    /// \param color the color of the frame
+    ///
     void lessonHighlightPlaced (QPoint point, int color);
 
+    ///
+    /// \brief lessonHighlightRemoved
+    /// \param point
+    ///emitted when a highlight has been removed from the board
     void lessonHighlightRemoved (QPoint point);
 };
 

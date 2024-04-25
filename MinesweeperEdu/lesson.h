@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/24/2024
-/// Written by: Caleb Norman
+/// Written by: Caleb Norman, Winston Ji, Kyle Stewart, Jayden Ferring, Abdulahad Asim, Noah Sikorski
 
 #ifndef LESSON_H
 #define LESSON_H
@@ -23,14 +23,38 @@ class Lesson : public QWidget
     Q_OBJECT
 
 public:
+    ///
+    /// \brief Lesson constructor
+    /// \param parent MainWindow
+    ///
     explicit Lesson(QWidget *parent = nullptr);
+
+    ///
+    /// \brief Destructor
+    ///
     ~Lesson();
 
+    ///
+    /// \brief makeConnections between lesson and Minefield
+    /// \param mines in the board
+    ///
     void makeConnections (Minefield &mines);
+
+    ///
+    /// \brief getBoard getter for the MinesweeperView
+    /// \return MinesweeperView
+    ///
     MinesweeperView* getBoard ();
 
 private:
+    ///
+    /// \brief ui for Lesson
+    ///
     Ui::Lesson *ui;
+
+    ///
+    /// \brief maxPage the number of pages on a particular lesson
+    ///
     int maxPage = 0;
 
 signals:
@@ -103,6 +127,10 @@ public slots:
     ///
     void receiveProgressUpdate (int current, int max);
 
+    ///
+    /// \brief setFlagsRemaining updates the number of flags
+    /// \param numFlags the current number of flags left
+    ///
     void setFlagsRemaining(int numFlags);
 };
 

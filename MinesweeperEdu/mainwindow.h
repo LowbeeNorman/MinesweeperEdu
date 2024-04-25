@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/12/24
-/// Written by: Caleb Norman, Abdul Asim
+/// 4/24/24
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji, Kyle Stewart, Jayden Ferrin, Noah Sikorski
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H

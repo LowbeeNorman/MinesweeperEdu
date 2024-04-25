@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/16/24
-/// Written by: Caleb Norman, Abdul Asim, Winston Ji
+/// 4/16/2024
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji, Kyle Stewart
 
 #include "levelselect.h"
 #include "ui_levelselect.h"

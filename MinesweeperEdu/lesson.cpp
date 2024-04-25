@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/24/2024
-/// Written by: Caleb Norman
+/// Written by: Caleb Norman, Winston Ji, Kyle Stewart, Jayden Ferring, Abdulahad Asim, Noah Sikorski
 
 #include "lesson.h"
 #include "ui_lesson.h"

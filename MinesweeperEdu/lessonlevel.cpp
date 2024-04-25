@@ -1,7 +1,7 @@
-/// Assignment 9: MinesweeperEdu
+/// Assignment 9: Educational App
 /// CS3505
 /// 4/24/2024
-/// Written by: Kyle Stewart, Noah Sikorski
+/// Written by: Kyle Stewart and Noah Sikorski
 
 #include "lessonlevel.h"
 #include <QJsonObject>

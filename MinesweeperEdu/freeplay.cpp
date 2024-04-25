@@ -1,7 +1,7 @@
 /// Assignment 9: MinesweeperEdu
 /// CS3505
 /// 4/24/24
-/// Written by: Caleb Norman, Winston Ji
+/// Written by: Caleb Norman, Winston Ji, Jayden Ferrin, Abdulahad Asim
 
 #include "freeplay.h"
 #include "ui_freeplay.h"
@@ -25,9 +25,8 @@ MinesweeperView *Freeplay::getBoard ()
     return ui->board;
 }
 
-void Freeplay::display (int index)
+void Freeplay::display ()
 {
-    Q_UNUSED (index);
     ui->board->display ();
 }
 
