@@ -11,15 +11,27 @@
 
 class UserMove;
 
+///
+/// \brief The MoveType enum defines types for moves the user can make
+///
 enum class MoveType
 {
-    FLAG, CLEAR, RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN, BLACK, HIGHLIGHTREMOVED
+    FLAG, CLEAR,
+    RED, ORANGE, YELLOW, PINK, BLUE, PURPLE, BROWN, BLACK, HIGHLIGHTREMOVED
 };
 
+///
+/// \brief qHash provides a hashing method for the UserMove class so it can
+/// be used in a QSet
+/// \param key the UserMove object to hash
+/// \param seed hash to be passed to make things more secure
+/// \return the hash of the key
+///
 size_t qHash (const UserMove &key, size_t seed = 0) noexcept;
 
 ///
-/// \brief UserMove represents a click that the user can make on the minesweeper board
+/// \brief UserMove represents a click that the user can make
+/// on the minesweeper board
 ///
 class UserMove
 {
@@ -48,7 +60,14 @@ public:
     ///
     int getInstructionIndex();
 
+    ///
+    /// \brief operator == defines equality for UserMove objects, used in
+    /// putting them in the QSet
+    /// \param other object to test equality against
+    /// \return whether the 2 objects are equal
+    ///
     bool operator== (const UserMove &other) const noexcept;
+    // declare the qHash function as a friend so it can access internal members
     friend size_t qHash (const UserMove &key, size_t seed) noexcept;
 private:
     QPoint cell;

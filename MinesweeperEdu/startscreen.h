@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/17/24
-/// Written by: Caleb Norman, Abdul Asim
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji
 
 #ifndef STARTSCREEN_H
 #define STARTSCREEN_H
@@ -28,9 +28,20 @@ class StartScreen : public QWidget
     QTimer* timer = new QTimer(this);
 
 public:
+    ///
+    /// \brief StartScreen default constructor for the startscreen
+    /// \param parent object to be passed to the base class constructor
+    ///
     explicit StartScreen(QWidget *parent = nullptr);
     ~StartScreen();
+    ///
+    /// \brief setUpBox2D sets up the box2d simulation for the bouncing trophy
+    ///
     void setUpBox2D();
+    ///
+    /// \brief paintEvent handles painting to the screen
+    /// \param event the event passed to paint
+    ///
     void paintEvent(QPaintEvent *event) override;
 
 private:

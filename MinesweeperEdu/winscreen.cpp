@@ -1,8 +1,8 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/24/24
-/// Edited by: Caleb Norman, Abdul Asim
-///
+/// Edited by: Caleb Norman, Abdul Asim, Winston Ji
+
 #include "winscreen.h"
 #include "ui_winscreen.h"
 #include <QPaintEvent>

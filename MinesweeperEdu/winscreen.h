@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
 /// 4/24/24
-/// Edited by: Caleb Norman, Abdul Asim
+/// Edited by: Caleb Norman, Abdul Asim, Winston Ji
 
 #ifndef WINSCREEN_H
 #define WINSCREEN_H
@@ -26,9 +26,20 @@ class WinScreen : public QWidget
     QTimer* timer = new QTimer(this);
 
 public:
+    ///
+    /// \brief WinScreen default constructor for the winscreen
+    /// \param parent widget to be passed to the base constructor
+    ///
     explicit WinScreen(QWidget *parent = nullptr);
     ~WinScreen();
+    ///
+    /// \brief setUpBox2D sets up the box2d for the bouncing image
+    ///
     void setUpBox2D();
+    ///
+    /// \brief paintEvent handles painting to the screen
+    /// \param event the event passed to paint
+    ///
     void paintEvent(QPaintEvent *event) override;
 
 public slots:

@@ -1,7 +1,7 @@
 /// Assignment 9: Educational App
 /// CS3505
-/// 4/24/24
-/// Written by: Caleb Norman, Abdul Asim
+/// 4/17/24
+/// Written by: Caleb Norman, Abdul Asim, Winston Ji
 
 #include "startscreen.h"
 #include "ui_startscreen.h"
