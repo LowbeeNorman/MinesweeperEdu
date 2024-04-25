@@ -76,7 +76,7 @@ public:
     /// \param type FLAG or CLEAR
     /// \return true if the correct move, false otherwise
     ///
-    bool checkMove(QPoint origin, UserMove::MoveType type);
+    bool checkMove(QPoint origin, MoveType type);
     void executeMovesAtIndex(int index, bool highlightOnly);
 private:
     QString topic;

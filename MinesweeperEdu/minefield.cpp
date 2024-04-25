@@ -118,6 +118,9 @@ void Minefield::setField (QSize boardSize, bool mines[])
     autocomplete = false;
     delete[] field;
     delete[] tiles;
+    // make sure it doesn't crash
+    if (arrayLength <= 0)
+        return;
     field = new int[arrayLength] {0};
     tiles = new Tile[arrayLength];
     numMines = 0;

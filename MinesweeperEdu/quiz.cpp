@@ -53,7 +53,7 @@ Quiz::Quiz(QJsonObject &obj, Minefield *minefield)
     for(int i = 0; i < correctMovesArr.size(); ++i)
     {
         QJsonObject userMoveObj = correctMovesArr.at(i).toObject();
-        correctMoves.append(UserMove(userMoveObj));
+        correctMoves.insert(UserMove(userMoveObj));
     }
     numCorrectMovesLeft = correctMovesArr.size();
 
@@ -70,11 +70,11 @@ Quiz::Quiz(QJsonObject &obj, Minefield *minefield)
     // Extract instructions
     QJsonArray instructionsArr = obj.value("instructions").toArray();
     numInstructions = 0;
-    for(int i = 0; i < correctMovesArr.size(); ++i)
+    for(int i = 0; i < instructionsArr.size(); ++i)
     {
         instructions.append(instructionsArr.at(i).toString());
-        numInstructions++;
     }
+    numInstructions = instructionsArr.size();
 }
 
 Minefield *Quiz::getMinefield ()
@@ -106,36 +106,43 @@ void Quiz::executeMovesAtIndex (int index, bool highlightOnly)
 {
     for(int i = 0; i < completedMoves.size(); ++i)
     {
-        if(completedMoves[i].getInstructionIndex()==index)
+        if(completedMoves[i].getInstructionIndex() == index)
         {
-            if (completedMoves[i].getType()==UserMove::MoveType::FLAG&&!highlightOnly)
+            if (completedMoves[i].getType() == MoveType::FLAG && !highlightOnly)
             {
                 this->minefield->flag(completedMoves[i].getCell());
             }
-            else if (completedMoves[i].getType()==UserMove::MoveType::CLEAR&&!highlightOnly)
+            else if (completedMoves[i].getType() == MoveType::CLEAR && !highlightOnly)
             {
                 this->minefield->clear(completedMoves[i].getCell());
             }
-            else if (completedMoves[i].getType()==UserMove::MoveType::HIGHLIGHTREMOVED)
+            else if (completedMoves[i].getType()
+                       == MoveType::HIGHLIGHTREMOVED)
             {
-                qInfo() << "cleared"<<(int)completedMoves[i].getType();
-                this->minefield->highlightRemoved(completedMoves[i].getCell());
+                this->minefield->highlightRemoved
+                    (completedMoves[i].getCell());
             }
             else
             {
-                qInfo() << (int)completedMoves[i].getType();
-                this->minefield->highlightPlaced(completedMoves[i].getCell(),(int)completedMoves[i].getType());
+                this->minefield
+                    ->highlightPlaced
+                    (completedMoves[i].getCell()
+                    , (int) completedMoves[i].getType());
             }
         }
     }
 }
 
-bool Quiz::verifyUserMove (QPoint coords, UserMove::MoveType type)
+bool Quiz::verifyUserMove (QPoint coords, MoveType type)
 {
-    UserMove currentMove = correctMoves.at(correctMoves.size() - numCorrectMovesLeft);
-    if (currentMove.getCell() == coords && currentMove.getType() == type)
+    // UserMove currentMove = correctMoves.at(correctMoves.size()
+    //                                        - numCorrectMovesLeft);
+    UserMove currentMove(coords, type);
+    //if (currentMove.getCell() == coords && currentMove.getType() == type)
+    if (correctMoves.contains (currentMove))
     {
         numCorrectMovesLeft--;
+        correctMoves.remove (currentMove);
         return true;
     }
     return false;
