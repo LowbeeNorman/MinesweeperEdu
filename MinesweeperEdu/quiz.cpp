@@ -119,13 +119,11 @@ void Quiz::executeMovesAtIndex (int index, bool highlightOnly)
             else if (completedMoves[i].getType()
                        == MoveType::HIGHLIGHTREMOVED)
             {
-                qInfo() << "cleared" << (int) completedMoves[i].getType();
                 this->minefield->highlightRemoved
                     (completedMoves[i].getCell());
             }
             else
             {
-                qInfo() << (int) completedMoves[i].getType();
                 this->minefield
                     ->highlightPlaced
                     (completedMoves[i].getCell()
