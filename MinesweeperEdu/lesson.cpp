@@ -20,6 +20,12 @@ Lesson::Lesson(QWidget *parent) :
     connect(ui->previousButton, &QPushButton::clicked
             , this, &Lesson::previousButtonClicked);
 
+    // Connections for updating the progress bar
+    connect (this, &Lesson::updateCurrentProgress
+            , ui->progressDisplay, &QProgressBar::setValue);
+    connect (this, &Lesson::updateMaxProgress, ui->progressDisplay
+            , &QProgressBar::setMaximum);
+
     ui->flagCounter->display(999);
 }
 
@@ -31,41 +37,8 @@ Lesson::~Lesson()
 void Lesson::makeConnections (Minefield &mines)
 {
     // Connections for the minesweeper board
-    connect (&mines, &Minefield::updateBoard
-            , ui->board, &MinesweeperView::receiveBoard);
-    connect (ui->board, &MinesweeperView::requestBoard
-            , &mines, &Minefield::requestBoard);
-    connect (ui->board, &MinesweeperView::clear, &mines, &Minefield::clear);
-    connect (ui->board, &MinesweeperView::flag,  &mines, &Minefield::flag);
-    connect (ui->board, &MinesweeperView::chord, &mines, &Minefield::chord);
-    connect (&mines, &Minefield::flagPlaced
-            , ui->board, &MinesweeperView::flagPlaced);
-    connect (&mines, &Minefield::flagRemoved
-            , ui->board, &MinesweeperView::flagRemoved);
-    connect (&mines, &Minefield::lessonHighlightPlaced, ui->board,
-            &MinesweeperView::lessonHighlightPlaced);
-    connect (&mines, &Minefield::lessonHighlightRemoved, ui->board,
-            &MinesweeperView::lessonHighlightRemoved);
-    connect (ui->board, &MinesweeperView::requestChord
-            , &mines, &Minefield::getSurroundings);
-    connect (&mines, &Minefield::sendChord
-            , ui->board, &MinesweeperView::displayHighlight);
-    connect (ui->board, &MinesweeperView::requestIfCovered
-            , &mines, &Minefield::getIfCovered);
-    connect (&mines, &Minefield::sendCovered
-            , ui->board, &MinesweeperView::receiveIfCovered);
-    connect (&mines, &Minefield::dead
-            , ui->board, &MinesweeperView::dead);
-    connect (&mines, &Minefield::won
-            , ui->board, &MinesweeperView::won);
-
     connect(&mines, &Minefield::numFlagsChanged
             , this, &Lesson::setFlagsRemaining);
-
-    // Connections for updating the progress bar
-    connect (this, &Lesson::updateCurrentProgress, ui->progressDisplay, &QProgressBar::setValue);
-    connect (this, &Lesson::updateMaxProgress, ui->progressDisplay, &QProgressBar::setMaximum);
-
 }
 
 void Lesson::backButtonClicked()

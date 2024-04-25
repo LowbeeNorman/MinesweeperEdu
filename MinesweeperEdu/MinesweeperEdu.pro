@@ -55,6 +55,7 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    freeplay.cpp \
     lesson.cpp \
     lessonlevel.cpp \
     levelselect.cpp \
@@ -116,6 +117,7 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
+    freeplay.h \
     lesson.h \
     lessonlevel.h \
     levelselect.h \
@@ -129,6 +131,7 @@ HEADERS += \
     winscreen.h
 
 FORMS += \
+    freeplay.ui \
     lesson.ui \
     levelselect.ui \
     mainwindow.ui \

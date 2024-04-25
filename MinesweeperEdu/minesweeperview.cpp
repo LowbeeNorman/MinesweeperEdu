@@ -387,4 +387,35 @@ void MinesweeperView::disableBoard ()
     enabled = false;
 }
 
+void MinesweeperView::makeConnections (Minefield &mines)
+{
+    // Connections for the minesweeper board
+    connect (&mines, &Minefield::updateBoard
+            , this, &MinesweeperView::receiveBoard);
+    connect (this, &MinesweeperView::requestBoard
+            , &mines, &Minefield::requestBoard);
+    connect (this, &MinesweeperView::clear, &mines, &Minefield::clear);
+    connect (this, &MinesweeperView::flag,  &mines, &Minefield::flag);
+    connect (this, &MinesweeperView::chord, &mines, &Minefield::chord);
+    connect (&mines, &Minefield::flagPlaced
+            , this, &MinesweeperView::flagPlaced);
+    connect (&mines, &Minefield::flagRemoved
+            , this, &MinesweeperView::flagRemoved);
+    connect (&mines, &Minefield::lessonHighlightPlaced, this,
+            &MinesweeperView::lessonHighlightPlaced);
+    connect (&mines, &Minefield::lessonHighlightRemoved, this,
+            &MinesweeperView::lessonHighlightRemoved);
+    connect (this, &MinesweeperView::requestChord
+            , &mines, &Minefield::getSurroundings);
+    connect (&mines, &Minefield::sendChord
+            , this, &MinesweeperView::displayHighlight);
+    connect (this, &MinesweeperView::requestIfCovered
+            , &mines, &Minefield::getIfCovered);
+    connect (&mines, &Minefield::sendCovered
+            , this, &MinesweeperView::receiveIfCovered);
+    connect (&mines, &Minefield::dead
+            , this, &MinesweeperView::dead);
+    connect (&mines, &Minefield::won
+            , this, &MinesweeperView::won);
+}
 

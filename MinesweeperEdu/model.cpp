@@ -245,3 +245,9 @@ void Model::increaseMaxLessonValue ()
     writeMaxLessonsToFile(maxLesson);
     emit sendMaxLesson(maxLesson + 1);
 }
+
+Minefield& Model::getFreeplayField()
+{
+    minefield = Minefield(QSize(10, 10), 0.15f);
+    return minefield;
+}

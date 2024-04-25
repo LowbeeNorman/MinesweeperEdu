@@ -27,6 +27,7 @@ public:
     ~Lesson();
 
     void makeConnections (Minefield &mines);
+    MinesweeperView* getBoard ();
 
 private:
     Ui::Lesson *ui;
@@ -102,8 +103,6 @@ public slots:
     void receiveProgressUpdate (int current, int max);
 
     void setFlagsRemaining(int numFlags);
-
-    MinesweeperView* getBoard ();
 };
 
 #endif // LESSON_H

@@ -92,7 +92,7 @@ signals:
     ///
     /// \brief Sends a singal when the free play button is clicked to all connected slots
     ///
-    void freePlayClicked();
+    void sendFreeplayClicked(int stackedWidgetIndex);
 
 };
 

@@ -73,6 +73,7 @@ public:
     void mouseMoveEvent (QMouseEvent *event) override;
     void mouseReleaseEvent (QMouseEvent *event) override;
     void resizeEvent (QResizeEvent* event) override;
+    void makeConnections (Minefield &mines);
 
 signals:
     void clear (QPoint origin);

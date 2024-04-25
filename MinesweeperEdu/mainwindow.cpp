@@ -17,6 +17,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::updateScreenIndex);
     connect(ui->startPage, &StartScreen::sendNewLessonClicked
             , this, &MainWindow::loadNew);
+    connect(ui->startPage, &StartScreen::sendFreeplayClicked
+            , this, &MainWindow::updateScreenIndex);
     connect(ui->startPage, &StartScreen::sendContinueClicked
             , this, &MainWindow::loadPrevious);
     connect(ui->startPage , &StartScreen::startingNewGame
@@ -92,6 +94,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
 
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());
+    ui->lessonPage->getBoard()->makeConnections (model.getMinefield());
+    ui->freeplayPage->getBoard()->makeConnections(model.getFreeplayField());
 
     // connections for the progress bar updating during lessons
     connect(ui->lessonPage, &Lesson::requestProgressUpdate
