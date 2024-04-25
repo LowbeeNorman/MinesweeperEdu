@@ -67,6 +67,11 @@ public slots:
     ///
     void updateCurrentLevel(int levelIndex);
 
+    ///
+    /// \brief receiveMaxLesson from the model and updates level button locks
+    ///
+    void receiveMaxLesson(int maxLesson);
+
 signals:
     ///
     /// \brief Emits the current level, so that we can load the correct lesson

@@ -79,6 +79,12 @@ LevelSelect::LevelSelect(QWidget *parent)
                 "border: 4px solid green;"
                 "border-radius: 4px;"
             "}"
+            "QAbstractButton:disabled {"
+                "background: gray;"
+                "border: 4px solid gray;"
+                "border-radius: 4px;"
+                "border-image: url(\":/images/lock.png\");"
+            "}"
         ).arg(i));
         // set the mask so it looks right and stuff
         button->setMask (QPixmap (QString (":/images/level1.png"))
@@ -151,6 +157,18 @@ void LevelSelect::updateCurrentLevel(int levelIndex)
         if (button) {
             button->setChecked(true);
         }
+    }
+}
+
+void LevelSelect::receiveMaxLesson(int maxLesson) {
+    for(int i = 1; i <= maxLesson; i++) {
+        group->button(i)->setDisabled(false);
+        qInfo() << "here" << i;
+    }
+    for(int i = maxLesson + 1; i <= 20; i++)
+    {
+        group->button(i)->setDisabled(true);
+        qInfo() << "there" << i;
     }
 }
 

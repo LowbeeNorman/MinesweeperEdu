@@ -191,6 +191,12 @@ signals:
     /// \brief informs the view the lesson number selected is valid
     ///
     void validLessonNumber (int lessonNumber);
+
+    ///
+    /// \brief informs view what the maxLesson index is.
+    /// \param maxLesson to be sent
+    ///
+    void sendMaxLesson(int maxLesson);
 };
 
 #endif // MODEL_H

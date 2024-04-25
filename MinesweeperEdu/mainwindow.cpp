@@ -83,6 +83,8 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
             , this, &MainWindow::invalidLessonSelected);
     connect(&model, &Model::validLessonNumber
             , this, &MainWindow::validLessonSelected);
+    connect(&model, &Model::sendMaxLesson
+            , ui->levelSelectPage, &LevelSelect::receiveMaxLesson);
 
     // make the connections with the minefield
     ui->lessonPage->makeConnections (model.getMinefield ());

@@ -78,8 +78,8 @@ void WinScreen::updateWorld()
 
     // New position of the label
     b2Vec2 velocity = body->GetLinearVelocity();
-    int newX = ui->winLabel->x() + velocity.x * 2.0f;
-    int newY = ui->winLabel->y() + velocity.y * 2.0f;
+    int newX = ui->winLabel->x() + velocity.x * 3.0f;
+    int newY = ui->winLabel->y() + velocity.y * 3.0f;
 
     int labelWidth = ui->winLabel->width();
     int labelHeight = ui->winLabel->height();
