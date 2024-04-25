@@ -70,11 +70,11 @@ Quiz::Quiz(QJsonObject &obj, Minefield *minefield)
     // Extract instructions
     QJsonArray instructionsArr = obj.value("instructions").toArray();
     numInstructions = 0;
-    for(int i = 0; i < correctMovesArr.size(); ++i)
+    for(int i = 0; i < instructionsArr.size(); ++i)
     {
         instructions.append(instructionsArr.at(i).toString());
-        numInstructions++;
     }
+    numInstructions = instructionsArr.size();
 }
 
 Minefield *Quiz::getMinefield ()

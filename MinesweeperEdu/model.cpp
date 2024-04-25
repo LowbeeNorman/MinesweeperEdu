@@ -206,12 +206,14 @@ void Model::loadUserProgressFile ()
     // set maxLesson
     maxLesson = obj.value("maxLesson").toInt();
     file.close();
+    emit sendMaxLesson(maxLesson + 1);
 }
 
 void Model::resetUserProgressInFile ()
 {
     writeMaxLessonsToFile(0);
     maxLesson = 0;
+    emit sendMaxLesson(1);
 }
 
 void Model::writeMaxLessonsToFile (int maxLessonValue)
@@ -241,4 +243,5 @@ void Model::increaseMaxLessonValue ()
     if (currentLessonIndex > maxLesson)
         maxLesson++;
     writeMaxLessonsToFile(maxLesson);
+    emit sendMaxLesson(maxLesson + 1);
 }
