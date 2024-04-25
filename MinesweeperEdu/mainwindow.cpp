@@ -129,6 +129,9 @@ MainWindow::MainWindow(Model &model, QWidget *parent)
     // update progress
     connect(this, &MainWindow::passedLevel
             , &model, &Model::increaseMaxLessonValue);
+    connect(ui->freeplayPage, &Freeplay::returnToMenu, this, &MainWindow::updateScreenIndex);
+    connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::returnToMenu, this, &MainWindow::updateScreenIndex);
+    connect(ui->freeplayWinScreenPage, &FreeplayWinScreen::nextFreeplayLevel, this, &MainWindow::updateScreenIndex);
 
 }
 
